@@ -1,4 +1,4 @@
-﻿namespace Potato.WinForms
+﻿namespace Potato.WindowsForms
 {
     partial class Form1
     {
