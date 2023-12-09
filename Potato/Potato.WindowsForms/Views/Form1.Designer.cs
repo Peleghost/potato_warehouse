@@ -291,6 +291,7 @@
             Controls.Add(mainTabControl);
             MinimumSize = new Size(1280, 768);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
             mainTabControl.ResumeLayout(false);

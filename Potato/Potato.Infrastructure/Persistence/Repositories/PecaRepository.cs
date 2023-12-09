@@ -87,7 +87,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
         }
 
-        public IEnumerable<Peca> GetPecaById(string id)
+        public IEnumerable<Peca> GetPecaById(int id)
         {
 
             try

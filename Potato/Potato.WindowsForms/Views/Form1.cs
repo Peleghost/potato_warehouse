@@ -10,6 +10,7 @@ namespace Potato.WindowsForms
         // Repositeries
         private readonly IPecaRepository _pecaRepository;
 
+
         public Form1(IPecaRepository pecaRepository)
         {
             InitializeComponent();
@@ -22,14 +23,21 @@ namespace Potato.WindowsForms
             labelTotalRecords.Text = $"Total Records: {allDataGridView.RowCount}";
         }
 
-        // To populate and refresh Data Grid View
+        // To populate and refresh DataGridView
         public void loadData()
         {
             var pecas = _pecaRepository.GetPecas();
             allDataGridView.DataSource = pecas;
+            labelTotalRecords.Text = $"Total Records: {allDataGridView.RowCount}";
         }
 
-        //-------------------------------------------------------------------------
+        // Hide columns from DataGridView
+        private void allDataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            allDataGridView.Columns["Id"].Visible = false;
+        }
+
+        //----------------------------------------------------------------------------------------------------------
 
         public void getPecasButton_Click(object sender, EventArgs e)
         {
@@ -93,7 +101,7 @@ namespace Potato.WindowsForms
 
             try
             {
-                var peca = _pecaRepository.GetPecaById(selectedPeca.Id.ToString());
+                var peca = _pecaRepository.GetPecaById(selectedPeca.Id);
                 selectedDataGridView.DataSource = peca;
             }
             catch (Exception ex)
@@ -108,7 +116,7 @@ namespace Potato.WindowsForms
             {
                 try
                 {
-                    var id = searchTextBox.Text;
+                    var id = Convert.ToInt32(searchTextBox.Text);
                     var peca = _pecaRepository.GetPecaById(id);
 
                     allDataGridView.DataSource = peca;
@@ -133,13 +141,8 @@ namespace Potato.WindowsForms
                     MessageBox.Show($"Error: {ex.Message}");
                 }
             }
-
         }
 
-        private void allDataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            allDataGridView.Columns["Id"].Visible = false;
-        }
     }
 
 }

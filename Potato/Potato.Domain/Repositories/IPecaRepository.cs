@@ -9,7 +9,7 @@ namespace Potato.Domain.Repositories
 
         IEnumerable<Peca> GetPecas();
 
-        IEnumerable<Peca> GetPecaById(string id);
+        IEnumerable<Peca> GetPecaById(int id);
 
         IEnumerable<Peca> GetPecasByCategoria(string categoria);
 

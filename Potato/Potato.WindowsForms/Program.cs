@@ -1,5 +1,4 @@
 using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Potato.Domain.Repositories;
 using Potato.Infrastructure.Persistence.Repositories;
@@ -24,18 +23,32 @@ namespace Potato.WindowsForms
             // Dependency Injection
             var services = new ServiceCollection();
             services.AddTransient<IPecaRepository, PecaRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
             // Inject IDbConnection, with implementation from SqliteConnection class.
             string dbPath = "Data Source=" + Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "Data\\PotatoDB.db");
             services.AddTransient<IDbConnection>((sp) => new SqliteConnection(dbPath));
             
             services.AddTransient<Form1>();
+            services.AddTransient<LoginForm>();
             //
 
             using ServiceProvider serviceProvider = services.BuildServiceProvider();
+            var loginForm = serviceProvider.GetRequiredService<LoginForm>();
             var form1 = serviceProvider.GetRequiredService<Form1>();
 
-            Application.Run(form1);
+            
+            var dialogResult = loginForm.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                Application.Run(form1);
+                loginForm.Close();
+            }
+            else
+            {
+                Application.Exit();
+            }
+
         }
     }
 }
