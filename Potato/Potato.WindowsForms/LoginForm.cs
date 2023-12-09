@@ -8,15 +8,13 @@ namespace Potato.WindowsForms
 
         private readonly IUserRepository _userRepository;
 
-
-
         public LoginForm(IUserRepository userRepository)
         {
             InitializeComponent();
             _userRepository = userRepository;
         }
 
-        private void loginButton_Click(object sender, EventArgs e)
+        private User CreateUserInstance()
         {
             var temp = new User();
             var user = _userRepository.GetUserById(101).ToList();
@@ -26,16 +24,24 @@ namespace Potato.WindowsForms
                 temp.Password = item.Password;
             }
 
+            return temp;
+        }
 
-            if (usernameTextBox.Text == $"{temp.UserName}" && passwordTextBox.Text == $"{temp.Password}")
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+            var user = CreateUserInstance();
+
+            if (usernameTextBox.Text == $"{user.UserName}" && passwordTextBox.Text == $"{user.Password}")
             {
                 this.DialogResult = DialogResult.OK;
             }
             else
             {
-                MessageBox.Show("      *****   Inválido   *****\n\n         " +
+                string error = "      *****   Inválido   *****\n\n         " +
                     "Usuário ou Senha\n\n         " +
-                    "Tente novamente");
+                    "Tente novamente";
+
+                MessageBox.Show(error);
 
                 usernameTextBox.Clear();
                 passwordTextBox.Clear();
