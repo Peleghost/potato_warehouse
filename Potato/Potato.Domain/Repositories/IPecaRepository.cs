@@ -5,13 +5,13 @@ namespace Potato.Domain.Repositories
     public interface IPecaRepository
     {
 
-        public void CriarPeca(Peca peca);
+        public int CriarPeca(Peca peca);
 
         IEnumerable<Peca> GetPecas();
 
         IEnumerable<Peca> GetPecaById(int id);
 
-        IEnumerable<Peca> GetPecasByCategoria(string categoria);
+        IEnumerable<Peca> GetPecasByNomeOuCategoria(string criterio, string busca);
 
         public void DeleteFromDb(Peca peca);
 

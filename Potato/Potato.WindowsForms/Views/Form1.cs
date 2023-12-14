@@ -1,7 +1,5 @@
 using Potato.Domain.Entities;
 using Potato.Domain.Repositories;
-using Potato.WindowsForms.Models;
-using System.Data;
 
 namespace Potato.WindowsForms
 {
@@ -9,22 +7,24 @@ namespace Potato.WindowsForms
     {
         // Repositeries
         private readonly IPecaRepository _pecaRepository;
+        private readonly IPecaEstoqueRepository _pecaEstoqueRepository;
 
 
-        public Form1(IPecaRepository pecaRepository)
+        public Form1(IPecaRepository pecaRepository, IPecaEstoqueRepository pecaEstoqueRepository)
         {
             InitializeComponent();
             _pecaRepository = pecaRepository;
+            _pecaEstoqueRepository = pecaEstoqueRepository;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            loadData();
+            loadPecasData();
             labelTotalRecords.Text = $"Total Records: {allDataGridView.RowCount}";
         }
 
         // To populate and refresh DataGridView
-        public void loadData()
+        public void loadPecasData()
         {
             var pecas = _pecaRepository.GetPecas();
             allDataGridView.DataSource = pecas;
@@ -39,6 +39,7 @@ namespace Potato.WindowsForms
 
         //----------------------------------------------------------------------------------------------------------
 
+        #region ----- Pecas -----
         public void getPecasButton_Click(object sender, EventArgs e)
         {
             try
@@ -57,6 +58,8 @@ namespace Potato.WindowsForms
         {
             try
             {
+                var armazenId = new Armazen().Id;
+
                 Peca peca = new Peca()
                 {
                     Nome = nomeTextBox.Text,
@@ -64,8 +67,19 @@ namespace Potato.WindowsForms
                     Categoria = categoriaTextBox.Text
                 };
 
-                _pecaRepository.CriarPeca(peca);
-                loadData();
+                var pecaId = _pecaRepository.CriarPeca(peca);
+
+                PecaEstoque pecaEstoque = new PecaEstoque()
+                {
+                    PecaId = pecaId,
+                    ArmazenId = armazenId,
+                    Quantidade = Convert.ToInt32(pecaEstoqueNumeric.Value),
+                    //Peca = peca
+                };
+
+                _pecaEstoqueRepository.CriarPecaEstoque(pecaEstoque);
+
+                loadPecasData();
             }
             catch (Exception ex)
             {
@@ -85,7 +99,7 @@ namespace Potato.WindowsForms
                 {
                     _pecaRepository.DeleteFromDb(peca);
                     selectedDataGridView.Columns.Clear();
-                    loadData();
+                    loadPecasData();
                 }
 
             }
@@ -98,7 +112,7 @@ namespace Potato.WindowsForms
         public void allDataGridView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             var selectedPeca = (Peca)allDataGridView.CurrentRow.DataBoundItem;
-
+            //var listPeca = new List<IEnumerable<Peca>>();
             try
             {
                 var peca = _pecaRepository.GetPecaById(selectedPeca.Id);
@@ -112,36 +126,82 @@ namespace Potato.WindowsForms
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            if (searchComboBox.Text == "ID")
+            switch (searchComboBox.Text)
             {
-                try
-                {
-                    var id = Convert.ToInt32(searchTextBox.Text);
-                    var peca = _pecaRepository.GetPecaById(id);
+                case "ID":
+                    try
+                    {
+                        var id = Convert.ToInt32(searchTextBox.Text);
+                        var peca = _pecaRepository.GetPecaById(id);
 
-                    allDataGridView.DataSource = peca;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error: {ex.Message}");
-                }
+                        allDataGridView.DataSource = peca;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.Message}");
+                    }
+                    break;
+
+
+                case "Nome":
+
+                    try
+                    {
+                        string criterio = searchComboBox.Text;
+                        string nome = searchTextBox.Text;
+                        var pecas = _pecaRepository.GetPecasByNomeOuCategoria(criterio, nome);
+
+                        allDataGridView.DataSource = pecas;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.Message}");
+                    }
+
+                    break;
+
+                case "Categoria":
+
+                    try
+                    {
+                        string criterio = searchComboBox.Text.ToLower();
+                        string categoria = searchTextBox.Text;
+                        var pecas = _pecaRepository.GetPecasByNomeOuCategoria(criterio, categoria);
+
+                        allDataGridView.DataSource = pecas;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.Message}");
+                    }
+
+                    break;
+
+                default:
+                    MessageBox.Show($"Error: Nenhum iten Encontrado");
+                    break;
             }
 
-            if (searchComboBox.Text == "Categoria")
-            {
-                try
-                {
-                    string categoria = searchTextBox.Text;
-                    var pecas = _pecaRepository.GetPecasByCategoria(categoria);
-
-                    allDataGridView.DataSource = pecas;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error: {ex.Message}");
-                }
-            }
         }
+        #endregion
+
+        #region ----- Clientes -----
+
+
+
+
+
+
+
+        #endregion
+
+        #region ----- Servicos -----
+
+
+
+
+
+        #endregion
 
     }
 

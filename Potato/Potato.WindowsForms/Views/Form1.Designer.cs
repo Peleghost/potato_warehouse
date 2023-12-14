@@ -33,6 +33,8 @@
             pecaTabPage = new TabPage();
             labelTotalRecords = new Label();
             gb_pecasControl = new GroupBox();
+            quantidadeLabel = new Label();
+            pecaEstoqueNumeric = new NumericUpDown();
             selectedDataGridView = new DataGridView();
             deleteButton = new Button();
             precoTextBox = new TextBox();
@@ -52,6 +54,7 @@
             mainTabControl.SuspendLayout();
             pecaTabPage.SuspendLayout();
             gb_pecasControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pecaEstoqueNumeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)selectedDataGridView).BeginInit();
             gb_pecas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)allDataGridView).BeginInit();
@@ -110,6 +113,8 @@
             // gb_pecasControl
             // 
             gb_pecasControl.AutoSize = true;
+            gb_pecasControl.Controls.Add(quantidadeLabel);
+            gb_pecasControl.Controls.Add(pecaEstoqueNumeric);
             gb_pecasControl.Controls.Add(selectedDataGridView);
             gb_pecasControl.Controls.Add(deleteButton);
             gb_pecasControl.Controls.Add(precoTextBox);
@@ -121,18 +126,34 @@
             gb_pecasControl.Controls.Add(precoLabel);
             gb_pecasControl.Controls.Add(categoriaLabel);
             gb_pecasControl.Dock = DockStyle.Right;
-            gb_pecasControl.Location = new Point(842, 3);
+            gb_pecasControl.Location = new Point(841, 3);
             gb_pecasControl.Name = "gb_pecasControl";
-            gb_pecasControl.Size = new Size(415, 727);
+            gb_pecasControl.Size = new Size(416, 727);
             gb_pecasControl.TabIndex = 64;
             gb_pecasControl.TabStop = false;
             gb_pecasControl.Text = "Pecas";
+            // 
+            // quantidadeLabel
+            // 
+            quantidadeLabel.AutoSize = true;
+            quantidadeLabel.Location = new Point(7, 122);
+            quantidadeLabel.Name = "quantidadeLabel";
+            quantidadeLabel.Size = new Size(72, 15);
+            quantidadeLabel.TabIndex = 64;
+            quantidadeLabel.Text = "Quantidade:";
+            // 
+            // pecaEstoqueNumeric
+            // 
+            pecaEstoqueNumeric.Location = new Point(89, 120);
+            pecaEstoqueNumeric.Name = "pecaEstoqueNumeric";
+            pecaEstoqueNumeric.Size = new Size(321, 23);
+            pecaEstoqueNumeric.TabIndex = 63;
             // 
             // selectedDataGridView
             // 
             selectedDataGridView.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             selectedDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            selectedDataGridView.Location = new Point(6, 562);
+            selectedDataGridView.Location = new Point(7, 562);
             selectedDataGridView.Name = "selectedDataGridView";
             selectedDataGridView.RowTemplate.Height = 25;
             selectedDataGridView.Size = new Size(403, 162);
@@ -141,9 +162,9 @@
             // deleteButton
             // 
             deleteButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            deleteButton.Location = new Point(157, 502);
+            deleteButton.Location = new Point(157, 507);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(252, 54);
+            deleteButton.Size = new Size(252, 49);
             deleteButton.TabIndex = 62;
             deleteButton.Text = "Deletar";
             deleteButton.UseVisualStyleBackColor = true;
@@ -166,15 +187,15 @@
             // selectedItem
             // 
             selectedItem.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            selectedItem.Location = new Point(6, 544);
+            selectedItem.Location = new Point(7, 544);
             selectedItem.Name = "selectedItem";
-            selectedItem.Size = new Size(54, 15);
+            selectedItem.Size = new Size(76, 15);
             selectedItem.TabIndex = 60;
-            selectedItem.Text = "Selected:";
+            selectedItem.Text = "Selecionado:";
             // 
             // addPeca
             // 
-            addPeca.Location = new Point(9, 120);
+            addPeca.Location = new Point(9, 149);
             addPeca.Name = "addPeca";
             addPeca.Size = new Size(400, 49);
             addPeca.TabIndex = 48;
@@ -192,7 +213,7 @@
             // nomeLabel
             // 
             nomeLabel.AutoSize = true;
-            nomeLabel.Location = new Point(9, 41);
+            nomeLabel.Location = new Point(9, 36);
             nomeLabel.Name = "nomeLabel";
             nomeLabel.Size = new Size(43, 15);
             nomeLabel.TabIndex = 50;
@@ -201,7 +222,7 @@
             // precoLabel
             // 
             precoLabel.AutoSize = true;
-            precoLabel.Location = new Point(9, 70);
+            precoLabel.Location = new Point(7, 65);
             precoLabel.Name = "precoLabel";
             precoLabel.Size = new Size(40, 15);
             precoLabel.TabIndex = 51;
@@ -210,7 +231,7 @@
             // categoriaLabel
             // 
             categoriaLabel.AutoSize = true;
-            categoriaLabel.Location = new Point(9, 99);
+            categoriaLabel.Location = new Point(7, 94);
             categoriaLabel.Name = "categoriaLabel";
             categoriaLabel.Size = new Size(61, 15);
             categoriaLabel.TabIndex = 52;
@@ -230,6 +251,8 @@
             // 
             // allDataGridView
             // 
+            allDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            allDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             allDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             allDataGridView.Dock = DockStyle.Fill;
             allDataGridView.Location = new Point(3, 19);
@@ -292,13 +315,14 @@
             MinimumSize = new Size(1280, 768);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Batata Motos - Main";
             Load += Form1_Load;
             mainTabControl.ResumeLayout(false);
             pecaTabPage.ResumeLayout(false);
             pecaTabPage.PerformLayout();
             gb_pecasControl.ResumeLayout(false);
             gb_pecasControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pecaEstoqueNumeric).EndInit();
             ((System.ComponentModel.ISupportInitialize)selectedDataGridView).EndInit();
             gb_pecas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)allDataGridView).EndInit();
@@ -328,5 +352,7 @@
         private DataGridView allDataGridView;
         private GroupBox gb_pecas;
         private Label labelTotalRecords;
+        private Label quantidadeLabel;
+        private NumericUpDown pecaEstoqueNumeric;
     }
 }

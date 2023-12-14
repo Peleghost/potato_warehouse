@@ -16,7 +16,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
             _connection = dbConnection;
         }
 
-        public void CriarPeca(Peca peca)
+        public int CriarPeca(Peca peca)
         {
 
             try
@@ -27,11 +27,25 @@ namespace Potato.Infrastructure.Persistence.Repositories
                 }
 
                 string sql = $"INSERT INTO Peca(nome, preco, categoria) " +
-                    $"VALUES('{peca.Nome}', '{peca.Preco}', '{peca.Categoria}')";
 
-                _connection.Execute(sql, commandType: CommandType.Text);
+                    $"VALUES('{peca.Nome}', '{peca.Preco}', '{peca.Categoria}');" +
+
+                    $"SELECT last_insert_rowid();";
+
+                int pecaId = 0;
+
+                var cmd = _connection.CreateCommand();
+                {
+                    cmd.CommandText = sql;
+                    cmd.CommandType = CommandType.Text;
+                    pecaId = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+
+                //_connection.Execute(sql, commandType: CommandType.Text);
 
                 _connection.Close();
+
+                return pecaId;
             }
             catch (Exception)
             {
@@ -50,7 +64,11 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     _connection.Open();
                 }
 
-                const string query = "SELECT * FROM Peca";
+                string query = @"SELECT Peca.id as Id, Peca.nome as Nome, preco, categoria, quantidade, Armazen.nome as armazen FROM Peca " +
+
+                    "INNER JOIN PecaEstoque ON pecaId=Peca.id " +
+
+                    "INNER JOIN Armazen ON Armazen.id=PecaEstoque.armazenId";
 
                 var pecas = _connection.Query<Peca>(query, commandType: CommandType.Text);
 
@@ -63,7 +81,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
             }
         }
 
-        public IEnumerable<Peca> GetPecasByCategoria(string categoria)
+        public IEnumerable<Peca> GetPecasByNomeOuCategoria(string criterio, string busca)
         {
 
             try
@@ -73,11 +91,18 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     _connection.Open();
                 }
 
-                string query = $"SELECT * FROM Peca WHERE categoria LIKE '%{categoria}%'";
+                string query = @"SELECT Peca.id as Id, Peca.nome as Nome, preco, categoria, quantidade, Armazen.nome as armazen FROM Peca " +
+
+                    "INNER JOIN PecaEstoque ON pecaId=Peca.id " +
+
+                    "INNER JOIN Armazen ON Armazen.id=PecaEstoque.armazenId " +
+
+                    $"WHERE Peca.{criterio} LIKE '%{busca}%'";
 
                 var pecas = _connection.Query<Peca>(query, commandType: CommandType.Text);
 
                 _connection.Close();
+
                 return pecas;
             }
             catch (Exception)

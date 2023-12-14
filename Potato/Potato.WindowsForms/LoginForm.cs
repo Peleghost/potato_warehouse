@@ -1,10 +1,21 @@
 ﻿using Potato.Domain.Entities;
 using Potato.Domain.Repositories;
+using System.Runtime.InteropServices;
 
 namespace Potato.WindowsForms
 {
     public partial class LoginForm : Form
     {
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // height of ellipse
+            int nHeightEllipse // width of ellipse
+        );
 
         private readonly IUserRepository _userRepository;
 
@@ -12,12 +23,19 @@ namespace Potato.WindowsForms
         {
             InitializeComponent();
             _userRepository = userRepository;
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
 
-        private User CreateUserInstance()
+
+        // ----------------
+        // Criar uma nova instancia do usuario para quando estiver em producao
+        // Por enquanto usamos admin admin hardcode no loginButton_Click
+        // ----------------
+        /*
+        private User CreateUserInstanceById(int id)
         {
             var temp = new User();
-            var user = _userRepository.GetUserById(101).ToList();
+            var user = _userRepository.GetUserById(id).ToList();
             foreach (var item in user)
             {
                 temp.UserName = item.UserName;
@@ -26,12 +44,13 @@ namespace Potato.WindowsForms
 
             return temp;
         }
+        */
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            var user = CreateUserInstance();
+            //var adminUser = CreateUserInstanceById(101);
 
-            if (usernameTextBox.Text == $"{user.UserName}" && passwordTextBox.Text == $"{user.Password}")
+            if (usernameTextBox.Text == $"admin" && passwordTextBox.Text == $"admin")
             {
                 this.DialogResult = DialogResult.OK;
             }
@@ -48,5 +67,14 @@ namespace Potato.WindowsForms
             }
         }
 
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void closeButton_MouseHover(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
