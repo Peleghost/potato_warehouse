@@ -81,21 +81,23 @@
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.DimGray;
+            label4.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(3, 467);
+            label4.Location = new Point(3, 469);
             label4.Name = "label4";
-            label4.Size = new Size(223, 15);
+            label4.Size = new Size(159, 13);
             label4.TabIndex = 0;
-            label4.Text = "Fellipe C.T De Camargo, Murilo S. Gomes";
+            label4.Text = "Fellipe Teles, Murilo S. Gomes";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.DimGray;
+            label3.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.White;
             label3.Location = new Point(3, 452);
             label3.Name = "label3";
-            label3.Size = new Size(99, 15);
+            label3.Size = new Size(95, 13);
             label3.TabIndex = 0;
             label3.Text = "Desenvolvimento";
             // 
@@ -105,7 +107,7 @@
             label2.BackColor = Color.DimGray;
             label2.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(74, 239);
+            label2.Location = new Point(73, 278);
             label2.Name = "label2";
             label2.Size = new Size(140, 18);
             label2.TabIndex = 0;
@@ -117,7 +119,7 @@
             label1.BackColor = Color.DimGray;
             label1.Font = new Font("Stencil", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(40, 207);
+            label1.Location = new Point(39, 246);
             label1.Name = "label1";
             label1.Size = new Size(208, 32);
             label1.TabIndex = 0;

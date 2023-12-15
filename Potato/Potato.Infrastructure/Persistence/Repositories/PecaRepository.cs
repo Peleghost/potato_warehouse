@@ -1,8 +1,11 @@
 ﻿using Dapper;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Potato.Domain.Entities;
 using Potato.Domain.Repositories;
 using System.Data;
+using System.Data.SQLite;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Potato.Infrastructure.Persistence.Repositories
 {
@@ -140,15 +143,36 @@ namespace Potato.Infrastructure.Persistence.Repositories
         {
             try
             {
-                if (_connection.State == ConnectionState.Closed)
+                //if (_connection.State == ConnectionState.Closed)
+                //{
+                //    _connection.Open();
+                //}
+
+                using (SQLiteConnection connection = new SQLiteConnection(_connection.ConnectionString))
                 {
-                    _connection.Open();
+                    connection.Open();
+
+                    using (SQLiteCommand deletePecaCommand = new SQLiteCommand($"DELETE FROM PecaEstoque WHERE PecaId = {peca.Id};", connection))
+                    {
+                        deletePecaCommand.ExecuteNonQuery();
+                    }
+
+                    // Excluir a Peca com ID 1 (a exclusão em cascata também removerá o registro correspondente em PecaEstoque)
+                    using (SQLiteCommand deletePecaCommand = new SQLiteCommand($"DELETE FROM Peca WHERE id = {peca.Id};", connection))
+                    {
+                        deletePecaCommand.ExecuteNonQuery();
+                    }
+                    _connection.Close();
                 }
 
-                string sql = $"DELETE FROM Peca WHERE id='{peca.Id}'";
 
-                _connection.Execute(sql, commandType: CommandType.Text);
-                _connection.Close();
+                
+
+
+                //string sql = $"DELETE FROM Peca WHERE id='{peca.Id}'";
+
+                //_connection.Execute(sql, commandType: CommandType.Text);
+                //_connection.Close();
 
             }
             catch (Exception)

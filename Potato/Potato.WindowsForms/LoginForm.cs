@@ -74,7 +74,7 @@ namespace Potato.WindowsForms
 
         private void closeButton_MouseHover(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
