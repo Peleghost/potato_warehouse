@@ -28,55 +28,81 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             getPecasButton = new Button();
             mainTabControl = new TabControl();
             pecaTabPage = new TabPage();
             labelTotalRecords = new Label();
             gb_pecasControl = new GroupBox();
+            label1 = new Label();
+            editQuantidadeLabel = new Label();
+            editQuantidadeNumeric = new NumericUpDown();
+            editPrecoTB = new TextBox();
+            editCategoriaTB = new TextBox();
+            editNomeTB = new TextBox();
+            editNomeLabel = new Label();
+            editPrecoLabel = new Label();
+            editCategoriaLabel = new Label();
+            editButton = new Button();
+            venderButton = new Button();
             quantidadeLabel = new Label();
             pecaEstoqueNumeric = new NumericUpDown();
             selectedDataGridView = new DataGridView();
             deleteButton = new Button();
             precoTextBox = new TextBox();
             categoriaTextBox = new TextBox();
-            selectedItem = new Label();
-            addPeca = new Button();
+            addPecaButton = new Button();
             nomeTextBox = new TextBox();
             nomeLabel = new Label();
             precoLabel = new Label();
             categoriaLabel = new Label();
             gb_pecas = new GroupBox();
-            allDataGridView = new DataGridView();
+            allPecasDGV = new DataGridView();
             searchButton = new Button();
             searchTextBox = new TextBox();
             searchComboBox = new ComboBox();
-            tabPage2 = new TabPage();
+            clienteTabPage = new TabPage();
+            cliente_gb = new GroupBox();
+            dataGridView1 = new DataGridView();
+            tabPage1 = new TabPage();
+            tabPage3 = new TabPage();
             mainTabControl.SuspendLayout();
             pecaTabPage.SuspendLayout();
             gb_pecasControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)editQuantidadeNumeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pecaEstoqueNumeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)selectedDataGridView).BeginInit();
             gb_pecas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)allDataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)allPecasDGV).BeginInit();
+            clienteTabPage.SuspendLayout();
+            cliente_gb.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // getPecasButton
             // 
             getPecasButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            getPecasButton.Location = new Point(687, 8);
+            getPecasButton.BackColor = Color.DimGray;
+            getPecasButton.FlatStyle = FlatStyle.Flat;
+            getPecasButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            getPecasButton.ForeColor = Color.White;
+            getPecasButton.Location = new Point(687, 9);
             getPecasButton.MaximumSize = new Size(144, 43);
             getPecasButton.Name = "getPecasButton";
             getPecasButton.Size = new Size(144, 29);
             getPecasButton.TabIndex = 0;
             getPecasButton.Text = "Listar Todas Pecas";
-            getPecasButton.UseVisualStyleBackColor = true;
+            getPecasButton.UseVisualStyleBackColor = false;
             getPecasButton.Click += getPecasButton_Click;
             // 
             // mainTabControl
             // 
             mainTabControl.Controls.Add(pecaTabPage);
-            mainTabControl.Controls.Add(tabPage2);
+            mainTabControl.Controls.Add(clienteTabPage);
+            mainTabControl.Controls.Add(tabPage1);
+            mainTabControl.Controls.Add(tabPage3);
             mainTabControl.Dock = DockStyle.Fill;
+            mainTabControl.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             mainTabControl.HotTrack = true;
             mainTabControl.Location = new Point(0, 0);
             mainTabControl.Name = "mainTabControl";
@@ -93,10 +119,11 @@
             pecaTabPage.Controls.Add(searchButton);
             pecaTabPage.Controls.Add(searchTextBox);
             pecaTabPage.Controls.Add(searchComboBox);
-            pecaTabPage.Location = new Point(4, 24);
+            pecaTabPage.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            pecaTabPage.Location = new Point(4, 23);
             pecaTabPage.Name = "pecaTabPage";
             pecaTabPage.Padding = new Padding(3);
-            pecaTabPage.Size = new Size(1260, 733);
+            pecaTabPage.Size = new Size(1260, 734);
             pecaTabPage.TabIndex = 0;
             pecaTabPage.Text = "Pecas";
             pecaTabPage.UseVisualStyleBackColor = true;
@@ -104,110 +131,236 @@
             // labelTotalRecords
             // 
             labelTotalRecords.AutoSize = true;
+            labelTotalRecords.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             labelTotalRecords.Location = new Point(8, 15);
             labelTotalRecords.Name = "labelTotalRecords";
-            labelTotalRecords.Size = new Size(80, 15);
+            labelTotalRecords.Size = new Size(96, 14);
             labelTotalRecords.TabIndex = 2;
             labelTotalRecords.Text = "Total Records:";
             // 
             // gb_pecasControl
             // 
             gb_pecasControl.AutoSize = true;
+            gb_pecasControl.Controls.Add(label1);
+            gb_pecasControl.Controls.Add(editQuantidadeLabel);
+            gb_pecasControl.Controls.Add(editQuantidadeNumeric);
+            gb_pecasControl.Controls.Add(editPrecoTB);
+            gb_pecasControl.Controls.Add(editCategoriaTB);
+            gb_pecasControl.Controls.Add(editNomeTB);
+            gb_pecasControl.Controls.Add(editNomeLabel);
+            gb_pecasControl.Controls.Add(editPrecoLabel);
+            gb_pecasControl.Controls.Add(editCategoriaLabel);
+            gb_pecasControl.Controls.Add(editButton);
+            gb_pecasControl.Controls.Add(venderButton);
             gb_pecasControl.Controls.Add(quantidadeLabel);
             gb_pecasControl.Controls.Add(pecaEstoqueNumeric);
             gb_pecasControl.Controls.Add(selectedDataGridView);
             gb_pecasControl.Controls.Add(deleteButton);
             gb_pecasControl.Controls.Add(precoTextBox);
             gb_pecasControl.Controls.Add(categoriaTextBox);
-            gb_pecasControl.Controls.Add(selectedItem);
-            gb_pecasControl.Controls.Add(addPeca);
+            gb_pecasControl.Controls.Add(addPecaButton);
             gb_pecasControl.Controls.Add(nomeTextBox);
             gb_pecasControl.Controls.Add(nomeLabel);
             gb_pecasControl.Controls.Add(precoLabel);
             gb_pecasControl.Controls.Add(categoriaLabel);
             gb_pecasControl.Dock = DockStyle.Right;
+            gb_pecasControl.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             gb_pecasControl.Location = new Point(841, 3);
             gb_pecasControl.Name = "gb_pecasControl";
-            gb_pecasControl.Size = new Size(416, 727);
+            gb_pecasControl.Size = new Size(416, 728);
             gb_pecasControl.TabIndex = 64;
             gb_pecasControl.TabStop = false;
             gb_pecasControl.Text = "Pecas";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(6, 276);
+            label1.Name = "label1";
+            label1.Size = new Size(51, 14);
+            label1.TabIndex = 75;
+            label1.Text = "EDITAR";
+            // 
+            // editQuantidadeLabel
+            // 
+            editQuantidadeLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            editQuantidadeLabel.AutoSize = true;
+            editQuantidadeLabel.Location = new Point(7, 550);
+            editQuantidadeLabel.Name = "editQuantidadeLabel";
+            editQuantidadeLabel.Size = new Size(86, 14);
+            editQuantidadeLabel.TabIndex = 74;
+            editQuantidadeLabel.Text = "Quantidade:";
+            // 
+            // editQuantidadeNumeric
+            // 
+            editQuantidadeNumeric.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            editQuantidadeNumeric.Enabled = false;
+            editQuantidadeNumeric.Location = new Point(99, 548);
+            editQuantidadeNumeric.Name = "editQuantidadeNumeric";
+            editQuantidadeNumeric.Size = new Size(311, 22);
+            editQuantidadeNumeric.TabIndex = 73;
+            // 
+            // editPrecoTB
+            // 
+            editPrecoTB.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            editPrecoTB.Enabled = false;
+            editPrecoTB.Location = new Point(99, 490);
+            editPrecoTB.Name = "editPrecoTB";
+            editPrecoTB.Size = new Size(310, 22);
+            editPrecoTB.TabIndex = 71;
+            // 
+            // editCategoriaTB
+            // 
+            editCategoriaTB.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            editCategoriaTB.Enabled = false;
+            editCategoriaTB.Location = new Point(99, 519);
+            editCategoriaTB.Name = "editCategoriaTB";
+            editCategoriaTB.Size = new Size(310, 22);
+            editCategoriaTB.TabIndex = 72;
+            // 
+            // editNomeTB
+            // 
+            editNomeTB.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            editNomeTB.Enabled = false;
+            editNomeTB.Location = new Point(99, 461);
+            editNomeTB.Name = "editNomeTB";
+            editNomeTB.Size = new Size(310, 22);
+            editNomeTB.TabIndex = 70;
+            // 
+            // editNomeLabel
+            // 
+            editNomeLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            editNomeLabel.AutoSize = true;
+            editNomeLabel.Location = new Point(9, 464);
+            editNomeLabel.Name = "editNomeLabel";
+            editNomeLabel.Size = new Size(48, 14);
+            editNomeLabel.TabIndex = 67;
+            editNomeLabel.Text = "Nome:";
+            // 
+            // editPrecoLabel
+            // 
+            editPrecoLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            editPrecoLabel.AutoSize = true;
+            editPrecoLabel.Location = new Point(7, 493);
+            editPrecoLabel.Name = "editPrecoLabel";
+            editPrecoLabel.Size = new Size(47, 14);
+            editPrecoLabel.TabIndex = 68;
+            editPrecoLabel.Text = "Preco:";
+            // 
+            // editCategoriaLabel
+            // 
+            editCategoriaLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            editCategoriaLabel.AutoSize = true;
+            editCategoriaLabel.Location = new Point(7, 522);
+            editCategoriaLabel.Name = "editCategoriaLabel";
+            editCategoriaLabel.Size = new Size(74, 14);
+            editCategoriaLabel.TabIndex = 69;
+            editCategoriaLabel.Text = "Categoria:";
+            // 
+            // editButton
+            // 
+            editButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            editButton.BackColor = Color.SandyBrown;
+            editButton.Enabled = false;
+            editButton.FlatStyle = FlatStyle.Flat;
+            editButton.ForeColor = Color.White;
+            editButton.Location = new Point(10, 576);
+            editButton.Name = "editButton";
+            editButton.Size = new Size(399, 49);
+            editButton.TabIndex = 66;
+            editButton.Text = "Editar";
+            editButton.UseVisualStyleBackColor = false;
+            editButton.Click += editButton_Click;
+            // 
+            // venderButton
+            // 
+            venderButton.BackColor = Color.LightSeaGreen;
+            venderButton.Enabled = false;
+            venderButton.FlatStyle = FlatStyle.Flat;
+            venderButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            venderButton.ForeColor = Color.White;
+            venderButton.Location = new Point(10, 204);
+            venderButton.Name = "venderButton";
+            venderButton.Size = new Size(399, 49);
+            venderButton.TabIndex = 65;
+            venderButton.Text = "Vender";
+            venderButton.UseVisualStyleBackColor = false;
+            venderButton.Click += venderButton_Click;
             // 
             // quantidadeLabel
             // 
             quantidadeLabel.AutoSize = true;
             quantidadeLabel.Location = new Point(7, 122);
             quantidadeLabel.Name = "quantidadeLabel";
-            quantidadeLabel.Size = new Size(72, 15);
+            quantidadeLabel.Size = new Size(86, 14);
             quantidadeLabel.TabIndex = 64;
             quantidadeLabel.Text = "Quantidade:";
             // 
             // pecaEstoqueNumeric
             // 
-            pecaEstoqueNumeric.Location = new Point(89, 120);
+            pecaEstoqueNumeric.Location = new Point(99, 120);
             pecaEstoqueNumeric.Name = "pecaEstoqueNumeric";
-            pecaEstoqueNumeric.Size = new Size(321, 23);
+            pecaEstoqueNumeric.Size = new Size(311, 22);
             pecaEstoqueNumeric.TabIndex = 63;
             // 
             // selectedDataGridView
             // 
-            selectedDataGridView.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            selectedDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             selectedDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            selectedDataGridView.Location = new Point(7, 562);
+            selectedDataGridView.Location = new Point(4, 293);
             selectedDataGridView.Name = "selectedDataGridView";
             selectedDataGridView.RowTemplate.Height = 25;
-            selectedDataGridView.Size = new Size(403, 162);
+            selectedDataGridView.Size = new Size(405, 162);
             selectedDataGridView.TabIndex = 61;
             // 
             // deleteButton
             // 
             deleteButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            deleteButton.Location = new Point(157, 507);
+            deleteButton.BackColor = Color.IndianRed;
+            deleteButton.Enabled = false;
+            deleteButton.FlatStyle = FlatStyle.Flat;
+            deleteButton.ForeColor = Color.White;
+            deleteButton.Location = new Point(10, 673);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(252, 49);
+            deleteButton.Size = new Size(399, 49);
             deleteButton.TabIndex = 62;
-            deleteButton.Text = "Deletar";
-            deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Text = "DELETE";
+            deleteButton.UseVisualStyleBackColor = false;
             deleteButton.Click += deleteButton_Click;
             // 
             // precoTextBox
             // 
-            precoTextBox.Location = new Point(89, 62);
+            precoTextBox.Location = new Point(99, 62);
             precoTextBox.Name = "precoTextBox";
-            precoTextBox.Size = new Size(320, 23);
+            precoTextBox.Size = new Size(310, 22);
             precoTextBox.TabIndex = 55;
             // 
             // categoriaTextBox
             // 
-            categoriaTextBox.Location = new Point(89, 91);
+            categoriaTextBox.Location = new Point(99, 91);
             categoriaTextBox.Name = "categoriaTextBox";
-            categoriaTextBox.Size = new Size(320, 23);
+            categoriaTextBox.Size = new Size(310, 22);
             categoriaTextBox.TabIndex = 56;
             // 
-            // selectedItem
+            // addPecaButton
             // 
-            selectedItem.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            selectedItem.Location = new Point(7, 544);
-            selectedItem.Name = "selectedItem";
-            selectedItem.Size = new Size(76, 15);
-            selectedItem.TabIndex = 60;
-            selectedItem.Text = "Selecionado:";
-            // 
-            // addPeca
-            // 
-            addPeca.Location = new Point(9, 149);
-            addPeca.Name = "addPeca";
-            addPeca.Size = new Size(400, 49);
-            addPeca.TabIndex = 48;
-            addPeca.Text = "Adicionar ao Banco de Dados";
-            addPeca.UseVisualStyleBackColor = true;
-            addPeca.Click += addPecasButton_Click;
+            addPecaButton.BackColor = Color.SeaGreen;
+            addPecaButton.FlatStyle = FlatStyle.Flat;
+            addPecaButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            addPecaButton.ForeColor = Color.White;
+            addPecaButton.Location = new Point(10, 149);
+            addPecaButton.Name = "addPecaButton";
+            addPecaButton.Size = new Size(399, 49);
+            addPecaButton.TabIndex = 48;
+            addPecaButton.Text = "Adicionar ao Banco de Dados";
+            addPecaButton.UseVisualStyleBackColor = false;
+            addPecaButton.Click += addPecaButton_Click;
             // 
             // nomeTextBox
             // 
-            nomeTextBox.Location = new Point(89, 33);
+            nomeTextBox.Location = new Point(99, 33);
             nomeTextBox.Name = "nomeTextBox";
-            nomeTextBox.Size = new Size(320, 23);
+            nomeTextBox.Size = new Size(310, 22);
             nomeTextBox.TabIndex = 54;
             // 
             // nomeLabel
@@ -215,7 +368,7 @@
             nomeLabel.AutoSize = true;
             nomeLabel.Location = new Point(9, 36);
             nomeLabel.Name = "nomeLabel";
-            nomeLabel.Size = new Size(43, 15);
+            nomeLabel.Size = new Size(48, 14);
             nomeLabel.TabIndex = 50;
             nomeLabel.Text = "Nome:";
             // 
@@ -224,7 +377,7 @@
             precoLabel.AutoSize = true;
             precoLabel.Location = new Point(7, 65);
             precoLabel.Name = "precoLabel";
-            precoLabel.Size = new Size(40, 15);
+            precoLabel.Size = new Size(47, 14);
             precoLabel.TabIndex = 51;
             precoLabel.Text = "Preco:";
             // 
@@ -233,7 +386,7 @@
             categoriaLabel.AutoSize = true;
             categoriaLabel.Location = new Point(7, 94);
             categoriaLabel.Name = "categoriaLabel";
-            categoriaLabel.Size = new Size(61, 15);
+            categoriaLabel.Size = new Size(74, 14);
             categoriaLabel.TabIndex = 52;
             categoriaLabel.Text = "Categoria:";
             // 
@@ -241,38 +394,43 @@
             // 
             gb_pecas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gb_pecas.AutoSize = true;
-            gb_pecas.Controls.Add(allDataGridView);
+            gb_pecas.Controls.Add(allPecasDGV);
+            gb_pecas.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             gb_pecas.Location = new Point(5, 41);
             gb_pecas.Name = "gb_pecas";
-            gb_pecas.Size = new Size(831, 689);
+            gb_pecas.Size = new Size(831, 690);
             gb_pecas.TabIndex = 66;
             gb_pecas.TabStop = false;
             gb_pecas.Text = "Pecas";
             // 
-            // allDataGridView
+            // allPecasDGV
             // 
-            allDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            allDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            allDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            allDataGridView.Dock = DockStyle.Fill;
-            allDataGridView.Location = new Point(3, 19);
-            allDataGridView.Name = "allDataGridView";
-            allDataGridView.ReadOnly = true;
-            allDataGridView.RowTemplate.Height = 25;
-            allDataGridView.Size = new Size(825, 667);
-            allDataGridView.TabIndex = 1;
-            allDataGridView.DataBindingComplete += allDataGridView_DataBindingComplete;
-            allDataGridView.RowHeaderMouseDoubleClick += allDataGridView_RowHeaderMouseDoubleClick;
+            allPecasDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            allPecasDGV.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            allPecasDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            allPecasDGV.Dock = DockStyle.Fill;
+            allPecasDGV.Location = new Point(3, 18);
+            allPecasDGV.Name = "allPecasDGV";
+            allPecasDGV.ReadOnly = true;
+            allPecasDGV.RowTemplate.Height = 25;
+            allPecasDGV.Size = new Size(825, 669);
+            allPecasDGV.TabIndex = 1;
+            allPecasDGV.DataBindingComplete += allDataGridView_DataBindingComplete;
+            allPecasDGV.RowHeaderMouseDoubleClick += allDataGridView_RowHeaderMouseDoubleClick;
             // 
             // searchButton
             // 
             searchButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            searchButton.Location = new Point(537, 8);
+            searchButton.BackColor = Color.DimGray;
+            searchButton.FlatStyle = FlatStyle.Flat;
+            searchButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            searchButton.ForeColor = Color.White;
+            searchButton.Location = new Point(537, 10);
             searchButton.Name = "searchButton";
-            searchButton.Size = new Size(144, 29);
+            searchButton.Size = new Size(144, 27);
             searchButton.TabIndex = 3;
             searchButton.Text = "Buscar";
-            searchButton.UseVisualStyleBackColor = true;
+            searchButton.UseVisualStyleBackColor = false;
             searchButton.Click += searchButton_Click;
             // 
             // searchTextBox
@@ -280,30 +438,72 @@
             searchTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             searchTextBox.Location = new Point(261, 12);
             searchTextBox.Name = "searchTextBox";
-            searchTextBox.Size = new Size(270, 23);
+            searchTextBox.Size = new Size(270, 22);
             searchTextBox.TabIndex = 2;
             // 
             // searchComboBox
             // 
             searchComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             searchComboBox.AutoCompleteMode = AutoCompleteMode.Append;
+            searchComboBox.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             searchComboBox.FormattingEnabled = true;
             searchComboBox.Items.AddRange(new object[] { "ID", "Nome", "Categoria" });
             searchComboBox.Location = new Point(134, 12);
             searchComboBox.Name = "searchComboBox";
-            searchComboBox.Size = new Size(121, 23);
+            searchComboBox.Size = new Size(121, 22);
             searchComboBox.TabIndex = 4;
             searchComboBox.Text = "Buscar Por...";
             // 
-            // tabPage2
+            // clienteTabPage
             // 
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1260, 733);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
+            clienteTabPage.Controls.Add(cliente_gb);
+            clienteTabPage.Location = new Point(4, 23);
+            clienteTabPage.Name = "clienteTabPage";
+            clienteTabPage.Padding = new Padding(3);
+            clienteTabPage.Size = new Size(1260, 734);
+            clienteTabPage.TabIndex = 1;
+            clienteTabPage.Text = "Clientes";
+            clienteTabPage.UseVisualStyleBackColor = true;
+            // 
+            // cliente_gb
+            // 
+            cliente_gb.Controls.Add(dataGridView1);
+            cliente_gb.Location = new Point(0, 79);
+            cliente_gb.Name = "cliente_gb";
+            cliente_gb.Size = new Size(785, 654);
+            cliente_gb.TabIndex = 0;
+            cliente_gb.TabStop = false;
+            cliente_gb.Text = "Clientes";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(3, 18);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(779, 633);
+            dataGridView1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Location = new Point(4, 23);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1260, 734);
+            tabPage1.TabIndex = 2;
+            tabPage1.Text = "tabPage1";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Location = new Point(4, 23);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(1260, 734);
+            tabPage3.TabIndex = 3;
+            tabPage3.Text = "tabPage3";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -312,6 +512,7 @@
             AutoSize = true;
             ClientSize = new Size(1268, 761);
             Controls.Add(mainTabControl);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(1280, 768);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
@@ -322,10 +523,14 @@
             pecaTabPage.PerformLayout();
             gb_pecasControl.ResumeLayout(false);
             gb_pecasControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)editQuantidadeNumeric).EndInit();
             ((System.ComponentModel.ISupportInitialize)pecaEstoqueNumeric).EndInit();
             ((System.ComponentModel.ISupportInitialize)selectedDataGridView).EndInit();
             gb_pecas.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)allDataGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)allPecasDGV).EndInit();
+            clienteTabPage.ResumeLayout(false);
+            cliente_gb.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -334,7 +539,7 @@
         private Button getPecasButton;
         private TabControl mainTabControl;
         private TabPage pecaTabPage;
-        private TabPage tabPage2;
+        private TabPage clienteTabPage;
         private TextBox searchTextBox;
         private Button searchButton;
         private ComboBox searchComboBox;
@@ -343,16 +548,30 @@
         private Button deleteButton;
         private TextBox precoTextBox;
         private TextBox categoriaTextBox;
-        private Label selectedItem;
-        private Button addPeca;
+        private Button addPecaButton;
         private TextBox nomeTextBox;
         private Label nomeLabel;
         private Label precoLabel;
         private Label categoriaLabel;
-        private DataGridView allDataGridView;
+        private DataGridView allPecasDGV;
         private GroupBox gb_pecas;
         private Label labelTotalRecords;
         private Label quantidadeLabel;
         private NumericUpDown pecaEstoqueNumeric;
+        private TabPage tabPage1;
+        private TabPage tabPage3;
+        private GroupBox cliente_gb;
+        private DataGridView dataGridView1;
+        private Button venderButton;
+        private Button editButton;
+        private Label editQuantidadeLabel;
+        private NumericUpDown editQuantidadeNumeric;
+        private TextBox editPrecoTB;
+        private TextBox editCategoriaTB;
+        private TextBox editNomeTB;
+        private Label editNomeLabel;
+        private Label editPrecoLabel;
+        private Label editCategoriaLabel;
+        private Label label1;
     }
 }

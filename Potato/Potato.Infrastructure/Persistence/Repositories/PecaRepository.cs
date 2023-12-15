@@ -1,11 +1,8 @@
 ﻿using Dapper;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
 using Potato.Domain.Entities;
 using Potato.Domain.Repositories;
 using System.Data;
 using System.Data.SQLite;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Potato.Infrastructure.Persistence.Repositories
 {
@@ -125,7 +122,13 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     _connection.Open();
                 }
 
-                string query = $"SELECT * FROM Peca WHERE id='{id}'";
+                string query = @"SELECT Peca.id as Id, Peca.nome as Nome, preco, categoria, quantidade, Armazen.nome as armazen FROM Peca " +
+
+                    "INNER JOIN PecaEstoque ON pecaId=Peca.id " +
+
+                    "INNER JOIN Armazen ON Armazen.id=PecaEstoque.armazenId " +
+
+                    $"WHERE Peca.id={id}";
 
                 var peca = _connection.Query<Peca>(query, commandType: CommandType.Text);
 
@@ -139,15 +142,64 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
         }
 
+        public void VenderPeca(Peca peca)
+        {
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open(); 
+                }
+
+                if (peca.Quantidade == 0)
+                {
+                    DeleteFromDb(peca);
+                    _connection.Close();
+                }
+
+                string sql = $"UPDATE PecaEstoque SET quantidade = quantidade -1 " +
+                    $"WHERE pecaId={peca.Id}";
+
+                _connection.Execute(sql, commandType: CommandType.Text);
+
+                _connection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void EditarPeca(Peca peca, int quantidade)
+        {
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string pecaEstoqueSql = $"UPDATE PecaEstoque SET quantidade = {quantidade} " +
+                    $"WHERE pecaId = {peca.Id}";
+
+                string pecaSql = $"UPDATE Peca SET nome = '{peca.Nome}', preco = {peca.Preco}, categoria = '{peca.Categoria}' " +
+                    $"WHERE id = {peca.Id}";
+
+                _connection.Execute(pecaEstoqueSql, commandType: CommandType.Text);
+                _connection.Execute(pecaSql, commandType: CommandType.Text);
+
+                _connection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public void DeleteFromDb(Peca peca)
         {
             try
             {
-                //if (_connection.State == ConnectionState.Closed)
-                //{
-                //    _connection.Open();
-                //}
-
                 using (SQLiteConnection connection = new SQLiteConnection(_connection.ConnectionString))
                 {
                     connection.Open();
@@ -165,9 +217,10 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     _connection.Close();
                 }
 
-
-                
-
+                //if (_connection.State == ConnectionState.Closed)
+                //{
+                //    _connection.Open();
+                //}
 
                 //string sql = $"DELETE FROM Peca WHERE id='{peca.Id}'";
 

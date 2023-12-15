@@ -8,36 +8,64 @@ namespace Potato.WindowsForms
         // Repositeries
         private readonly IPecaRepository _pecaRepository;
         private readonly IPecaEstoqueRepository _pecaEstoqueRepository;
-
+        //
 
         public Form1(IPecaRepository pecaRepository, IPecaEstoqueRepository pecaEstoqueRepository)
         {
             InitializeComponent();
             _pecaRepository = pecaRepository;
             _pecaEstoqueRepository = pecaEstoqueRepository;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             loadPecasData();
-            labelTotalRecords.Text = $"Total Records: {allDataGridView.RowCount}";
-        }
-
-        // To populate and refresh DataGridView
-        public void loadPecasData()
-        {
-            var pecas = _pecaRepository.GetPecas();
-            allDataGridView.DataSource = pecas;
-            labelTotalRecords.Text = $"Total Records: {allDataGridView.RowCount}";
+            labelTotalRecords.Text = $"Total Records: {allPecasDGV.RowCount}";
         }
 
         // Hide columns from DataGridView
         private void allDataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            allDataGridView.Columns["Id"].Visible = false;
+            allPecasDGV.Columns["Id"].Visible = false;
         }
 
         //----------------------------------------------------------------------------------------------------------
+
+        #region ----- Control Methods / LoadData -----
+
+        // To populate and refresh DataGridView
+        public void loadPecasData()
+        {
+            var pecas = _pecaRepository.GetPecas();
+            allPecasDGV.DataSource = pecas;
+            labelTotalRecords.Text = $"Total Records: {allPecasDGV.RowCount}";
+        }
+
+        // Enable controls
+        public void EnablePecaControls()
+        {
+            venderButton.Enabled = true;
+            editButton.Enabled = true;
+            deleteButton.Enabled = true;
+            editNomeTB.Enabled = true;
+            editCategoriaTB.Enabled = true;
+            editPrecoTB.Enabled = true;
+            editQuantidadeNumeric.Enabled = true;
+        }
+
+        // Clear Peca Edit TextBoxes
+        public void ClearPecaEditTB()
+        {
+            editNomeTB.Clear();
+            editPrecoTB.Clear();
+            editCategoriaTB.Clear();
+            editQuantidadeNumeric.Value = 0;
+        }
+
+        #endregion
+
+
 
         #region ----- Pecas -----
         public void getPecasButton_Click(object sender, EventArgs e)
@@ -45,8 +73,8 @@ namespace Potato.WindowsForms
             try
             {
                 var pecas = _pecaRepository.GetPecas();
-                allDataGridView.DataSource = pecas;
-                labelTotalRecords.Text = $"Total Records: {allDataGridView.RowCount}";
+                allPecasDGV.DataSource = pecas;
+                labelTotalRecords.Text = $"Total Records: {allPecasDGV.RowCount}";
             }
             catch (Exception ex)
             {
@@ -54,7 +82,7 @@ namespace Potato.WindowsForms
             }
         }
 
-        public void addPecasButton_Click(object sender, EventArgs e)
+        public void addPecaButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -87,13 +115,66 @@ namespace Potato.WindowsForms
             }
         }
 
+        private void venderButton_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                var peca = (Peca)selectedDataGridView.CurrentRow.DataBoundItem;
+
+                var message = MessageBox.Show($"Vender Peca?\n Nome: {peca.Nome}, Categoria: {peca.Categoria}, Quantidade: {peca.Quantidade}",
+                    "Confirmar", MessageBoxButtons.OKCancel);
+
+                if (message == DialogResult.OK)
+                {
+                    _pecaRepository.VenderPeca(peca);
+                    selectedDataGridView.Columns.Clear();
+                    loadPecasData();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var peca = (Peca)selectedDataGridView.CurrentRow.DataBoundItem;
+
+                peca = new Peca()
+                {
+                    Id = peca.Id,
+                    Nome = editNomeTB.Text,
+                    Preco = Convert.ToDouble(editPrecoTB.Text),
+                    Categoria = editCategoriaTB.Text,
+                };
+
+                int quantidade = Convert.ToInt32(editQuantidadeNumeric.Value);
+
+                _pecaRepository.EditarPeca(peca, quantidade);
+
+                ClearPecaEditTB();
+                loadPecasData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+
+        }
+
         public void deleteButton_Click(object sender, EventArgs e)
         {
             var peca = (Peca)selectedDataGridView.CurrentRow.DataBoundItem;
 
             try
             {
-                var message = MessageBox.Show("Deletar Item?", "Confirmar", MessageBoxButtons.OKCancel);
+                var message = MessageBox.Show($"Deletar Item?\n Nome: {peca.Nome}, Categoria: {peca.Categoria}",
+                    "Confirmar", MessageBoxButtons.OKCancel);
 
                 if (message == DialogResult.OK)
                 {
@@ -111,12 +192,21 @@ namespace Potato.WindowsForms
 
         public void allDataGridView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            var selectedPeca = (Peca)allDataGridView.CurrentRow.DataBoundItem;
+            var selectedPeca = (Peca)allPecasDGV.CurrentRow.DataBoundItem;
+
+            EnablePecaControls();
+
+            editNomeTB.Text = selectedPeca.Nome;
+            editCategoriaTB.Text = selectedPeca.Categoria;
+            editPrecoTB.Text = selectedPeca.Preco.ToString();
+            editQuantidadeNumeric.Value = selectedPeca.Quantidade;
+
             //var listPeca = new List<IEnumerable<Peca>>();
             try
             {
                 var peca = _pecaRepository.GetPecaById(selectedPeca.Id);
                 selectedDataGridView.DataSource = peca;
+
             }
             catch (Exception ex)
             {
@@ -134,7 +224,7 @@ namespace Potato.WindowsForms
                         var id = Convert.ToInt32(searchTextBox.Text);
                         var peca = _pecaRepository.GetPecaById(id);
 
-                        allDataGridView.DataSource = peca;
+                        allPecasDGV.DataSource = peca;
                     }
                     catch (Exception ex)
                     {
@@ -151,7 +241,7 @@ namespace Potato.WindowsForms
                         string nome = searchTextBox.Text;
                         var pecas = _pecaRepository.GetPecasByNomeOuCategoria(criterio, nome);
 
-                        allDataGridView.DataSource = pecas;
+                        allPecasDGV.DataSource = pecas;
                     }
                     catch (Exception ex)
                     {
@@ -168,7 +258,7 @@ namespace Potato.WindowsForms
                         string categoria = searchTextBox.Text;
                         var pecas = _pecaRepository.GetPecasByNomeOuCategoria(criterio, categoria);
 
-                        allDataGridView.DataSource = pecas;
+                        allPecasDGV.DataSource = pecas;
                     }
                     catch (Exception ex)
                     {

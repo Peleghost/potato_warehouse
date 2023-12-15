@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Potato.Domain.Entities
+﻿namespace Potato.Domain.Entities
 {
-    internal class Cliente
+    public class Cliente
     {
+        int id { get; set; }
+        public string? primeiroNome { get; set; }
+        public string? Sobrenome { get; set; }
+        public string? Cpf { get; set; }
+        public string? Endereco { get; set; }
+        public string? Email { get; set; }
+        public string? Telefone { get; set; }
+        public int Ativo { get; set; }
+        public int ServicoId { get; set; }
+        public int Veiculo { get; set; }
     }
 }
