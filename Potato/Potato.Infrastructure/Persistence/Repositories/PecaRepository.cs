@@ -41,7 +41,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     pecaId = Convert.ToInt32(cmd.ExecuteScalar());
                 }
 
-                //_connection.Execute(sql, commandType: CommandType.Text);
+                _connection.Execute(sql, commandType: CommandType.Text);
 
                 _connection.Close();
 
