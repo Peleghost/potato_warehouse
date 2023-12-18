@@ -151,11 +151,11 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     _connection.Open(); 
                 }
 
-                if (peca.Quantidade == 0)
-                {
-                    DeleteFromDb(peca);
-                    _connection.Close();
-                }
+                //if (peca.Quantidade == 0)
+                //{
+                //    DeleteFromDb(peca);
+                //    _connection.Close();
+                //}
 
                 string sql = $"UPDATE PecaEstoque SET quantidade = quantidade -1 " +
                     $"WHERE pecaId={peca.Id}";

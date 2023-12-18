@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             getPecasButton = new Button();
             mainTabControl = new TabControl();
@@ -62,10 +64,25 @@
             searchTextBox = new TextBox();
             searchComboBox = new ComboBox();
             clienteTabPage = new TabPage();
+            cadastroCliente_gb = new GroupBox();
+            cpf_label = new Label();
+            clienteCpf_tb = new TextBox();
+            clienteSobrenome_label = new Label();
+            clienteSobrenome_tb = new TextBox();
+            clienteNome_label = new Label();
+            clienteNome_tb = new TextBox();
             cliente_gb = new GroupBox();
-            dataGridView1 = new DataGridView();
+            allClientes_dgv = new DataGridView();
             tabPage1 = new TabPage();
             tabPage3 = new TabPage();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            clienteEndereco_label = new Label();
+            clienteEndereco_tb = new TextBox();
+            label2 = new Label();
+            clienteEmail_tb = new TextBox();
+            clienteTelefone_label = new Label();
+            clienteTelefone_tb = new TextBox();
+            cadastrarClienteButton = new Button();
             mainTabControl.SuspendLayout();
             pecaTabPage.SuspendLayout();
             gb_pecasControl.SuspendLayout();
@@ -75,8 +92,9 @@
             gb_pecas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)allPecasDGV).BeginInit();
             clienteTabPage.SuspendLayout();
+            cadastroCliente_gb.SuspendLayout();
             cliente_gb.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)allClientes_dgv).BeginInit();
             SuspendLayout();
             // 
             // getPecasButton
@@ -324,7 +342,7 @@
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(399, 49);
             deleteButton.TabIndex = 62;
-            deleteButton.Text = "DELETE";
+            deleteButton.Text = "DELETAR";
             deleteButton.UseVisualStyleBackColor = false;
             deleteButton.Click += deleteButton_Click;
             // 
@@ -405,18 +423,23 @@
             // 
             // allPecasDGV
             // 
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(238, 239, 249);
+            allPecasDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             allPecasDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             allPecasDGV.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            allPecasDGV.BorderStyle = BorderStyle.Fixed3D;
             allPecasDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             allPecasDGV.Dock = DockStyle.Fill;
             allPecasDGV.Location = new Point(3, 18);
             allPecasDGV.Name = "allPecasDGV";
             allPecasDGV.ReadOnly = true;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            allPecasDGV.RowsDefaultCellStyle = dataGridViewCellStyle2;
             allPecasDGV.RowTemplate.Height = 25;
             allPecasDGV.Size = new Size(825, 669);
             allPecasDGV.TabIndex = 1;
             allPecasDGV.DataBindingComplete += allDataGridView_DataBindingComplete;
-            allPecasDGV.RowHeaderMouseDoubleClick += allDataGridView_RowHeaderMouseDoubleClick;
+            allPecasDGV.RowHeaderMouseDoubleClick += allPecasDGV_RowHeaderMouseDoubleClick;
             // 
             // searchButton
             // 
@@ -456,6 +479,7 @@
             // 
             // clienteTabPage
             // 
+            clienteTabPage.Controls.Add(cadastroCliente_gb);
             clienteTabPage.Controls.Add(cliente_gb);
             clienteTabPage.Location = new Point(4, 23);
             clienteTabPage.Name = "clienteTabPage";
@@ -465,25 +489,98 @@
             clienteTabPage.Text = "Clientes";
             clienteTabPage.UseVisualStyleBackColor = true;
             // 
+            // cadastroCliente_gb
+            // 
+            cadastroCliente_gb.Controls.Add(cadastrarClienteButton);
+            cadastroCliente_gb.Controls.Add(clienteTelefone_label);
+            cadastroCliente_gb.Controls.Add(clienteTelefone_tb);
+            cadastroCliente_gb.Controls.Add(label2);
+            cadastroCliente_gb.Controls.Add(clienteEmail_tb);
+            cadastroCliente_gb.Controls.Add(clienteEndereco_label);
+            cadastroCliente_gb.Controls.Add(clienteEndereco_tb);
+            cadastroCliente_gb.Controls.Add(cpf_label);
+            cadastroCliente_gb.Controls.Add(clienteCpf_tb);
+            cadastroCliente_gb.Controls.Add(clienteSobrenome_label);
+            cadastroCliente_gb.Controls.Add(clienteSobrenome_tb);
+            cadastroCliente_gb.Controls.Add(clienteNome_label);
+            cadastroCliente_gb.Controls.Add(clienteNome_tb);
+            cadastroCliente_gb.Dock = DockStyle.Right;
+            cadastroCliente_gb.Location = new Point(841, 3);
+            cadastroCliente_gb.Name = "cadastroCliente_gb";
+            cadastroCliente_gb.Size = new Size(416, 728);
+            cadastroCliente_gb.TabIndex = 1;
+            cadastroCliente_gb.TabStop = false;
+            cadastroCliente_gb.Text = "Cadastro";
+            // 
+            // cpf_label
+            // 
+            cpf_label.AutoSize = true;
+            cpf_label.Location = new Point(9, 92);
+            cpf_label.Name = "cpf_label";
+            cpf_label.Size = new Size(36, 14);
+            cpf_label.TabIndex = 5;
+            cpf_label.Text = "CPF:";
+            // 
+            // clienteCpf_tb
+            // 
+            clienteCpf_tb.Location = new Point(99, 89);
+            clienteCpf_tb.Name = "clienteCpf_tb";
+            clienteCpf_tb.Size = new Size(311, 22);
+            clienteCpf_tb.TabIndex = 4;
+            // 
+            // clienteSobrenome_label
+            // 
+            clienteSobrenome_label.AutoSize = true;
+            clienteSobrenome_label.Location = new Point(9, 64);
+            clienteSobrenome_label.Name = "clienteSobrenome_label";
+            clienteSobrenome_label.Size = new Size(84, 14);
+            clienteSobrenome_label.TabIndex = 3;
+            clienteSobrenome_label.Text = "Sobrenome:";
+            // 
+            // clienteSobrenome_tb
+            // 
+            clienteSobrenome_tb.Location = new Point(99, 61);
+            clienteSobrenome_tb.Name = "clienteSobrenome_tb";
+            clienteSobrenome_tb.Size = new Size(311, 22);
+            clienteSobrenome_tb.TabIndex = 2;
+            // 
+            // clienteNome_label
+            // 
+            clienteNome_label.AutoSize = true;
+            clienteNome_label.Location = new Point(9, 36);
+            clienteNome_label.Name = "clienteNome_label";
+            clienteNome_label.Size = new Size(48, 14);
+            clienteNome_label.TabIndex = 1;
+            clienteNome_label.Text = "Nome:";
+            // 
+            // clienteNome_tb
+            // 
+            clienteNome_tb.Location = new Point(99, 33);
+            clienteNome_tb.Name = "clienteNome_tb";
+            clienteNome_tb.Size = new Size(311, 22);
+            clienteNome_tb.TabIndex = 0;
+            // 
             // cliente_gb
             // 
-            cliente_gb.Controls.Add(dataGridView1);
-            cliente_gb.Location = new Point(0, 79);
+            cliente_gb.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            cliente_gb.Controls.Add(allClientes_dgv);
+            cliente_gb.Location = new Point(3, 41);
             cliente_gb.Name = "cliente_gb";
-            cliente_gb.Size = new Size(785, 654);
+            cliente_gb.Size = new Size(832, 690);
             cliente_gb.TabIndex = 0;
             cliente_gb.TabStop = false;
             cliente_gb.Text = "Clientes";
             // 
-            // dataGridView1
+            // allClientes_dgv
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 18);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(779, 633);
-            dataGridView1.TabIndex = 0;
+            allClientes_dgv.BorderStyle = BorderStyle.Fixed3D;
+            allClientes_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            allClientes_dgv.Dock = DockStyle.Fill;
+            allClientes_dgv.Location = new Point(3, 18);
+            allClientes_dgv.Name = "allClientes_dgv";
+            allClientes_dgv.RowTemplate.Height = 25;
+            allClientes_dgv.Size = new Size(826, 669);
+            allClientes_dgv.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -504,6 +601,67 @@
             tabPage3.TabIndex = 3;
             tabPage3.Text = "tabPage3";
             tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // clienteEndereco_label
+            // 
+            clienteEndereco_label.AutoSize = true;
+            clienteEndereco_label.Location = new Point(9, 120);
+            clienteEndereco_label.Name = "clienteEndereco_label";
+            clienteEndereco_label.Size = new Size(71, 14);
+            clienteEndereco_label.TabIndex = 7;
+            clienteEndereco_label.Text = "Endereco:";
+            // 
+            // clienteEndereco_tb
+            // 
+            clienteEndereco_tb.Location = new Point(99, 117);
+            clienteEndereco_tb.Name = "clienteEndereco_tb";
+            clienteEndereco_tb.Size = new Size(311, 22);
+            clienteEndereco_tb.TabIndex = 6;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(9, 148);
+            label2.Name = "label2";
+            label2.Size = new Size(45, 14);
+            label2.TabIndex = 9;
+            label2.Text = "Email:";
+            // 
+            // clienteEmail_tb
+            // 
+            clienteEmail_tb.Location = new Point(99, 145);
+            clienteEmail_tb.Name = "clienteEmail_tb";
+            clienteEmail_tb.Size = new Size(311, 22);
+            clienteEmail_tb.TabIndex = 8;
+            // 
+            // clienteTelefone_label
+            // 
+            clienteTelefone_label.AutoSize = true;
+            clienteTelefone_label.Location = new Point(9, 176);
+            clienteTelefone_label.Name = "clienteTelefone_label";
+            clienteTelefone_label.Size = new Size(65, 14);
+            clienteTelefone_label.TabIndex = 11;
+            clienteTelefone_label.Text = "Telefone:";
+            // 
+            // clienteTelefone_tb
+            // 
+            clienteTelefone_tb.Location = new Point(99, 173);
+            clienteTelefone_tb.Name = "clienteTelefone_tb";
+            clienteTelefone_tb.Size = new Size(311, 22);
+            clienteTelefone_tb.TabIndex = 10;
+            // 
+            // cadastrarClienteButton
+            // 
+            cadastrarClienteButton.BackColor = Color.SeaGreen;
+            cadastrarClienteButton.FlatStyle = FlatStyle.Flat;
+            cadastrarClienteButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            cadastrarClienteButton.ForeColor = Color.White;
+            cadastrarClienteButton.Location = new Point(9, 201);
+            cadastrarClienteButton.Name = "cadastrarClienteButton";
+            cadastrarClienteButton.Size = new Size(401, 49);
+            cadastrarClienteButton.TabIndex = 49;
+            cadastrarClienteButton.Text = "Cadastrar";
+            cadastrarClienteButton.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -529,8 +687,10 @@
             gb_pecas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)allPecasDGV).EndInit();
             clienteTabPage.ResumeLayout(false);
+            cadastroCliente_gb.ResumeLayout(false);
+            cadastroCliente_gb.PerformLayout();
             cliente_gb.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)allClientes_dgv).EndInit();
             ResumeLayout(false);
         }
 
@@ -561,7 +721,7 @@
         private TabPage tabPage1;
         private TabPage tabPage3;
         private GroupBox cliente_gb;
-        private DataGridView dataGridView1;
+        private DataGridView allClientes_dgv;
         private Button venderButton;
         private Button editButton;
         private Label editQuantidadeLabel;
@@ -573,5 +733,20 @@
         private Label editPrecoLabel;
         private Label editCategoriaLabel;
         private Label label1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private GroupBox cadastroCliente_gb;
+        private Label clienteSobrenome_label;
+        private TextBox clienteSobrenome_tb;
+        private Label clienteNome_label;
+        private TextBox clienteNome_tb;
+        private Label cpf_label;
+        private TextBox clienteCpf_tb;
+        private Label clienteEndereco_label;
+        private TextBox clienteEndereco_tb;
+        private Button cadastrarClienteButton;
+        private Label clienteTelefone_label;
+        private TextBox clienteTelefone_tb;
+        private Label label2;
+        private TextBox clienteEmail_tb;
     }
 }

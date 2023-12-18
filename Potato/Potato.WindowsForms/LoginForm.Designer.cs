@@ -56,7 +56,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.DimGray;
+            panel1.BackColor = SystemColors.WindowFrame;
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
@@ -80,7 +80,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = Color.DimGray;
+            label4.BackColor = Color.Transparent;
             label4.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = Color.White;
             label4.Location = new Point(3, 469);
@@ -92,7 +92,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.BackColor = Color.DimGray;
+            label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.White;
             label3.Location = new Point(3, 452);
@@ -104,7 +104,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = Color.DimGray;
+            label2.BackColor = Color.Transparent;
             label2.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
             label2.Location = new Point(73, 278);
@@ -116,7 +116,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.DimGray;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Stencil", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
             label1.Location = new Point(39, 246);
@@ -201,9 +201,9 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(0, 1);
+            pictureBox2.Location = new Point(6, 8);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(39, 44);
+            pictureBox2.Size = new Size(30, 38);
             pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
             // 
@@ -228,7 +228,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(3, 9);
+            pictureBox1.Location = new Point(3, 8);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(36, 36);
             pictureBox1.TabIndex = 2;
