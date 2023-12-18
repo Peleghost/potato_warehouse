@@ -9,20 +9,33 @@ namespace Potato.WindowsForms
         // Repositeries
         private readonly IPecaRepository _pecaRepository;
         private readonly IPecaEstoqueRepository _pecaEstoqueRepository;
+        private readonly IArmazemRepository _armazemRepository;
         //
-
-        public Form1(IPecaRepository pecaRepository, IPecaEstoqueRepository pecaEstoqueRepository)
+        public static int ArmazemId;
+        public Form1(IPecaRepository pecaRepository, IPecaEstoqueRepository pecaEstoqueRepository, IArmazemRepository armazemRepository)
         {
             InitializeComponent();
             _pecaRepository = pecaRepository;
             _pecaEstoqueRepository = pecaEstoqueRepository;
+            _armazemRepository = armazemRepository;
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             loadPecasData();
+            CriarArmazemSeNaoExiste();
             labelTotalRecords.Text = $"Total Records: {allPecasDGV.RowCount}";
+        }
+
+        private void CriarArmazemSeNaoExiste()
+        {
+            var armazem = _armazemRepository.GetArmazem();
+
+            if (!armazem.Any())
+                ArmazemId = _armazemRepository.CriarArmazem();
+            else
+                ArmazemId = armazem.FirstOrDefault().Id;
         }
 
         // Hide columns from DataGridView
@@ -111,9 +124,7 @@ namespace Potato.WindowsForms
         {
             try
             {
-                var armazenId = new Armazen().Id;
-
-                Peca peca = new Peca()
+                Peca peca = new()
                 {
                     Nome = nomeTextBox.Text,
                     Preco = double.Parse(precoTextBox.Text),
@@ -125,9 +136,8 @@ namespace Potato.WindowsForms
                 PecaEstoque pecaEstoque = new PecaEstoque()
                 {
                     PecaId = pecaId,
-                    ArmazenId = armazenId,
+                    ArmazenId = ArmazemId,
                     Quantidade = Convert.ToInt32(pecaEstoqueNumeric.Value),
-                    //Peca = peca
                 };
 
                 _pecaEstoqueRepository.CriarPecaEstoque(pecaEstoque);

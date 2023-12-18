@@ -25,6 +25,7 @@ namespace Potato.WindowsForms
             services.AddTransient<IPecaRepository, PecaRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IPecaEstoqueRepository, PecaEstoqueRepository>();
+            services.AddTransient<IArmazemRepository, ArmazemRepository>();
 
             // Inject IDbConnection, with implementation from SqliteConnection class.
             string dbPath = "Data Source=" + Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "Data\\PotatoDB.db");
