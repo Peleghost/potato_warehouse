@@ -20,15 +20,17 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
             try
             {
+                var dataCriacao = cliente.DataCriacao.ToString();
+
                 if (_connection.State == ConnectionState.Closed)
                 {
                     _connection.Open();
                 }
 
-                string sql = $"INSERT INTO Cliente(primeiroNome, sobrenome, cpf, endereco, email, telefone, ativo) " +
+                string sql = $"INSERT INTO Cliente(primeiroNome, sobrenome, cpf, endereco, email, telefone, ativo, dataCriacao) " +
 
-                    $"VALUES('{cliente.primeiroNome}', '{cliente.Sobrenome}', '{cliente.Cpf}', '{cliente.Endereco}', '{cliente.Email}' " +
-                    $"'{cliente.Telefone}', '{cliente.Ativo}');" +
+                    $"VALUES('{cliente.Nome}', '{cliente.Sobrenome}', '{cliente.Cpf}', '{cliente.Endereco}', '{cliente.Email}', " +
+                    $"'{cliente.Telefone}', '{cliente.Ativo}', '{dataCriacao}');" +
 
                     $"SELECT last_insert_rowid();";
 
@@ -54,7 +56,6 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
         public IEnumerable<Cliente> GetClientes()
         {
-
             try
             {
                 if (_connection.State == ConnectionState.Closed)
@@ -62,7 +63,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     _connection.Open();
                 }
 
-                string query = @"SELECT * FROM Cliente";
+                string query = @"SELECT id, primeiroNome as Nome, sobrenome, cpf, endereco, email, telefone, ativo, dataCriacao FROM Cliente";
 
                 var clientes = _connection.Query<Cliente>(query, commandType: CommandType.Text);
 
@@ -85,7 +86,8 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     _connection.Open();
                 }
 
-                string query = $"SELECT * FROM Cliente WHERE primeiroNome={nome}";
+                string query = $"SELECT primeiroNome as Nome, sobrenome, cpf, endereco, email, telefone, ativo, dataCriacao FROM Cliente" +
+                    $" WHERE primeiroNome LIKE '%{nome}%'";
 
                 var cliente = _connection.Query<Cliente>(query, commandType: CommandType.Text);
 
@@ -124,6 +126,29 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
         //}
 
+        public void EditarCliente(Cliente cliente)
+        {
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string clienteSql = $"UPDATE Cliente SET primeiroNome = '{cliente.Nome}', sobrenome = '{cliente.Sobrenome}', cpf = '{cliente.Cpf}', " +
+                    $"endereco = '{cliente.Endereco}', email = '{cliente.Email}', telefone = '{cliente.Telefone}' " +
+                    $"WHERE id = {cliente.Id}";
+
+                _connection.Execute(clienteSql, commandType: CommandType.Text);
+
+                _connection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public void DeleteCliente(Cliente cliente)
         {
             try
@@ -133,7 +158,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     _connection.Open();
                 }
 
-                string sql = $"DELETE FROM Cliente WHERE id='{cliente}'";
+                string sql = $"DELETE FROM Cliente WHERE id='{cliente.Id}'";
 
                 _connection.Execute(sql, commandType: CommandType.Text);
                 _connection.Close();

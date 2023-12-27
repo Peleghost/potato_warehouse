@@ -1,9 +1,8 @@
 ﻿namespace Potato.Domain.Entities
 {
-    public class Cliente
+    public class Cliente : EntidadeBase
     {
-        int id { get; set; }
-        public string? primeiroNome { get; set; }
+        public string? Nome { get; set; }
         public string? Sobrenome { get; set; }
         public string? Cpf { get; set; }
         public string? Endereco { get; set; }

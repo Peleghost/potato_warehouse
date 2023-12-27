@@ -196,7 +196,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
             }
         }
 
-        public void DeleteFromDb(Peca peca)
+        public void DeletePeca(Peca peca)
         {
             try
             {

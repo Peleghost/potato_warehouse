@@ -22,10 +22,11 @@ namespace Potato.WindowsForms
             
             // Dependency Injection
             var services = new ServiceCollection();
-            services.AddTransient<IPecaRepository, PecaRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IPecaEstoqueRepository, PecaEstoqueRepository>();
             services.AddTransient<IArmazemRepository, ArmazemRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IPecaRepository, PecaRepository>();
+            services.AddTransient<IPecaEstoqueRepository, PecaEstoqueRepository>();
+            services.AddTransient<IClienteRepository, ClienteRepository>();
 
             // Inject IDbConnection, with implementation from SqliteConnection class.
             string dbPath = "Data Source=" + Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "Data\\PotatoDB.db");

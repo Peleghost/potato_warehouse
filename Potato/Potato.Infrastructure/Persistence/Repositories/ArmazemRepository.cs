@@ -1,12 +1,7 @@
 ﻿using Dapper;
 using Potato.Domain.Entities;
 using Potato.Domain.Repositories;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Potato.Infrastructure.Persistence.Repositories
 {

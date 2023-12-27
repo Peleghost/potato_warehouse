@@ -10,6 +10,6 @@ namespace Potato.Domain.Repositories
         IEnumerable<Peca> GetPecas();
         IEnumerable<Peca> GetPecaById(int id);
         IEnumerable<Peca> GetPecasByNomeOuCategoria(string criterio, string busca);
-        public void DeleteFromDb(Peca peca);
+        public void DeletePeca(Peca peca);
     }
 }
