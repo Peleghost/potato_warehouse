@@ -1,9 +1,7 @@
 using Potato.Domain.Entities;
 using Potato.Domain.Repositories;
-using System.Linq.Expressions;
-using System.Net.Mail;
-using System.Net;
 using Potato.WindowsForms.PecaForms;
+using Potato.WindowsForms.Forms.ClienteForms;
 
 namespace Potato.WindowsForms
 {
@@ -58,7 +56,7 @@ namespace Potato.WindowsForms
         {
             allClientesDgv.Columns["Id"].Visible = false;
             allClientesDgv.Columns["servicoId"].Visible = false;
-            allClientesDgv.Columns["Veiculo"].Visible = false;
+            allClientesDgv.Columns["veiculoId"].Visible = false;
         }
         //
 
@@ -83,6 +81,7 @@ namespace Potato.WindowsForms
         #region ----- Control Methods / LoadData -----
 
         // LoadDatas
+        //
         // To populate and refresh allPecasDGV
         private void LoadPecasData()
         {
@@ -132,7 +131,6 @@ namespace Potato.WindowsForms
             venderButton.Enabled = true;
             editButton.Enabled = true;
             deleteButton.Enabled = true;
-
         }
 
         public void DisablePecaControls()
@@ -140,10 +138,8 @@ namespace Potato.WindowsForms
             venderButton.Enabled = false;
             editButton.Enabled = false;
             deleteButton.Enabled = false;
-
         }
-
-
+        //
 
         // Cliente Controls
         public void EnableClienteControls()
@@ -151,12 +147,6 @@ namespace Potato.WindowsForms
             clienteServicoButton.Enabled = true;
             editClienteButton.Enabled = true;
             deleteClienteButton.Enabled = true;
-            editClienteNome_tb.Enabled = true;
-            editClienteSobrenome_tb.Enabled = true;
-            editClienteCpf_tb.Enabled = true;
-            editClienteEndereco_tb.Enabled = true;
-            editClienteEmail_tb.Enabled = true;
-            editClienteTelefone_tb.Enabled = true;
         }
 
         public void DisableClienteControls()
@@ -164,22 +154,6 @@ namespace Potato.WindowsForms
             clienteServicoButton.Enabled = false;
             editClienteButton.Enabled = false;
             deleteClienteButton.Enabled = false;
-            editClienteNome_tb.Enabled = false;
-            editClienteSobrenome_tb.Enabled = false;
-            editClienteCpf_tb.Enabled = false;
-            editClienteEndereco_tb.Enabled = false;
-            editClienteEmail_tb.Enabled = false;
-            editClienteTelefone_tb.Enabled = false;
-        }
-
-        public void ClearClienteEdit()
-        {
-            editClienteNome_tb.Clear();
-            editClienteSobrenome_tb.Clear();
-            editClienteCpf_tb.Clear();
-            editClienteEndereco_tb.Clear();
-            editClienteEmail_tb.Clear();
-            editClienteTelefone_tb.Clear();
         }
 
         //--------------------------------------------------
@@ -242,6 +216,7 @@ namespace Potato.WindowsForms
                 {
                     _pecaRepository.VenderPeca(peca);
 
+                    DisablePecaControls();
                     LoadPecasData();
                 }
 
@@ -397,33 +372,18 @@ namespace Potato.WindowsForms
 
         #region ----- Clientes -----
 
-        private void cadastrarClienteButton_Click(object sender, EventArgs e)
+        private void novoClienteButton_Click(object sender, EventArgs e)
         {
             try
             {
-                var email = _clienteRepository.ValidateEmailAddress(clienteEmail_tb.Text);
+                var clienteForm = new CriarClienteForm(_clienteRepository);
+                clienteForm.ShowDialog();
 
-                if (email.StartsWith("Error"))
+                if (clienteForm.DialogResult == DialogResult.OK)
                 {
-                    clienteEmail_tb.ForeColor = Color.Red;
-                    throw new Exception("Error: Formato de Email não aceito.\n Ex. email@exemplo.com");
+                    clienteForm.Close();
+                    LoadClienteData();
                 }
-
-                var cliente = new Cliente()
-                {
-                    Nome = clienteNome_tb.Text,
-                    Sobrenome = clienteSobrenome_tb.Text,
-                    Cpf = clienteCpf_masktb.Text,
-                    Endereco = clienteEndereco_tb.Text,
-                    Email = email,
-                    Telefone = clienteTelefone_masktb.Text,
-                    Ativo = 1,
-                    DataCriacao = DateTime.UtcNow
-                };
-
-                _clienteRepository.CriarCliente(cliente);
-
-                LoadClienteData();
             }
             catch (Exception ex)
             {
@@ -468,14 +428,6 @@ namespace Potato.WindowsForms
                 var cliente = (Cliente)allClientesDgv.CurrentRow.DataBoundItem;
 
                 EnableClienteControls();
-
-                editClienteNome_tb.Text = cliente.Nome;
-                editClienteSobrenome_tb.Text = cliente.Sobrenome;
-                editClienteCpf_tb.Text = cliente.Cpf;
-                editClienteEndereco_tb.Text = cliente.Endereco;
-                editClienteEmail_tb.Text = cliente.Email;
-                editClienteTelefone_tb.Text = cliente.Telefone;
-
             }
             catch (Exception ex)
             {
@@ -487,33 +439,22 @@ namespace Potato.WindowsForms
         {
             try
             {
-                var cliente = (Cliente)allClientesDgv.CurrentRow.DataBoundItem;
+                var clienteEditar = allClientesDgv.CurrentRow;
+                var editClienteForm = new EditarClienteForm(_clienteRepository);
+                editClienteForm.ShowDialog(ref clienteEditar);
 
-                cliente = new Cliente()
+                if (editClienteForm.DialogResult == DialogResult.OK)
                 {
-                    Id = cliente.Id,
-                    Nome = editClienteNome_tb.Text,
-                    Sobrenome = editClienteSobrenome_tb.Text,
-                    Cpf = editClienteCpf_tb.Text,
-                    Endereco = editClienteEndereco_tb.Text,
-                    Email = editClienteEmail_tb.Text,
-                    Telefone = editClienteTelefone_tb.Text
-                };
+                    editClienteForm.Close();
 
-                var message = MessageBox.Show($"Editar Cliente?", "Confirmar", MessageBoxButtons.OKCancel);
-
-                if (message == DialogResult.OK)
-                {
-                    _clienteRepository.EditarCliente(cliente);
-
-                    ClearClienteEdit();
                     DisableClienteControls();
                     LoadClienteData();
                 }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -530,7 +471,6 @@ namespace Potato.WindowsForms
                 {
                     _clienteRepository.DeleteCliente(cliente);
 
-                    ClearClienteEdit();
                     DisableClienteControls();
                     LoadClienteData();
                 }

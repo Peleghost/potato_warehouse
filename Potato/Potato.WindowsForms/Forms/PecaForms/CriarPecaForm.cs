@@ -54,7 +54,7 @@ namespace Potato.WindowsForms.PecaForms
         //{
         //    var pecaPrecoTb = this.pecaPreco_tb;
         //    pecaPrecoTb.Select(6, 0);
-            
+
         //}
     }
 }
