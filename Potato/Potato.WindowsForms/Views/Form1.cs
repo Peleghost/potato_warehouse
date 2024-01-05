@@ -3,6 +3,7 @@ using Potato.Domain.Repositories;
 using System.Linq.Expressions;
 using System.Net.Mail;
 using System.Net;
+using Potato.WindowsForms.PecaForms;
 
 namespace Potato.WindowsForms
 {
@@ -33,7 +34,7 @@ namespace Potato.WindowsForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            loadPecasData();
+            LoadPecasData();
             CriarArmazemSeNaoExiste();
         }
 
@@ -66,12 +67,12 @@ namespace Potato.WindowsForms
 
             if (mainTabControl.SelectedTab == pecaTabPage && !PecaTabEnter)
             {
-                loadPecasData();
+                LoadPecasData();
                 PecaTabEnter = true;
             }
             else if (mainTabControl.SelectedTab == clienteTabPage && !ClienteTabEnter)
             {
-                loadClienteData();
+                LoadClienteData();
                 ClienteTabEnter = true;
             }
 
@@ -83,7 +84,7 @@ namespace Potato.WindowsForms
 
         // LoadDatas
         // To populate and refresh allPecasDGV
-        private void loadPecasData()
+        private void LoadPecasData()
         {
             var pecas = _pecaRepository.GetPecas();
 
@@ -96,7 +97,7 @@ namespace Potato.WindowsForms
         }
 
         // To populate and refresh allClientesDGV
-        public void loadClienteData()
+        public void LoadClienteData()
         {
             var clientes = _clienteRepository.GetClientes();
 
@@ -131,10 +132,7 @@ namespace Potato.WindowsForms
             venderButton.Enabled = true;
             editButton.Enabled = true;
             deleteButton.Enabled = true;
-            editNome_tb.Enabled = true;
-            editCategoria_tb.Enabled = true;
-            editPreco_masktb.Enabled = true;
-            editQuantidadeNumeric.Enabled = true;
+
         }
 
         public void DisablePecaControls()
@@ -142,20 +140,10 @@ namespace Potato.WindowsForms
             venderButton.Enabled = false;
             editButton.Enabled = false;
             deleteButton.Enabled = false;
-            editNome_tb.Enabled = false;
-            editCategoria_tb.Enabled = false;
-            editPreco_masktb.Enabled = false;
-            editQuantidadeNumeric.Enabled = false;
+
         }
 
-        // Clear Peca Edit TextBoxes
-        public void ClearPecaEdit()
-        {
-            editNome_tb.Clear();
-            editPreco_masktb.Clear();
-            editCategoria_tb.Clear();
-            editQuantidadeNumeric.Value = 0;
-        }
+
 
         // Cliente Controls
         public void EnableClienteControls()
@@ -206,7 +194,7 @@ namespace Potato.WindowsForms
             {
                 var pecas = _pecaRepository.GetPecas();
                 allPecasDgv.DataSource = pecas;
-                loadPecasData();
+                LoadPecasData();
                 labelTotalRecords.Text = $"Total Records: {allPecasDgv.RowCount}";
             }
             catch (Exception ex)
@@ -215,33 +203,22 @@ namespace Potato.WindowsForms
             }
         }
 
-        private void addPecaButton_Click(object sender, EventArgs e)
+        private void novaPecaButton_Click(object sender, EventArgs e)
         {
             try
             {
-                Peca peca = new()
+                var criarPecaForm = new CriarPecaForm(_pecaRepository, _pecaEstoqueRepository);
+                criarPecaForm.ShowDialog();
+
+                if (criarPecaForm.DialogResult == DialogResult.OK)
                 {
-                    Nome = nome_tb.Text,
-                    Preco = double.Parse(preco_masktb.Text),
-                    Categoria = categoria_tb.Text
-                };
-
-                var pecaId = _pecaRepository.CriarPeca(peca);
-
-                PecaEstoque pecaEstoque = new PecaEstoque()
-                {
-                    PecaId = pecaId,
-                    ArmazenId = ArmazemId,
-                    Quantidade = Convert.ToInt32(pecaEstoqueNumeric.Value),
-                };
-
-                _pecaEstoqueRepository.CriarPecaEstoque(pecaEstoque);
-
-                loadPecasData();
+                    criarPecaForm.Close();
+                    LoadPecasData();
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}\n\nErro: Formato nao aceito ou campo nao preenchido");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -250,7 +227,7 @@ namespace Potato.WindowsForms
 
             try
             {
-                var peca = (Peca)selectedDataGridView.CurrentRow.DataBoundItem;
+                var peca = (Peca)allPecasDgv.CurrentRow.DataBoundItem;
 
                 if (peca.Quantidade == 0)
                 {
@@ -265,7 +242,7 @@ namespace Potato.WindowsForms
                 {
                     _pecaRepository.VenderPeca(peca);
 
-                    loadPecasData();
+                    LoadPecasData();
                 }
 
             }
@@ -279,40 +256,28 @@ namespace Potato.WindowsForms
         {
             try
             {
-                var peca = (Peca)selectedDataGridView.CurrentRow.DataBoundItem;
+                var pecaEditar = allPecasDgv.CurrentRow;
+                var editPecaForm = new EditarPecaForm(_pecaRepository, _pecaEstoqueRepository);
+                editPecaForm.ShowDialog(ref pecaEditar);
 
-                peca = new Peca()
+                if (editPecaForm.DialogResult == DialogResult.OK)
                 {
-                    Id = peca.Id,
-                    Nome = editNome_tb.Text,
-                    Preco = Convert.ToDouble(editPreco_masktb.Text),
-                    Categoria = editCategoria_tb.Text,
-                };
+                    editPecaForm.Close();
 
-                int quantidade = Convert.ToInt32(editQuantidadeNumeric.Value);
-
-                var message = MessageBox.Show($"Editar Peca?", "Confirmar", MessageBoxButtons.OKCancel);
-
-                if (message == DialogResult.OK)
-                {
-                    _pecaRepository.EditarPeca(peca, quantidade);
-
-                    selectedDataGridView.Columns.Clear();
-                    ClearPecaEdit();
                     DisablePecaControls();
-                    loadPecasData();
+                    LoadPecasData();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}");
-            }
 
+            }
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            var peca = (Peca)selectedDataGridView.CurrentRow.DataBoundItem;
+            var peca = (Peca)allPecasDgv.CurrentRow.DataBoundItem;
 
             try
             {
@@ -323,10 +288,8 @@ namespace Potato.WindowsForms
                 {
                     _pecaRepository.DeletePeca(peca);
 
-                    selectedDataGridView.Columns.Clear();
-                    ClearPecaEdit();
                     DisablePecaControls();
-                    loadPecasData();
+                    LoadPecasData();
                 }
 
             }
@@ -338,31 +301,30 @@ namespace Potato.WindowsForms
 
         private void allPecasDGV_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            var selectedPeca = (Peca)allPecasDgv.CurrentRow.DataBoundItem;
-
-            if (selectedPeca.Quantidade == 0)
-            {
-                allPecasDgv.CurrentRow.Selected = false;
-            }
-
-            EnablePecaControls();
-
-            editNome_tb.Text = selectedPeca.Nome;
-            editCategoria_tb.Text = selectedPeca.Categoria;
-            editPreco_masktb.Text = selectedPeca.Preco.ToString();
-            editQuantidadeNumeric.Value = selectedPeca.Quantidade;
-
-            //var listPeca = new List<IEnumerable<Peca>>();
             try
             {
-                var peca = _pecaRepository.GetPecaById(selectedPeca.Id);
-                selectedDataGridView.DataSource = peca;
+                var selectedPeca = (Peca)allPecasDgv.CurrentRow.DataBoundItem;
 
+                if (selectedPeca.Quantidade == 0)
+                {
+                    allPecasDgv.CurrentRow.Selected = false;
+                }
+
+                EnablePecaControls();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex}");
+                MessageBox.Show($"Error: {ex.Message}");
             }
+
+            //try
+            //{
+            //    var peca = _pecaRepository.GetPecaById(selectedPeca.Id);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Error: {ex}");
+            //}
         }
 
         private void searchPecaButton_Click(object sender, EventArgs e)
@@ -439,17 +401,12 @@ namespace Potato.WindowsForms
         {
             try
             {
-                var email = "";
+                var email = _clienteRepository.ValidateEmailAddress(clienteEmail_tb.Text);
 
-                try
-                {
-                    clienteEmail_tb.ForeColor = Color.Black;
-                    email = new MailAddress(clienteEmail_tb.Text).Address;
-                }
-                catch (FormatException)
+                if (email.StartsWith("Error"))
                 {
                     clienteEmail_tb.ForeColor = Color.Red;
-                    MessageBox.Show("Error: Formato de Email nao aceito.\nEx: usuario@email.com");
+                    throw new Exception("Error: Formato de Email não aceito.\n Ex. email@exemplo.com");
                 }
 
                 var cliente = new Cliente()
@@ -466,11 +423,11 @@ namespace Potato.WindowsForms
 
                 _clienteRepository.CriarCliente(cliente);
 
-                loadClienteData();
+                LoadClienteData();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -495,7 +452,7 @@ namespace Potato.WindowsForms
             try
             {
                 var clientes = _clienteRepository.GetClientes();
-                loadClienteData();
+                LoadClienteData();
             }
             catch (Exception ex)
             {
@@ -551,7 +508,7 @@ namespace Potato.WindowsForms
 
                     ClearClienteEdit();
                     DisableClienteControls();
-                    loadClienteData();
+                    LoadClienteData();
                 }
             }
             catch (Exception ex)
@@ -575,7 +532,7 @@ namespace Potato.WindowsForms
 
                     ClearClienteEdit();
                     DisableClienteControls();
-                    loadClienteData();
+                    LoadClienteData();
                 }
 
             }
@@ -588,7 +545,11 @@ namespace Potato.WindowsForms
         #endregion
 
 
+        #region ----- Servicos -----
 
+
+
+        #endregion
 
 
 

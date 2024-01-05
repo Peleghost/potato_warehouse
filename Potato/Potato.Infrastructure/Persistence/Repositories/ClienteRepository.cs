@@ -2,6 +2,7 @@
 using Potato.Domain.Entities;
 using Potato.Domain.Repositories;
 using System.Data;
+using System.Net.Mail;
 
 namespace Potato.Infrastructure.Persistence.Repositories
 {
@@ -52,6 +53,19 @@ namespace Potato.Infrastructure.Persistence.Repositories
                 throw;
             }
 
+        }
+
+        public string ValidateEmailAddress(string emailAddress)
+        {
+            try
+            {
+                new MailAddress(emailAddress);
+                return emailAddress;
+            }
+            catch (FormatException)
+            {
+                return "Error";
+            }
         }
 
         public IEnumerable<Cliente> GetClientes()

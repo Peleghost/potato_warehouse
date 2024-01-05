@@ -1,4 +1,6 @@
-﻿namespace Potato.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Potato.Domain.Entities
 {
     public class Cliente : EntidadeBase
     {
