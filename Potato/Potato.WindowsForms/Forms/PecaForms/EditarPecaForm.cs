@@ -15,17 +15,23 @@ namespace Potato.WindowsForms.PecaForms
             InitializeComponent();
         }
 
+        // Overloading ShowDialog Method to take a reference 
         public void ShowDialog(ref DataGridViewRow pecaEditar)
         {
             var peca = (Peca)pecaEditar.DataBoundItem;
+            EditPecaTbControls(peca);
 
+            this.ShowDialog();
+        }
+
+        // Edit TextBox Controls
+        public void EditPecaTbControls(Peca peca)
+        {
             editPecaId_tb.Text = peca.Id.ToString();
             editPecaNome_tb.Text = peca.Nome;
             editPecaCategoria_tb.Text = peca.Categoria;
             editPecaPreco_tb.Text = peca.Preco.ToString();
             editPecaQtdNumeric.Value = peca.Quantidade;
-
-            this.ShowDialog();
         }
 
         private void editPecaButton_Click(object sender, EventArgs e)
@@ -56,6 +62,9 @@ namespace Potato.WindowsForms.PecaForms
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
+
+
+
 
 
     }

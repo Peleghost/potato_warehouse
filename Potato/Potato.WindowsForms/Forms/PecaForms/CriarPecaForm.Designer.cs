@@ -87,7 +87,7 @@
             // quantidadeLabel
             // 
             quantidadeLabel.AutoSize = true;
-            quantidadeLabel.Location = new Point(12, 134);
+            quantidadeLabel.Location = new Point(7, 134);
             quantidadeLabel.Name = "quantidadeLabel";
             quantidadeLabel.Size = new Size(86, 14);
             quantidadeLabel.TabIndex = 83;
@@ -117,7 +117,7 @@
             // nomeLabel
             // 
             nomeLabel.AutoSize = true;
-            nomeLabel.Location = new Point(12, 52);
+            nomeLabel.Location = new Point(7, 52);
             nomeLabel.Name = "nomeLabel";
             nomeLabel.Size = new Size(48, 14);
             nomeLabel.TabIndex = 77;
@@ -126,7 +126,7 @@
             // precoLabel
             // 
             precoLabel.AutoSize = true;
-            precoLabel.Location = new Point(12, 108);
+            precoLabel.Location = new Point(7, 81);
             precoLabel.Name = "precoLabel";
             precoLabel.Size = new Size(47, 14);
             precoLabel.TabIndex = 78;
@@ -135,7 +135,7 @@
             // categoriaLabel
             // 
             categoriaLabel.AutoSize = true;
-            categoriaLabel.Location = new Point(12, 81);
+            categoriaLabel.Location = new Point(7, 108);
             categoriaLabel.Name = "categoriaLabel";
             categoriaLabel.Size = new Size(74, 14);
             categoriaLabel.TabIndex = 79;

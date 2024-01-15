@@ -56,7 +56,6 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
         public IEnumerable<Peca> GetPecas()
         {
-
             try
             {
                 if (_connection.State == ConnectionState.Closed)

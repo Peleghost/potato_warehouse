@@ -12,6 +12,6 @@ namespace Potato.Domain.Entities
         public string? Telefone { get; set; }
         public int Ativo { get; set; }
         public int ServicoId { get; set; }
-        public int VeiculoId { get; set; }
+        public List<int>? VeiculoId { get; set; }
     }
 }

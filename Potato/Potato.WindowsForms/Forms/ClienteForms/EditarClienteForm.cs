@@ -13,10 +13,18 @@ namespace Potato.WindowsForms.Forms.ClienteForms
             InitializeComponent();
         }
 
+        // Overloading ShowDialog Method to take a reference 
         public void ShowDialog(ref DataGridViewRow clienteEditar)
         {
             var cliente = (Cliente)clienteEditar.DataBoundItem;
+            EditClienteTbControls(cliente);
 
+            this.ShowDialog();
+        }
+
+        // Edit TextBox Controls
+        private void EditClienteTbControls(Cliente cliente)
+        {
             editClienteId_tb.Text = cliente.Id.ToString();
             editClienteNome_tb.Text = cliente.Nome;
             editClienteSobrenome_tb.Text = cliente.Sobrenome;
@@ -24,9 +32,9 @@ namespace Potato.WindowsForms.Forms.ClienteForms
             editClienteEndereco_tb.Text = cliente.Endereco;
             editClienteEmail_tb.Text = cliente.Email;
             editClienteTelefone_tb.Text = cliente.Telefone;
-
-            this.ShowDialog();
         }
+
+
 
         private void editClienteButton_Click(object sender, EventArgs e)
         {

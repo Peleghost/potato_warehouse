@@ -30,7 +30,6 @@
         {
             groupBox1 = new GroupBox();
             editPecaId_tb = new TextBox();
-            label1 = new Label();
             editPecaButton = new Button();
             editPecaPreco_tb = new MaskedTextBox();
             editQuantidadeLabel = new Label();
@@ -47,7 +46,6 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(editPecaId_tb);
-            groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(editPecaButton);
             groupBox1.Controls.Add(editPecaPreco_tb);
             groupBox1.Controls.Add(editQuantidadeLabel);
@@ -69,19 +67,12 @@
             // 
             editPecaId_tb.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             editPecaId_tb.Enabled = false;
-            editPecaId_tb.Location = new Point(102, 49);
+            editPecaId_tb.Location = new Point(102, 12);
             editPecaId_tb.Name = "editPecaId_tb";
             editPecaId_tb.Size = new Size(405, 22);
             editPecaId_tb.TabIndex = 88;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 52);
-            label1.Name = "label1";
-            label1.Size = new Size(25, 14);
-            label1.TabIndex = 87;
-            label1.Text = "Id:";
+            editPecaId_tb.UseSystemPasswordChar = true;
+            editPecaId_tb.Visible = false;
             // 
             // editPecaButton
             // 
@@ -100,7 +91,7 @@
             // editPecaPreco_tb
             // 
             editPecaPreco_tb.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            editPecaPreco_tb.Location = new Point(102, 106);
+            editPecaPreco_tb.Location = new Point(102, 77);
             editPecaPreco_tb.Mask = "0000.00";
             editPecaPreco_tb.Name = "editPecaPreco_tb";
             editPecaPreco_tb.Size = new Size(405, 22);
@@ -110,7 +101,7 @@
             // 
             editQuantidadeLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             editQuantidadeLabel.AutoSize = true;
-            editQuantidadeLabel.Location = new Point(10, 166);
+            editQuantidadeLabel.Location = new Point(10, 137);
             editQuantidadeLabel.Name = "editQuantidadeLabel";
             editQuantidadeLabel.Size = new Size(86, 14);
             editQuantidadeLabel.TabIndex = 84;
@@ -119,7 +110,7 @@
             // editPecaQtdNumeric
             // 
             editPecaQtdNumeric.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            editPecaQtdNumeric.Location = new Point(102, 164);
+            editPecaQtdNumeric.Location = new Point(102, 135);
             editPecaQtdNumeric.Name = "editPecaQtdNumeric";
             editPecaQtdNumeric.Size = new Size(405, 22);
             editPecaQtdNumeric.TabIndex = 83;
@@ -127,7 +118,7 @@
             // editPecaCategoria_tb
             // 
             editPecaCategoria_tb.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            editPecaCategoria_tb.Location = new Point(102, 135);
+            editPecaCategoria_tb.Location = new Point(102, 106);
             editPecaCategoria_tb.Name = "editPecaCategoria_tb";
             editPecaCategoria_tb.Size = new Size(405, 22);
             editPecaCategoria_tb.TabIndex = 82;
@@ -135,7 +126,7 @@
             // editPecaNome_tb
             // 
             editPecaNome_tb.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            editPecaNome_tb.Location = new Point(102, 77);
+            editPecaNome_tb.Location = new Point(102, 49);
             editPecaNome_tb.Name = "editPecaNome_tb";
             editPecaNome_tb.Size = new Size(405, 22);
             editPecaNome_tb.TabIndex = 81;
@@ -144,7 +135,7 @@
             // 
             editNomeLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             editNomeLabel.AutoSize = true;
-            editNomeLabel.Location = new Point(12, 80);
+            editNomeLabel.Location = new Point(12, 52);
             editNomeLabel.Name = "editNomeLabel";
             editNomeLabel.Size = new Size(48, 14);
             editNomeLabel.TabIndex = 78;
@@ -154,7 +145,7 @@
             // 
             editPrecoLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             editPrecoLabel.AutoSize = true;
-            editPrecoLabel.Location = new Point(10, 109);
+            editPrecoLabel.Location = new Point(12, 80);
             editPrecoLabel.Name = "editPrecoLabel";
             editPrecoLabel.Size = new Size(47, 14);
             editPrecoLabel.TabIndex = 79;
@@ -164,7 +155,7 @@
             // 
             editCategoriaLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             editCategoriaLabel.AutoSize = true;
-            editCategoriaLabel.Location = new Point(10, 138);
+            editCategoriaLabel.Location = new Point(12, 109);
             editCategoriaLabel.Name = "editCategoriaLabel";
             editCategoriaLabel.Size = new Size(74, 14);
             editCategoriaLabel.TabIndex = 80;
@@ -201,6 +192,5 @@
         private Label editCategoriaLabel;
         private Button editPecaButton;
         private TextBox editPecaId_tb;
-        private Label label1;
     }
 }

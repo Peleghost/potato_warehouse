@@ -33,17 +33,19 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             getPecasButton = new Button();
             mainTabControl = new TabControl();
             pecaTabPage = new TabPage();
+            labelTotalRecords = new Label();
             deleteButton = new Button();
             editButton = new Button();
             venderButton = new Button();
             gb_pecasControl = new GroupBox();
-            labelTotalRecords = new Label();
             gb_pecas = new GroupBox();
-            allPecasDgv = new DataGridView();
+            allPecas_dgv = new DataGridView();
             novaPecaButton = new Button();
             searchPecaButton = new Button();
             searchTextBox = new TextBox();
@@ -58,22 +60,22 @@
             novoClienteButton = new Button();
             searchCliente_tb = new TextBox();
             cliente_gb = new GroupBox();
-            allClientesDgv = new DataGridView();
+            allClientes_dgv = new DataGridView();
             servicoTabPage = new TabPage();
             servico_gb = new GroupBox();
-            allServicosDGV = new DataGridView();
+            allServicos_dgv = new DataGridView();
             tabPage3 = new TabPage();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             mainTabControl.SuspendLayout();
             pecaTabPage.SuspendLayout();
             gb_pecas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)allPecasDgv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)allPecas_dgv).BeginInit();
             clienteTabPage.SuspendLayout();
             cliente_gb.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)allClientesDgv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)allClientes_dgv).BeginInit();
             servicoTabPage.SuspendLayout();
             servico_gb.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)allServicosDGV).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)allServicos_dgv).BeginInit();
             SuspendLayout();
             // 
             // getPecasButton
@@ -129,6 +131,16 @@
             pecaTabPage.TabIndex = 0;
             pecaTabPage.Text = "Pecas";
             pecaTabPage.UseVisualStyleBackColor = true;
+            // 
+            // labelTotalRecords
+            // 
+            labelTotalRecords.AutoSize = true;
+            labelTotalRecords.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            labelTotalRecords.Location = new Point(8, 15);
+            labelTotalRecords.Name = "labelTotalRecords";
+            labelTotalRecords.Size = new Size(96, 14);
+            labelTotalRecords.TabIndex = 2;
+            labelTotalRecords.Text = "Total Records:";
             // 
             // deleteButton
             // 
@@ -188,21 +200,11 @@
             gb_pecasControl.TabStop = false;
             gb_pecasControl.Text = "Pecas";
             // 
-            // labelTotalRecords
-            // 
-            labelTotalRecords.AutoSize = true;
-            labelTotalRecords.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            labelTotalRecords.Location = new Point(8, 15);
-            labelTotalRecords.Name = "labelTotalRecords";
-            labelTotalRecords.Size = new Size(96, 14);
-            labelTotalRecords.TabIndex = 2;
-            labelTotalRecords.Text = "Total Records:";
-            // 
             // gb_pecas
             // 
             gb_pecas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gb_pecas.AutoSize = true;
-            gb_pecas.Controls.Add(allPecasDgv);
+            gb_pecas.Controls.Add(allPecas_dgv);
             gb_pecas.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             gb_pecas.Location = new Point(3, 41);
             gb_pecas.Name = "gb_pecas";
@@ -211,13 +213,13 @@
             gb_pecas.TabStop = false;
             gb_pecas.Text = "Pecas";
             // 
-            // allPecasDgv
+            // allPecas_dgv
             // 
             dataGridViewCellStyle1.BackColor = Color.FromArgb(238, 239, 249);
-            allPecasDgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            allPecasDgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            allPecasDgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            allPecasDgv.BorderStyle = BorderStyle.Fixed3D;
+            allPecas_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            allPecas_dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            allPecas_dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            allPecas_dgv.BorderStyle = BorderStyle.Fixed3D;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.ControlDark;
             dataGridViewCellStyle2.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -226,21 +228,21 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            allPecasDgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            allPecasDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            allPecasDgv.Dock = DockStyle.Fill;
-            allPecasDgv.EnableHeadersVisualStyles = false;
-            allPecasDgv.Location = new Point(3, 18);
-            allPecasDgv.Name = "allPecasDgv";
-            allPecasDgv.ReadOnly = true;
+            allPecas_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            allPecas_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            allPecas_dgv.Dock = DockStyle.Fill;
+            allPecas_dgv.EnableHeadersVisualStyles = false;
+            allPecas_dgv.Location = new Point(3, 18);
+            allPecas_dgv.Name = "allPecas_dgv";
+            allPecas_dgv.ReadOnly = true;
             dataGridViewCellStyle3.Padding = new Padding(3);
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            allPecasDgv.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            allPecasDgv.RowTemplate.Height = 25;
-            allPecasDgv.Size = new Size(827, 611);
-            allPecasDgv.TabIndex = 1;
-            allPecasDgv.DataBindingComplete += allPecasDgv_DataBindingComplete;
-            allPecasDgv.RowHeaderMouseDoubleClick += allPecasDGV_RowHeaderMouseDoubleClick;
+            allPecas_dgv.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            allPecas_dgv.RowTemplate.Height = 25;
+            allPecas_dgv.Size = new Size(827, 611);
+            allPecas_dgv.TabIndex = 1;
+            allPecas_dgv.DataBindingComplete += allPecasDgv_DataBindingComplete;
+            allPecas_dgv.RowHeaderMouseDoubleClick += allPecasDGV_RowHeaderMouseDoubleClick;
             // 
             // novaPecaButton
             // 
@@ -356,6 +358,7 @@
             clienteServicoButton.TabIndex = 69;
             clienteServicoButton.Text = "Criar Servico";
             clienteServicoButton.UseVisualStyleBackColor = false;
+            clienteServicoButton.Click += clienteServicoButton_Click;
             // 
             // totalClientesLabel
             // 
@@ -424,7 +427,7 @@
             // cliente_gb
             // 
             cliente_gb.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            cliente_gb.Controls.Add(allClientesDgv);
+            cliente_gb.Controls.Add(allClientes_dgv);
             cliente_gb.Location = new Point(3, 41);
             cliente_gb.Name = "cliente_gb";
             cliente_gb.Size = new Size(1254, 632);
@@ -432,11 +435,11 @@
             cliente_gb.TabStop = false;
             cliente_gb.Text = "Clientes";
             // 
-            // allClientesDgv
+            // allClientes_dgv
             // 
-            allClientesDgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            allClientesDgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            allClientesDgv.BorderStyle = BorderStyle.Fixed3D;
+            allClientes_dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            allClientes_dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            allClientes_dgv.BorderStyle = BorderStyle.Fixed3D;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
             dataGridViewCellStyle4.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -445,20 +448,20 @@
             dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            allClientesDgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            allClientesDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            allClientesDgv.Dock = DockStyle.Fill;
-            allClientesDgv.EnableHeadersVisualStyles = false;
-            allClientesDgv.Location = new Point(3, 18);
-            allClientesDgv.Name = "allClientesDgv";
-            allClientesDgv.ReadOnly = true;
+            allClientes_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            allClientes_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            allClientes_dgv.Dock = DockStyle.Fill;
+            allClientes_dgv.EnableHeadersVisualStyles = false;
+            allClientes_dgv.Location = new Point(3, 18);
+            allClientes_dgv.Name = "allClientes_dgv";
+            allClientes_dgv.ReadOnly = true;
             dataGridViewCellStyle5.Padding = new Padding(3);
-            allClientesDgv.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            allClientesDgv.RowTemplate.Height = 25;
-            allClientesDgv.Size = new Size(1248, 611);
-            allClientesDgv.TabIndex = 0;
-            allClientesDgv.DataBindingComplete += allClientes_dgv_DataBindingComplete;
-            allClientesDgv.RowHeaderMouseDoubleClick += allClientesDgv_RowHeaderMouseDoubleClick;
+            allClientes_dgv.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            allClientes_dgv.RowTemplate.Height = 25;
+            allClientes_dgv.Size = new Size(1248, 611);
+            allClientes_dgv.TabIndex = 0;
+            allClientes_dgv.DataBindingComplete += allClientes_dgv_DataBindingComplete;
+            allClientes_dgv.RowHeaderMouseDoubleClick += allClientesDgv_RowHeaderMouseDoubleClick;
             // 
             // servicoTabPage
             // 
@@ -473,7 +476,7 @@
             // 
             // servico_gb
             // 
-            servico_gb.Controls.Add(allServicosDGV);
+            servico_gb.Controls.Add(allServicos_dgv);
             servico_gb.Location = new Point(3, 41);
             servico_gb.Name = "servico_gb";
             servico_gb.Size = new Size(704, 467);
@@ -481,18 +484,32 @@
             servico_gb.TabStop = false;
             servico_gb.Text = "Servicos";
             // 
-            // allServicosDGV
+            // allServicos_dgv
             // 
-            allServicosDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            allServicosDGV.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            allServicosDGV.BorderStyle = BorderStyle.Fixed3D;
-            allServicosDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            allServicosDGV.Dock = DockStyle.Fill;
-            allServicosDGV.Location = new Point(3, 18);
-            allServicosDGV.Name = "allServicosDGV";
-            allServicosDGV.RowTemplate.Height = 25;
-            allServicosDGV.Size = new Size(698, 446);
-            allServicosDGV.TabIndex = 0;
+            allServicos_dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            allServicos_dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            allServicos_dgv.BorderStyle = BorderStyle.Fixed3D;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle6.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.Padding = new Padding(2);
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            allServicos_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            allServicos_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            allServicos_dgv.Dock = DockStyle.Fill;
+            allServicos_dgv.EnableHeadersVisualStyles = false;
+            allServicos_dgv.Location = new Point(3, 18);
+            allServicos_dgv.Name = "allServicos_dgv";
+            allServicos_dgv.ReadOnly = true;
+            dataGridViewCellStyle7.Padding = new Padding(3);
+            allServicos_dgv.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            allServicos_dgv.RowTemplate.Height = 25;
+            allServicos_dgv.Size = new Size(698, 446);
+            allServicos_dgv.TabIndex = 1;
+            allServicos_dgv.DataBindingComplete += allServicos_dgv_DataBindingComplete;
             // 
             // tabPage3
             // 
@@ -521,14 +538,14 @@
             pecaTabPage.ResumeLayout(false);
             pecaTabPage.PerformLayout();
             gb_pecas.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)allPecasDgv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)allPecas_dgv).EndInit();
             clienteTabPage.ResumeLayout(false);
             clienteTabPage.PerformLayout();
             cliente_gb.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)allClientesDgv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)allClientes_dgv).EndInit();
             servicoTabPage.ResumeLayout(false);
             servico_gb.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)allServicosDGV).EndInit();
+            ((System.ComponentModel.ISupportInitialize)allServicos_dgv).EndInit();
             ResumeLayout(false);
         }
 
@@ -544,13 +561,13 @@
         private GroupBox gb_pecasControl;
         private Button deleteButton;
         private Button novaPecaButton;
-        private DataGridView allPecasDgv;
+        private DataGridView allPecas_dgv;
         private GroupBox gb_pecas;
         private Label labelTotalRecords;
         private TabPage servicoTabPage;
         private TabPage tabPage3;
         private GroupBox cliente_gb;
-        private DataGridView allClientesDgv;
+        private DataGridView allClientes_dgv;
         private Button venderButton;
         private Button editButton;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
@@ -563,6 +580,6 @@
         private Button deleteClienteButton;
         private Button clienteServicoButton;
         private GroupBox servico_gb;
-        private DataGridView allServicosDGV;
+        private DataGridView allServicos_dgv;
     }
 }

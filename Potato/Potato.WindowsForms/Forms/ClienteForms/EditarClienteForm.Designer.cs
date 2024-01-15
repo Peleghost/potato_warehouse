@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             editarCliente_gb = new GroupBox();
-            label1 = new Label();
             editClienteId_tb = new TextBox();
             editClienteButton = new Button();
             editClienteTelefone_tb = new MaskedTextBox();
@@ -49,7 +48,6 @@
             // 
             // editarCliente_gb
             // 
-            editarCliente_gb.Controls.Add(label1);
             editarCliente_gb.Controls.Add(editClienteId_tb);
             editarCliente_gb.Controls.Add(editClienteButton);
             editarCliente_gb.Controls.Add(editClienteTelefone_tb);
@@ -72,22 +70,15 @@
             editarCliente_gb.TabStop = false;
             editarCliente_gb.Text = "Editar Cliente";
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 52);
-            label1.Name = "label1";
-            label1.Size = new Size(25, 14);
-            label1.TabIndex = 78;
-            label1.Text = "Id:";
-            // 
             // editClienteId_tb
             // 
             editClienteId_tb.Enabled = false;
-            editClienteId_tb.Location = new Point(102, 49);
+            editClienteId_tb.Location = new Point(102, 12);
             editClienteId_tb.Name = "editClienteId_tb";
             editClienteId_tb.Size = new Size(405, 22);
             editClienteId_tb.TabIndex = 77;
+            editClienteId_tb.UseSystemPasswordChar = true;
+            editClienteId_tb.Visible = false;
             // 
             // editClienteButton
             // 
@@ -105,7 +96,7 @@
             // 
             // editClienteTelefone_tb
             // 
-            editClienteTelefone_tb.Location = new Point(102, 217);
+            editClienteTelefone_tb.Location = new Point(102, 189);
             editClienteTelefone_tb.Mask = "(00) 00000-0000";
             editClienteTelefone_tb.Name = "editClienteTelefone_tb";
             editClienteTelefone_tb.Size = new Size(405, 22);
@@ -113,7 +104,7 @@
             // 
             // editClienteCpf_tb
             // 
-            editClienteCpf_tb.Location = new Point(102, 133);
+            editClienteCpf_tb.Location = new Point(102, 105);
             editClienteCpf_tb.Mask = "000.000.000-00";
             editClienteCpf_tb.Name = "editClienteCpf_tb";
             editClienteCpf_tb.Size = new Size(405, 22);
@@ -122,7 +113,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 220);
+            label3.Location = new Point(12, 192);
             label3.Name = "label3";
             label3.Size = new Size(65, 14);
             label3.TabIndex = 73;
@@ -131,7 +122,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 192);
+            label4.Location = new Point(12, 164);
             label4.Name = "label4";
             label4.Size = new Size(45, 14);
             label4.TabIndex = 72;
@@ -139,7 +130,7 @@
             // 
             // editClienteEmail_tb
             // 
-            editClienteEmail_tb.Location = new Point(102, 189);
+            editClienteEmail_tb.Location = new Point(102, 161);
             editClienteEmail_tb.Name = "editClienteEmail_tb";
             editClienteEmail_tb.Size = new Size(405, 22);
             editClienteEmail_tb.TabIndex = 71;
@@ -147,7 +138,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 164);
+            label5.Location = new Point(12, 136);
             label5.Name = "label5";
             label5.Size = new Size(71, 14);
             label5.TabIndex = 70;
@@ -155,7 +146,7 @@
             // 
             // editClienteEndereco_tb
             // 
-            editClienteEndereco_tb.Location = new Point(102, 161);
+            editClienteEndereco_tb.Location = new Point(102, 133);
             editClienteEndereco_tb.Name = "editClienteEndereco_tb";
             editClienteEndereco_tb.Size = new Size(405, 22);
             editClienteEndereco_tb.TabIndex = 69;
@@ -163,7 +154,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(12, 136);
+            label6.Location = new Point(12, 108);
             label6.Name = "label6";
             label6.Size = new Size(36, 14);
             label6.TabIndex = 68;
@@ -172,7 +163,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(12, 108);
+            label7.Location = new Point(12, 80);
             label7.Name = "label7";
             label7.Size = new Size(84, 14);
             label7.TabIndex = 67;
@@ -180,7 +171,7 @@
             // 
             // editClienteSobrenome_tb
             // 
-            editClienteSobrenome_tb.Location = new Point(102, 105);
+            editClienteSobrenome_tb.Location = new Point(102, 77);
             editClienteSobrenome_tb.Name = "editClienteSobrenome_tb";
             editClienteSobrenome_tb.Size = new Size(405, 22);
             editClienteSobrenome_tb.TabIndex = 66;
@@ -188,7 +179,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(12, 80);
+            label8.Location = new Point(12, 52);
             label8.Name = "label8";
             label8.Size = new Size(48, 14);
             label8.TabIndex = 65;
@@ -196,7 +187,7 @@
             // 
             // editClienteNome_tb
             // 
-            editClienteNome_tb.Location = new Point(102, 77);
+            editClienteNome_tb.Location = new Point(102, 49);
             editClienteNome_tb.Name = "editClienteNome_tb";
             editClienteNome_tb.Size = new Size(405, 22);
             editClienteNome_tb.TabIndex = 64;
@@ -234,7 +225,6 @@
         private Label label8;
         private TextBox editClienteNome_tb;
         private Button editClienteButton;
-        private Label label1;
         private TextBox editClienteId_tb;
     }
 }
