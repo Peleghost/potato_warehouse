@@ -420,7 +420,7 @@
             MinimumSize = new Size(1208, 470);
             Name = "CriarServicoForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "CriarServicoForm";
+            Text = "Servicos";
             Load += CriarServicoForm_Load;
             servicoCliente_gb.ResumeLayout(false);
             servicoCliente_gb.PerformLayout();

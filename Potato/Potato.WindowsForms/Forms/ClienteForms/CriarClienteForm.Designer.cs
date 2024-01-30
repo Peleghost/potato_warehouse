@@ -191,7 +191,7 @@
             MinimumSize = new Size(535, 487);
             Name = "CriarClienteForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "CriarClienteForm";
+            Text = "Clientes";
             criarCliente_gb.ResumeLayout(false);
             criarCliente_gb.PerformLayout();
             ResumeLayout(false);

@@ -5,7 +5,7 @@ namespace Potato.Domain.Repositories
     public interface IPecaRepository
     {
         public int CriarPeca(Peca peca);
-        public void VenderPeca(Peca peca);
+        public void VenderPeca(int pecaId, int quantidade);
         public void EditarPeca(Peca peca, int quantidade);
         IEnumerable<Peca> GetPecas();
         IEnumerable<Peca> GetPecaById(int id);

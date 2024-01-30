@@ -152,7 +152,7 @@
             MinimumSize = new Size(535, 487);
             Name = "CriarPecaForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "CriarPecaForm";
+            Text = "Pecas";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pecaEstoqueNumeric).EndInit();

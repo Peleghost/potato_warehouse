@@ -14,27 +14,6 @@ namespace Potato.Infrastructure.Persistence.Repositories
             _connection = connection;
         }
 
-        public IEnumerable<Veiculo> GetVeiculoByClienteId(int clienteId)
-        {
-            try
-            {
-                if (_connection.State == ConnectionState.Closed)
-                {
-                    _connection.Open();
-                }
-
-                string sql = $"SELECT id, marca, modelo, cor, ano, placa FROM Veiculo WHERE clienteId = {clienteId}";
-
-                var veiculos = _connection.Query<Veiculo>(sql, commandType: CommandType.Text);
-
-                return veiculos;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         public int VerificarPlaca(string placa)
         {
             try
@@ -56,13 +35,57 @@ namespace Potato.Infrastructure.Persistence.Repositories
             }
         }
 
+        public bool VerificarVeiculoEmServico(int veiculoId)
+        {
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string sql = $"SELECT ativo FROM Servico " +
+
+                    $"WHERE veiculoId = {veiculoId}";
+
+                var result = _connection.Query<int>(sql, commandType: CommandType.Text).Contains(1);
+
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        public IEnumerable<Veiculo> GetVeiculoByClienteId(int clienteId)
+        {
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string sql = $"SELECT id, marca, modelo, cor, ano, placa, clienteId FROM Veiculo WHERE clienteId = {clienteId}";
+
+                var veiculos = _connection.Query<Veiculo>(sql, commandType: CommandType.Text);
+
+                return veiculos;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
         public int CriarVeiculo(Veiculo veiculo)
         {
 
             try
             {
-                
-
                 if (_connection.State == ConnectionState.Closed)
                 {
                     _connection.Open();
@@ -91,6 +114,76 @@ namespace Potato.Infrastructure.Persistence.Repositories
             {
                 throw;
             }
+
+        }
+
+        public void UpdateVeiculoClienteId(int clienteId, int veiculoId)
+        {
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string sql = $"UPDATE Veiculo SET clienteId = {clienteId} " +
+                    $"WHERE Veiculo.Id = {veiculoId}";
+
+                _connection.Execute(sql, commandType: CommandType.Text);
+
+                _connection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void UpdateVeiculoServicoId(int servicoId, int veiculoId)
+        {
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string sql = $"UPDATE Veiculo SET servicoId = {servicoId} " +
+                    $"WHERE Veiculo.Id = {veiculoId}";
+
+                _connection.Execute(sql, commandType: CommandType.Text);
+
+                _connection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void NullVeiculoServicoId(int servicoId)
+        {
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string sql = $"UPDATE Veiculo SET servicoId = NULL " +
+                    $"WHERE Veiculo.servicoId = {servicoId};";
+
+                _connection.Execute(sql, commandType: CommandType.Text);
+
+                _connection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
+
 
         }
 

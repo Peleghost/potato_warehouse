@@ -6,7 +6,7 @@
         public string? Nome { get; set; }
         public string? Categoria { get; set; }
         public double Preco { get; set; }
-        public int Quantidade { get; }
+        public int Quantidade { get; set; }
         public string? Armazen { get; }
 
     }

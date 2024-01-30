@@ -32,7 +32,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
                     $"SELECT last_insert_rowid();";
 
-                int pecaId = 0;
+                int pecaId;
 
                 var cmd = _connection.CreateCommand();
                 {
@@ -40,8 +40,6 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     cmd.CommandType = CommandType.Text;
                     pecaId = Convert.ToInt32(cmd.ExecuteScalar());
                 }
-
-                _connection.Execute(sql, commandType: CommandType.Text);
 
                 _connection.Close();
 
@@ -141,7 +139,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
         }
 
-        public void VenderPeca(Peca peca)
+        public void VenderPeca(int pecaId, int quantidade)
         {
             try
             {
@@ -150,14 +148,9 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     _connection.Open(); 
                 }
 
-                //if (peca.Quantidade == 0)
-                //{
-                //    DeleteFromDb(peca);
-                //    _connection.Close();
-                //}
-
-                string sql = $"UPDATE PecaEstoque SET quantidade = quantidade -1 " +
-                    $"WHERE pecaId={peca.Id}";
+                string sql = $"UPDATE PecaEstoque SET quantidade = quantidade -{quantidade} " +
+                    
+                    $"WHERE pecaId={pecaId}";
 
                 _connection.Execute(sql, commandType: CommandType.Text);
 

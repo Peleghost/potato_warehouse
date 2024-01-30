@@ -4,6 +4,7 @@ using Potato.WindowsForms.PecaForms;
 using Potato.WindowsForms.Forms.ClienteForms;
 using Potato.WindowsForms.Forms.ServicoForms;
 using System.Collections;
+using Potato.WindowsForms.Forms.PecaForms;
 
 namespace Potato.WindowsForms
 {
@@ -19,10 +20,10 @@ namespace Potato.WindowsForms
         //
 
         // Global Variables
-        public static int ArmazemId;
-        public static bool PecaTabEnter;
-        public static bool ClienteTabEnter;
-        public static bool ServicoTabEnter;
+        private static int ArmazemId;
+        private static bool PecaTabEnter;
+        private static bool ClienteTabEnter;
+        private static bool ServicoTabEnter;
         //
 
         public Form1(IPecaRepository pecaRepository, IPecaEstoqueRepository pecaEstoqueRepository
@@ -41,6 +42,8 @@ namespace Potato.WindowsForms
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadPecasData();
+            LoadClienteData();
+            LoadServicoData();
             CriarArmazemSeNaoExiste();
         }
 
@@ -52,6 +55,28 @@ namespace Potato.WindowsForms
                 ArmazemId = _armazemRepository.CriarArmazem();
             else
                 ArmazemId = armazem.FirstOrDefault()!.Id;
+        }
+
+        // Load data on tab enter, if already entered once no load data
+        private void mainTabControl_Selected(object sender, TabControlEventArgs e)
+        {
+
+            if (mainTabControl.SelectedTab == pecaTabPage && !PecaTabEnter)
+            {
+                LoadPecasData();
+                PecaTabEnter = true;
+            }
+            else if (mainTabControl.SelectedTab == clienteTabPage && !ClienteTabEnter)
+            {
+                LoadClienteData();
+                ClienteTabEnter = true;
+            }
+            else if (mainTabControl.SelectedTab == servicoTabPage && !ServicoTabEnter)
+            {
+                LoadServicoData();
+                ServicoTabEnter = true;
+            }
+
         }
 
         // Hide columns from DataGridView
@@ -69,32 +94,19 @@ namespace Potato.WindowsForms
 
         private void allServicos_dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            allServicos_dgv.Columns["Id"].Visible = false;
             allServicos_dgv.Columns["Cliente"].Visible = false;
             allServicos_dgv.Columns["Veiculo"].Visible = false;
-            
+            allServicos_dgv.Columns["Ativo"].Visible = false;
+            allServicos_dgv.Columns["Descricao"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        }
+
+        private void servicoPecas_dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            servicoPecas_dgv.Columns["id"].Visible = false;
+            servicoPecas_dgv.Columns["armazen"].Visible = false;
         }
         //
-
-        private void mainTabControl_Selected(object sender, TabControlEventArgs e)
-        {
-
-            if (mainTabControl.SelectedTab == pecaTabPage && !PecaTabEnter)
-            {
-                LoadPecasData();
-                PecaTabEnter = true;
-            }
-            else if (mainTabControl.SelectedTab == clienteTabPage && !ClienteTabEnter)
-            {
-                LoadClienteData();
-                ClienteTabEnter = true;
-            }
-            else if (mainTabControl.SelectedTab == servicoTabPage)
-            {
-                LoadServicoData();
-                ServicoTabEnter = true;
-            }
-
-        }
 
         //----------------------------------------------------------------------------------------------------------
 
@@ -116,7 +128,7 @@ namespace Potato.WindowsForms
         }
 
         // To populate and refresh allClientesDGV
-        public void LoadClienteData()
+        private void LoadClienteData()
         {
             var clientes = _clienteRepository.GetClientes();
 
@@ -127,16 +139,18 @@ namespace Potato.WindowsForms
         //
 
         // To populate and refresh allServicos_dgv
-        public void LoadServicoData()
+        private void LoadServicoData()
         {
             var servicos = _servicoRepository.GetAll();
 
             allServicos_dgv.DataSource = servicos;
+
+            ServicoFinalizado();
         }
         //
 
         //---------------------------------------------------------------------
-        public void PecaQuantidadeZero()
+        private void PecaQuantidadeZero()
         {
             var rows = allPecas_dgv.Rows;
 
@@ -154,15 +168,33 @@ namespace Potato.WindowsForms
             }
         }
 
+        private void ServicoFinalizado()
+        {
+            var rows = allServicos_dgv.Rows;
+
+            for (int i = 0; i < rows.Count; i++)
+            {
+                var servico = (Servico)rows[i].DataBoundItem;
+
+                if (servico.Ativo == 0)
+                {
+                    rows[i].DefaultCellStyle = new DataGridViewCellStyle()
+                    {
+                        BackColor = Color.LightGreen
+                    };
+                }
+            }
+        }
+
         // Peca Controls
-        public void EnablePecaControls()
+        private void EnablePecaControls()
         {
             venderButton.Enabled = true;
             editButton.Enabled = true;
             deleteButton.Enabled = true;
         }
 
-        public void DisablePecaControls()
+        private void DisablePecaControls()
         {
             venderButton.Enabled = false;
             editButton.Enabled = false;
@@ -171,18 +203,42 @@ namespace Potato.WindowsForms
         //
 
         // Cliente Controls
-        public void EnableClienteControls()
+        private void EnableClienteControls()
         {
             clienteServicoButton.Enabled = true;
             editClienteButton.Enabled = true;
             deleteClienteButton.Enabled = true;
         }
 
-        public void DisableClienteControls()
+        private void DisableClienteControls()
         {
             clienteServicoButton.Enabled = false;
             editClienteButton.Enabled = false;
             deleteClienteButton.Enabled = false;
+        }
+        //
+
+        // Servico Controls
+        private void EnableServicoControls()
+        {
+            finalServicoButton.Enabled = true;
+            editarServicoButton.Enabled = true;
+            deleteServicoButton.Enabled = true;
+            adicionarPecasButton.Enabled = true;
+        }
+
+        private void DisableServicoControls()
+        {
+            finalServicoButton.Enabled = false;
+            editarServicoButton.Enabled = false;
+            deleteServicoButton.Enabled = false;
+            adicionarPecasButton.Enabled = false;
+        }
+        //
+
+        private void SuccessMsg()
+        {
+            MessageBox.Show("    ----- Sucesso! -----", "Sucesso", MessageBoxButtons.OK);
         }
 
         //--------------------------------------------------
@@ -195,10 +251,7 @@ namespace Potato.WindowsForms
         {
             try
             {
-                var pecas = _pecaRepository.GetPecas();
-                allPecas_dgv.DataSource = pecas;
                 LoadPecasData();
-                labelTotalRecords.Text = $"Total Records: {allPecas_dgv.RowCount}";
             }
             catch (Exception ex)
             {
@@ -216,6 +269,7 @@ namespace Potato.WindowsForms
                 if (criarPecaForm.DialogResult == DialogResult.OK)
                 {
                     criarPecaForm.Close();
+                    SuccessMsg();
                     LoadPecasData();
                 }
             }
@@ -227,7 +281,6 @@ namespace Potato.WindowsForms
 
         private void venderButton_Click(object sender, EventArgs e)
         {
-
             try
             {
                 var peca = (Peca)allPecas_dgv.CurrentRow.DataBoundItem;
@@ -238,16 +291,28 @@ namespace Potato.WindowsForms
                     return;
                 }
 
-                var message = MessageBox.Show($"Vender Peca?\n Nome: {peca.Nome}, Categoria: {peca.Categoria}, Quantidade: {peca.Quantidade}",
-                    "Confirmar", MessageBoxButtons.OKCancel);
+                var venderPecaForm = new VenderPecaForm(_pecaRepository);
 
-                if (message == DialogResult.OK)
+                venderPecaForm.ShowDialog(ref peca);
+
+                if (venderPecaForm.DialogResult == DialogResult.OK)
                 {
-                    _pecaRepository.VenderPeca(peca);
-
-                    DisablePecaControls();
+                    venderPecaForm.Close();
+                    SuccessMsg();
                     LoadPecasData();
+                    DisablePecaControls();
                 }
+
+                //var message = MessageBox.Show($"Vender Peca?\n Nome: {peca.Nome}, Categoria: {peca.Categoria}, Quantidade: {peca.Quantidade}",
+                //    "Confirmar", MessageBoxButtons.OKCancel);
+
+                //if (message == DialogResult.OK)
+                //{
+                //    _pecaRepository.VenderPeca(peca);
+
+                //    DisablePecaControls();
+                //    LoadPecasData();
+                //}
 
             }
             catch (Exception ex)
@@ -269,6 +334,7 @@ namespace Potato.WindowsForms
                     editPecaForm.Close();
 
                     DisablePecaControls();
+                    SuccessMsg();
                     LoadPecasData();
                 }
             }
@@ -333,7 +399,7 @@ namespace Potato.WindowsForms
 
         private void searchPecaButton_Click(object sender, EventArgs e)
         {
-            switch (searchComboBox.Text)
+            switch (searchPeca_combo.Text)
             {
                 case "ID":
                     try
@@ -355,7 +421,7 @@ namespace Potato.WindowsForms
 
                     try
                     {
-                        string criterio = searchComboBox.Text;
+                        string criterio = searchPeca_combo.Text;
                         string nome = searchTextBox.Text;
                         var pecas = _pecaRepository.GetPecasByNomeOuCategoria(criterio, nome);
 
@@ -373,7 +439,7 @@ namespace Potato.WindowsForms
 
                     try
                     {
-                        string criterio = searchComboBox.Text.ToLower();
+                        string criterio = searchPeca_combo.Text.ToLower();
                         string categoria = searchTextBox.Text;
                         var pecas = _pecaRepository.GetPecasByNomeOuCategoria(criterio, categoria);
 
@@ -411,6 +477,7 @@ namespace Potato.WindowsForms
                 if (clienteForm.DialogResult == DialogResult.OK)
                 {
                     clienteForm.Close();
+                    SuccessMsg();
                     LoadClienteData();
                 }
             }
@@ -440,7 +507,6 @@ namespace Potato.WindowsForms
         {
             try
             {
-                var clientes = _clienteRepository.GetClientes();
                 LoadClienteData();
             }
             catch (Exception ex)
@@ -477,6 +543,7 @@ namespace Potato.WindowsForms
                     editClienteForm.Close();
 
                     DisableClienteControls();
+                    SuccessMsg();
                     LoadClienteData();
                 }
 
@@ -520,7 +587,14 @@ namespace Potato.WindowsForms
                 var criarServicoForm = new CriarServicoForm(_clienteRepository, _veiculoRepository, _servicoRepository);
                 criarServicoForm.ShowDialog(ref cliente);
 
+                var dialogResult = criarServicoForm.DialogResult;
 
+                if (dialogResult == DialogResult.OK)
+                {
+                    criarServicoForm.Close();
+                    SuccessMsg();
+                    DisableClienteControls();
+                }
             }
             catch (Exception ex)
             {
@@ -538,9 +612,226 @@ namespace Potato.WindowsForms
 
         #region ----- Servicos -----
 
+        private void listarServicoButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadServicoData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void searchServicoButton_Click(object sender, EventArgs e)
+        {
+            switch (searchServico_combo.Text)
+            {
+                case "Cliente_Nome":
+
+                    try
+                    {
+                        const string criterio = "Cliente.primeiroNome";
+                        string nome = searchServico_tb.Text;
+
+                        var servicos = _servicoRepository.GetByClienteOuVeiculo(criterio, nome);
+
+                        allServicos_dgv.DataSource = servicos;
+
+                        ServicoFinalizado();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    break;
+
+                case "Veiculo_Placa":
+
+                    try
+                    {
+                        const string criterio = "Veiculo.placa";
+                        string placa = searchServico_tb.Text;
+
+                        var servicos = _servicoRepository.GetByClienteOuVeiculo(criterio, placa);
+
+                        allServicos_dgv.DataSource = servicos;
+
+                        ServicoFinalizado();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    break;
+
+                case "Data":
+
+                    try
+                    {
+                        string dateStart = dateStart_picker.Text;
+                        string dateEnd = dateEnd_picker.Text;
+
+                        var servicos = _servicoRepository.GetByDate(dateStart, dateEnd);
+
+                        allServicos_dgv.DataSource = servicos;
+                        ServicoFinalizado();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    break;
+
+
+                default:
+                    MessageBox.Show($"Error: Nenhum iten Encontrado");
+                    break;
+            }
+        }
+
+        private void finalServicoButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var servico = (Servico)allServicos_dgv.CurrentRow.DataBoundItem;
+
+                if (servico.Ativo == 0)
+                {
+                    throw new Exception("Servico ja finalizado");
+                }
+
+                var message = MessageBox.Show("Finalizar Servico?", "Servico", MessageBoxButtons.OKCancel);
+
+                if (message == DialogResult.OK)
+                {
+                    string dataFinal = DateTime.Now.ToShortDateString();
+                    int ativo = 0;
+
+                    _servicoRepository.FinalizarServico(servico.Id, dataFinal, ativo);
+                    _veiculoRepository.NullVeiculoServicoId(servico.Id);
+
+                    SuccessMsg();
+                    LoadServicoData();
+                    DisableServicoControls();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void allServicos_dgv_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var servico = (Servico)allServicos_dgv.CurrentRow.DataBoundItem;
+
+            var pecas = _servicoRepository.GetServicoPecas(servico.Id);
+
+            servicoPecas_dgv.DataSource = pecas;
+
+            servicoDescricao_tb.Text = servico.Descricao;
+
+            EnableServicoControls();
+        }
+
+        private void editarServicoButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var servicoEditar = (Servico)allServicos_dgv.CurrentRow.DataBoundItem;
+                var editServicoForm = new EditarServicoForm(_servicoRepository);
+
+                if (servicoEditar.Ativo == 0)
+                {
+                    throw new Exception("Servico ja finalizado, impossivel editar!!");
+                }
+                else
+                {
+                    editServicoForm.ShowDialog(ref servicoEditar);
+                }
+
+                SuccessMsg();
+                DisableServicoControls();
+                LoadServicoData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void deleteServicoButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var servico = (Servico)allServicos_dgv.CurrentRow.DataBoundItem;
+
+                if (servico.Ativo == 1)
+                {
+                    throw new Exception("Veiculo em servico, impossibilitando Deletar\n" +
+                        "Finalizar Servico primeiro!!");
+                }
+
+                var message = MessageBox.Show("Deletar Servico?", "Servico", MessageBoxButtons.OKCancel);
+
+                if (message == DialogResult.OK)
+                {
+                    _servicoRepository.DeleteServico(servico.Id);
+                }
+
+                DisableServicoControls();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void adicionarPecasButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var servico = (Servico)allServicos_dgv.CurrentRow.DataBoundItem;
+
+                var servicoPecaForm = new ServicoPecaForm(_pecaRepository, _clienteRepository, _servicoRepository);
+
+                servicoPecaForm.ShowDialog(ref servico);
+
+                if (servicoPecaForm.DialogResult == DialogResult.OK)
+                {
+                    servicoPecaForm.Close();
+                    SuccessMsg();
+                    DisableServicoControls();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+
+        }
 
 
         #endregion
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -33,6 +33,8 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
@@ -49,7 +51,7 @@
             novaPecaButton = new Button();
             searchPecaButton = new Button();
             searchTextBox = new TextBox();
-            searchComboBox = new ComboBox();
+            searchPeca_combo = new ComboBox();
             clienteTabPage = new TabPage();
             deleteClienteButton = new Button();
             editClienteButton = new Button();
@@ -62,10 +64,28 @@
             cliente_gb = new GroupBox();
             allClientes_dgv = new DataGridView();
             servicoTabPage = new TabPage();
+            label3 = new Label();
+            label2 = new Label();
+            dateStart_picker = new DateTimePicker();
+            dateEnd_picker = new DateTimePicker();
+            searchServico_combo = new ComboBox();
+            servico2_gb = new GroupBox();
+            adicionarPecasButton = new Button();
+            servicoPeca_gb = new GroupBox();
+            label1 = new Label();
+            servicoDescricao_tb = new RichTextBox();
+            listarServicoButton = new Button();
+            searchServicoButton = new Button();
+            searchServico_tb = new TextBox();
+            deleteServicoButton = new Button();
+            editarServicoButton = new Button();
+            finalServicoButton = new Button();
+            servicoSemCadastroButton = new Button();
             servico_gb = new GroupBox();
             allServicos_dgv = new DataGridView();
             tabPage3 = new TabPage();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            servicoPecas_dgv = new DataGridView();
             mainTabControl.SuspendLayout();
             pecaTabPage.SuspendLayout();
             gb_pecas.SuspendLayout();
@@ -74,8 +94,11 @@
             cliente_gb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)allClientes_dgv).BeginInit();
             servicoTabPage.SuspendLayout();
+            servico2_gb.SuspendLayout();
+            servicoPeca_gb.SuspendLayout();
             servico_gb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)allServicos_dgv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)servicoPecas_dgv).BeginInit();
             SuspendLayout();
             // 
             // getPecasButton
@@ -122,7 +145,7 @@
             pecaTabPage.Controls.Add(novaPecaButton);
             pecaTabPage.Controls.Add(searchPecaButton);
             pecaTabPage.Controls.Add(searchTextBox);
-            pecaTabPage.Controls.Add(searchComboBox);
+            pecaTabPage.Controls.Add(searchPeca_combo);
             pecaTabPage.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             pecaTabPage.Location = new Point(4, 23);
             pecaTabPage.Name = "pecaTabPage";
@@ -282,18 +305,18 @@
             searchTextBox.Size = new Size(270, 22);
             searchTextBox.TabIndex = 2;
             // 
-            // searchComboBox
+            // searchPeca_combo
             // 
-            searchComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            searchComboBox.AutoCompleteMode = AutoCompleteMode.Append;
-            searchComboBox.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            searchComboBox.FormattingEnabled = true;
-            searchComboBox.Items.AddRange(new object[] { "ID", "Nome", "Categoria" });
-            searchComboBox.Location = new Point(560, 9);
-            searchComboBox.Name = "searchComboBox";
-            searchComboBox.Size = new Size(121, 22);
-            searchComboBox.TabIndex = 4;
-            searchComboBox.Text = "Buscar Por...";
+            searchPeca_combo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            searchPeca_combo.AutoCompleteMode = AutoCompleteMode.Append;
+            searchPeca_combo.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            searchPeca_combo.FormattingEnabled = true;
+            searchPeca_combo.Items.AddRange(new object[] { "ID", "Nome", "Categoria" });
+            searchPeca_combo.Location = new Point(560, 9);
+            searchPeca_combo.Name = "searchPeca_combo";
+            searchPeca_combo.Size = new Size(121, 22);
+            searchPeca_combo.TabIndex = 4;
+            searchPeca_combo.Text = "Buscar Por...";
             // 
             // clienteTabPage
             // 
@@ -465,6 +488,19 @@
             // 
             // servicoTabPage
             // 
+            servicoTabPage.Controls.Add(label3);
+            servicoTabPage.Controls.Add(label2);
+            servicoTabPage.Controls.Add(dateStart_picker);
+            servicoTabPage.Controls.Add(dateEnd_picker);
+            servicoTabPage.Controls.Add(searchServico_combo);
+            servicoTabPage.Controls.Add(servico2_gb);
+            servicoTabPage.Controls.Add(listarServicoButton);
+            servicoTabPage.Controls.Add(searchServicoButton);
+            servicoTabPage.Controls.Add(searchServico_tb);
+            servicoTabPage.Controls.Add(deleteServicoButton);
+            servicoTabPage.Controls.Add(editarServicoButton);
+            servicoTabPage.Controls.Add(finalServicoButton);
+            servicoTabPage.Controls.Add(servicoSemCadastroButton);
             servicoTabPage.Controls.Add(servico_gb);
             servicoTabPage.Location = new Point(4, 23);
             servicoTabPage.Name = "servicoTabPage";
@@ -474,12 +510,216 @@
             servicoTabPage.Text = "Servicos";
             servicoTabPage.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(242, 12);
+            label3.Name = "label3";
+            label3.Size = new Size(29, 14);
+            label3.TabIndex = 82;
+            label3.Text = "De:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(399, 13);
+            label2.Name = "label2";
+            label2.Size = new Size(33, 14);
+            label2.TabIndex = 81;
+            label2.Text = "Até:";
+            // 
+            // dateStart_picker
+            // 
+            dateStart_picker.Format = DateTimePickerFormat.Short;
+            dateStart_picker.Location = new Point(277, 9);
+            dateStart_picker.Name = "dateStart_picker";
+            dateStart_picker.Size = new Size(116, 22);
+            dateStart_picker.TabIndex = 80;
+            // 
+            // dateEnd_picker
+            // 
+            dateEnd_picker.Format = DateTimePickerFormat.Short;
+            dateEnd_picker.Location = new Point(438, 9);
+            dateEnd_picker.Name = "dateEnd_picker";
+            dateEnd_picker.Size = new Size(116, 22);
+            dateEnd_picker.TabIndex = 79;
+            // 
+            // searchServico_combo
+            // 
+            searchServico_combo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            searchServico_combo.AutoCompleteMode = AutoCompleteMode.Append;
+            searchServico_combo.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            searchServico_combo.FormattingEnabled = true;
+            searchServico_combo.Items.AddRange(new object[] { "Cliente_Nome", "Veiculo_Placa", "Data" });
+            searchServico_combo.Location = new Point(560, 9);
+            searchServico_combo.Name = "searchServico_combo";
+            searchServico_combo.Size = new Size(121, 22);
+            searchServico_combo.TabIndex = 78;
+            searchServico_combo.Text = "Buscar Por...";
+            // 
+            // servico2_gb
+            // 
+            servico2_gb.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            servico2_gb.AutoSize = true;
+            servico2_gb.Controls.Add(adicionarPecasButton);
+            servico2_gb.Controls.Add(servicoPeca_gb);
+            servico2_gb.Controls.Add(label1);
+            servico2_gb.Controls.Add(servicoDescricao_tb);
+            servico2_gb.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            servico2_gb.Location = new Point(837, 41);
+            servico2_gb.Name = "servico2_gb";
+            servico2_gb.Size = new Size(420, 632);
+            servico2_gb.TabIndex = 77;
+            servico2_gb.TabStop = false;
+            servico2_gb.Text = "Detalhes";
+            // 
+            // adicionarPecasButton
+            // 
+            adicionarPecasButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            adicionarPecasButton.BackColor = Color.SandyBrown;
+            adicionarPecasButton.Enabled = false;
+            adicionarPecasButton.FlatStyle = FlatStyle.Flat;
+            adicionarPecasButton.ForeColor = Color.White;
+            adicionarPecasButton.Location = new Point(8, 359);
+            adicionarPecasButton.Name = "adicionarPecasButton";
+            adicionarPecasButton.Size = new Size(403, 49);
+            adicionarPecasButton.TabIndex = 3;
+            adicionarPecasButton.Text = "Adicionar Pecas";
+            adicionarPecasButton.UseVisualStyleBackColor = false;
+            adicionarPecasButton.Click += adicionarPecasButton_Click;
+            // 
+            // servicoPeca_gb
+            // 
+            servicoPeca_gb.Controls.Add(servicoPecas_dgv);
+            servicoPeca_gb.Location = new Point(5, 172);
+            servicoPeca_gb.Name = "servicoPeca_gb";
+            servicoPeca_gb.Size = new Size(409, 181);
+            servicoPeca_gb.TabIndex = 2;
+            servicoPeca_gb.TabStop = false;
+            servicoPeca_gb.Text = "Pecas em Servico";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(5, 31);
+            label1.Name = "label1";
+            label1.Size = new Size(72, 14);
+            label1.TabIndex = 1;
+            label1.Text = "Descricao:";
+            // 
+            // servicoDescricao_tb
+            // 
+            servicoDescricao_tb.Location = new Point(5, 48);
+            servicoDescricao_tb.Name = "servicoDescricao_tb";
+            servicoDescricao_tb.Size = new Size(409, 118);
+            servicoDescricao_tb.TabIndex = 0;
+            servicoDescricao_tb.Text = "";
+            // 
+            // listarServicoButton
+            // 
+            listarServicoButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            listarServicoButton.BackColor = Color.DimGray;
+            listarServicoButton.FlatStyle = FlatStyle.Flat;
+            listarServicoButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            listarServicoButton.ForeColor = Color.White;
+            listarServicoButton.Location = new Point(1113, 6);
+            listarServicoButton.MaximumSize = new Size(144, 43);
+            listarServicoButton.Name = "listarServicoButton";
+            listarServicoButton.Size = new Size(144, 29);
+            listarServicoButton.TabIndex = 74;
+            listarServicoButton.Text = "Listar Servicos";
+            listarServicoButton.UseVisualStyleBackColor = false;
+            listarServicoButton.Click += listarServicoButton_Click;
+            // 
+            // searchServicoButton
+            // 
+            searchServicoButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            searchServicoButton.BackColor = Color.DimGray;
+            searchServicoButton.FlatStyle = FlatStyle.Flat;
+            searchServicoButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            searchServicoButton.ForeColor = Color.White;
+            searchServicoButton.Location = new Point(963, 7);
+            searchServicoButton.Name = "searchServicoButton";
+            searchServicoButton.Size = new Size(144, 27);
+            searchServicoButton.TabIndex = 76;
+            searchServicoButton.Text = "Buscar";
+            searchServicoButton.UseVisualStyleBackColor = false;
+            searchServicoButton.Click += searchServicoButton_Click;
+            // 
+            // searchServico_tb
+            // 
+            searchServico_tb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            searchServico_tb.Location = new Point(687, 9);
+            searchServico_tb.Name = "searchServico_tb";
+            searchServico_tb.Size = new Size(270, 22);
+            searchServico_tb.TabIndex = 75;
+            // 
+            // deleteServicoButton
+            // 
+            deleteServicoButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            deleteServicoButton.BackColor = Color.IndianRed;
+            deleteServicoButton.Enabled = false;
+            deleteServicoButton.FlatStyle = FlatStyle.Flat;
+            deleteServicoButton.ForeColor = Color.White;
+            deleteServicoButton.Location = new Point(949, 679);
+            deleteServicoButton.Name = "deleteServicoButton";
+            deleteServicoButton.Size = new Size(305, 49);
+            deleteServicoButton.TabIndex = 71;
+            deleteServicoButton.Text = "DELETAR";
+            deleteServicoButton.UseVisualStyleBackColor = false;
+            deleteServicoButton.Click += deleteServicoButton_Click;
+            // 
+            // editarServicoButton
+            // 
+            editarServicoButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            editarServicoButton.BackColor = Color.SandyBrown;
+            editarServicoButton.Enabled = false;
+            editarServicoButton.FlatStyle = FlatStyle.Flat;
+            editarServicoButton.ForeColor = Color.White;
+            editarServicoButton.Location = new Point(638, 679);
+            editarServicoButton.Name = "editarServicoButton";
+            editarServicoButton.Size = new Size(305, 49);
+            editarServicoButton.TabIndex = 72;
+            editarServicoButton.Text = "Editar";
+            editarServicoButton.UseVisualStyleBackColor = false;
+            editarServicoButton.Click += editarServicoButton_Click;
+            // 
+            // finalServicoButton
+            // 
+            finalServicoButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            finalServicoButton.BackColor = Color.LightSeaGreen;
+            finalServicoButton.Enabled = false;
+            finalServicoButton.FlatStyle = FlatStyle.Flat;
+            finalServicoButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            finalServicoButton.ForeColor = Color.White;
+            finalServicoButton.Location = new Point(317, 679);
+            finalServicoButton.Name = "finalServicoButton";
+            finalServicoButton.Size = new Size(305, 49);
+            finalServicoButton.TabIndex = 73;
+            finalServicoButton.Text = "Finalizar Servico";
+            finalServicoButton.UseVisualStyleBackColor = false;
+            finalServicoButton.Click += finalServicoButton_Click;
+            // 
+            // servicoSemCadastroButton
+            // 
+            servicoSemCadastroButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            servicoSemCadastroButton.BackColor = Color.SeaGreen;
+            servicoSemCadastroButton.FlatStyle = FlatStyle.Flat;
+            servicoSemCadastroButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            servicoSemCadastroButton.ForeColor = Color.White;
+            servicoSemCadastroButton.Location = new Point(6, 679);
+            servicoSemCadastroButton.Name = "servicoSemCadastroButton";
+            servicoSemCadastroButton.Size = new Size(305, 49);
+            servicoSemCadastroButton.TabIndex = 70;
+            servicoSemCadastroButton.Text = "Servico Sem Cadastro";
+            servicoSemCadastroButton.UseVisualStyleBackColor = false;
+            // 
             // servico_gb
             // 
             servico_gb.Controls.Add(allServicos_dgv);
             servico_gb.Location = new Point(3, 41);
             servico_gb.Name = "servico_gb";
-            servico_gb.Size = new Size(704, 467);
+            servico_gb.Size = new Size(833, 632);
             servico_gb.TabIndex = 0;
             servico_gb.TabStop = false;
             servico_gb.Text = "Servicos";
@@ -489,27 +729,28 @@
             allServicos_dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             allServicos_dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             allServicos_dgv.BorderStyle = BorderStyle.Fixed3D;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle6.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.Padding = new Padding(2);
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            allServicos_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle8.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle8.Padding = new Padding(2);
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            allServicos_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             allServicos_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             allServicos_dgv.Dock = DockStyle.Fill;
             allServicos_dgv.EnableHeadersVisualStyles = false;
             allServicos_dgv.Location = new Point(3, 18);
             allServicos_dgv.Name = "allServicos_dgv";
             allServicos_dgv.ReadOnly = true;
-            dataGridViewCellStyle7.Padding = new Padding(3);
-            allServicos_dgv.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle9.Padding = new Padding(3);
+            allServicos_dgv.RowsDefaultCellStyle = dataGridViewCellStyle9;
             allServicos_dgv.RowTemplate.Height = 25;
-            allServicos_dgv.Size = new Size(698, 446);
+            allServicos_dgv.Size = new Size(827, 611);
             allServicos_dgv.TabIndex = 1;
             allServicos_dgv.DataBindingComplete += allServicos_dgv_DataBindingComplete;
+            allServicos_dgv.RowHeaderMouseDoubleClick += allServicos_dgv_RowHeaderMouseDoubleClick;
             // 
             // tabPage3
             // 
@@ -520,6 +761,33 @@
             tabPage3.TabIndex = 3;
             tabPage3.Text = "tabPage3";
             tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // servicoPecas_dgv
+            // 
+            servicoPecas_dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            servicoPecas_dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            servicoPecas_dgv.BorderStyle = BorderStyle.Fixed3D;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle6.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.Padding = new Padding(2);
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            servicoPecas_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            servicoPecas_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            servicoPecas_dgv.Dock = DockStyle.Fill;
+            servicoPecas_dgv.EnableHeadersVisualStyles = false;
+            servicoPecas_dgv.Location = new Point(3, 18);
+            servicoPecas_dgv.Name = "servicoPecas_dgv";
+            servicoPecas_dgv.ReadOnly = true;
+            dataGridViewCellStyle7.Padding = new Padding(3);
+            servicoPecas_dgv.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            servicoPecas_dgv.RowTemplate.Height = 25;
+            servicoPecas_dgv.Size = new Size(403, 160);
+            servicoPecas_dgv.TabIndex = 2;
+            servicoPecas_dgv.DataBindingComplete += servicoPecas_dgv_DataBindingComplete;
             // 
             // Form1
             // 
@@ -544,8 +812,13 @@
             cliente_gb.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)allClientes_dgv).EndInit();
             servicoTabPage.ResumeLayout(false);
+            servicoTabPage.PerformLayout();
+            servico2_gb.ResumeLayout(false);
+            servico2_gb.PerformLayout();
+            servicoPeca_gb.ResumeLayout(false);
             servico_gb.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)allServicos_dgv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)servicoPecas_dgv).EndInit();
             ResumeLayout(false);
         }
 
@@ -557,7 +830,7 @@
         private TabPage clienteTabPage;
         private TextBox searchTextBox;
         private Button searchPecaButton;
-        private ComboBox searchComboBox;
+        private ComboBox searchPeca_combo;
         private GroupBox gb_pecasControl;
         private Button deleteButton;
         private Button novaPecaButton;
@@ -581,5 +854,23 @@
         private Button clienteServicoButton;
         private GroupBox servico_gb;
         private DataGridView allServicos_dgv;
+        private Button listarServicoButton;
+        private Button searchServicoButton;
+        private TextBox searchServico_tb;
+        private Button deleteServicoButton;
+        private Button editarServicoButton;
+        private Button finalServicoButton;
+        private Button servicoSemCadastroButton;
+        private GroupBox servico2_gb;
+        private Label label1;
+        private RichTextBox servicoDescricao_tb;
+        private ComboBox searchServico_combo;
+        private GroupBox servicoPeca_gb;
+        private Button adicionarPecasButton;
+        private DateTimePicker dateEnd_picker;
+        private Label label3;
+        private Label label2;
+        private DateTimePicker dateStart_picker;
+        private DataGridView servicoPecas_dgv;
     }
 }

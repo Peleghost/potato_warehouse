@@ -32,6 +32,15 @@ namespace Potato.WindowsForms.Forms.ServicoForms
             this.ShowDialog();
         }
 
+        public void LoadClienteVeiculos()
+        {
+            var clienteId = Convert.ToInt32(servicoClienteId_tb.Text);
+
+            var veiculos = _veiculoRepository.GetVeiculoByClienteId(clienteId);
+
+            servicoVeiculo_dgv.DataSource = veiculos;
+        }
+
         // Controls
         public void ServicoClienteTbControls(Cliente cliente)
         {
@@ -114,24 +123,24 @@ namespace Potato.WindowsForms.Forms.ServicoForms
                     }
 
                     var veiculoId = _veiculoRepository.CriarVeiculo(veiculo);
-                    _clienteRepository.UpdateClienteVeiculo(clienteId, veiculoId);
+
+                    _veiculoRepository.UpdateVeiculoClienteId(clienteId, veiculoId);
+
+                    MessageBox.Show("Successo", "Confirmar", MessageBoxButtons.OK);
+                    LoadClienteVeiculos();
 
                     DisableControls();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Data.ToString());
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void CriarServicoForm_Load(object sender, EventArgs e)
         {
-            var clienteId = Convert.ToInt32(servicoClienteId_tb.Text);
-
-            var veiculos = _veiculoRepository.GetVeiculoByClienteId(clienteId);
-
-            servicoVeiculo_dgv.DataSource = veiculos;
+            LoadClienteVeiculos();
         }
 
         private void servicoVeiculo_dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -156,14 +165,20 @@ namespace Potato.WindowsForms.Forms.ServicoForms
 
                 var cliente = _clienteRepository.GetClienteById(clienteId);
 
-
                 var veiculo = (Veiculo)servicoVeiculo_dgv.CurrentRow.DataBoundItem;
+
+                var veiculoEmServico = _veiculoRepository.VerificarVeiculoEmServico(veiculo.Id);
+
+                if (veiculoEmServico)
+                {
+                    throw new Exception("Veiculo em servico.");
+                }
 
                 string descricao = servicoDescricao_tb.Text;
 
                 double preco = Convert.ToDouble(servicoPreco_tb.Text);
 
-                var temp = Servico.Criar(cliente, veiculo, descricao, preco);
+                var temp = Servico.Criar(cliente, veiculo, descricao, preco, 1);
 
                 if (temp.IsSuccess)
                 {
@@ -172,7 +187,8 @@ namespace Potato.WindowsForms.Forms.ServicoForms
                     var servico = temp.Value;
 
                     int servicoId = _servicoRepository.CriarServico(servico);
-                    _clienteRepository.UpdateClienteServico(clienteId, servicoId);
+                    _veiculoRepository.UpdateVeiculoServicoId(servicoId, veiculo.Id);
+                    this.DialogResult = DialogResult.OK;
                 }
                 else
                 {

@@ -172,7 +172,7 @@
             MinimumSize = new Size(535, 487);
             Name = "EditarPecaForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "EditarPecaForm";
+            Text = "Pecas";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)editPecaQtdNumeric).EndInit();

@@ -203,7 +203,7 @@
             MinimumSize = new Size(535, 487);
             Name = "EditarClienteForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "EditarClienteForm";
+            Text = "Clientes";
             editarCliente_gb.ResumeLayout(false);
             editarCliente_gb.PerformLayout();
             ResumeLayout(false);
