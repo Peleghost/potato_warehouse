@@ -34,8 +34,6 @@ namespace Potato.Infrastructure.Persistence.Repositories
                 cmd.CommandType = CommandType.Text;
                 armazemId = Convert.ToInt32(cmd.ExecuteScalar());
 
-                _connection.Execute(sql, commandType: CommandType.Text);
-
                 _connection.Close();
 
                 return armazemId;
