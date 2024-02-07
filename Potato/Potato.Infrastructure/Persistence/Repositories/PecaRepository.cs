@@ -162,6 +162,29 @@ namespace Potato.Infrastructure.Persistence.Repositories
             }
         }
 
+        public void ReporPeca(int pecaId, int quantidade)
+        {
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string sql = $"UPDATE PecaEstoque SET quantidade = quantidade +{quantidade} " +
+
+                    $"WHERE pecaId={pecaId}";
+
+                _connection.Execute(sql, commandType: CommandType.Text);
+
+                _connection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public void EditarPeca(Peca peca, int quantidade)
         {
             try

@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             servicoCliente_gb = new GroupBox();
             label6 = new Label();
             servicoClienteId_tb = new TextBox();
@@ -42,12 +41,12 @@
             servicoClienteNome_tb = new TextBox();
             servicoVeiculo_gb = new GroupBox();
             servicoVeiculo_dgv = new DataGridView();
+            servicoVeiculoAno_tb = new MaskedTextBox();
             servicoVeiculoId_tb = new TextBox();
             servicoVeiculoId_label = new Label();
             cadastrarVeiculoButton = new Button();
             servicoVeiculoPlaca_tb = new MaskedTextBox();
             label5 = new Label();
-            servicoVeiculoAno_datePicker = new DateTimePicker();
             label4 = new Label();
             servicoVeiculoCor_tb = new TextBox();
             label2 = new Label();
@@ -161,12 +160,12 @@
             // servicoVeiculo_gb
             // 
             servicoVeiculo_gb.Controls.Add(servicoVeiculo_dgv);
+            servicoVeiculo_gb.Controls.Add(servicoVeiculoAno_tb);
             servicoVeiculo_gb.Controls.Add(servicoVeiculoId_tb);
             servicoVeiculo_gb.Controls.Add(servicoVeiculoId_label);
             servicoVeiculo_gb.Controls.Add(cadastrarVeiculoButton);
             servicoVeiculo_gb.Controls.Add(servicoVeiculoPlaca_tb);
             servicoVeiculo_gb.Controls.Add(label5);
-            servicoVeiculo_gb.Controls.Add(servicoVeiculoAno_datePicker);
             servicoVeiculo_gb.Controls.Add(label4);
             servicoVeiculo_gb.Controls.Add(servicoVeiculoCor_tb);
             servicoVeiculo_gb.Controls.Add(label2);
@@ -177,43 +176,52 @@
             servicoVeiculo_gb.Controls.Add(servicoNovoVeiculo_check);
             servicoVeiculo_gb.Location = new Point(12, 12);
             servicoVeiculo_gb.Name = "servicoVeiculo_gb";
-            servicoVeiculo_gb.Size = new Size(674, 407);
+            servicoVeiculo_gb.Size = new Size(481, 516);
             servicoVeiculo_gb.TabIndex = 1;
             servicoVeiculo_gb.TabStop = false;
             servicoVeiculo_gb.Text = "Veiculo";
             // 
             // servicoVeiculo_dgv
             // 
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(238, 239, 249);
-            servicoVeiculo_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             servicoVeiculo_dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             servicoVeiculo_dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             servicoVeiculo_dgv.BorderStyle = BorderStyle.Fixed3D;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle2.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.Padding = new Padding(2);
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            servicoVeiculo_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle3.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            servicoVeiculo_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             servicoVeiculo_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            servicoVeiculo_dgv.Location = new Point(7, 18);
+            servicoVeiculo_dgv.Dock = DockStyle.Top;
+            servicoVeiculo_dgv.EnableHeadersVisualStyles = false;
+            servicoVeiculo_dgv.Location = new Point(3, 18);
             servicoVeiculo_dgv.Name = "servicoVeiculo_dgv";
             servicoVeiculo_dgv.ReadOnly = true;
-            dataGridViewCellStyle3.Padding = new Padding(3);
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            servicoVeiculo_dgv.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Padding = new Padding(3);
+            servicoVeiculo_dgv.RowsDefaultCellStyle = dataGridViewCellStyle4;
             servicoVeiculo_dgv.RowTemplate.Height = 25;
-            servicoVeiculo_dgv.Size = new Size(661, 160);
-            servicoVeiculo_dgv.TabIndex = 52;
+            servicoVeiculo_dgv.Size = new Size(475, 209);
+            servicoVeiculo_dgv.TabIndex = 54;
+            servicoVeiculo_dgv.DataBindingComplete += servicoVeiculo_dgv_DataBindingComplete;
             servicoVeiculo_dgv.RowHeaderMouseDoubleClick += servicoVeiculo_dgv_RowHeaderMouseDoubleClick;
+            // 
+            // servicoVeiculoAno_tb
+            // 
+            servicoVeiculoAno_tb.Enabled = false;
+            servicoVeiculoAno_tb.Location = new Point(190, 378);
+            servicoVeiculoAno_tb.Mask = "0000";
+            servicoVeiculoAno_tb.Name = "servicoVeiculoAno_tb";
+            servicoVeiculoAno_tb.Size = new Size(148, 22);
+            servicoVeiculoAno_tb.TabIndex = 53;
             // 
             // servicoVeiculoId_tb
             // 
             servicoVeiculoId_tb.Enabled = false;
-            servicoVeiculoId_tb.Location = new Point(353, 270);
+            servicoVeiculoId_tb.Location = new Point(190, 266);
             servicoVeiculoId_tb.Name = "servicoVeiculoId_tb";
             servicoVeiculoId_tb.Size = new Size(148, 22);
             servicoVeiculoId_tb.TabIndex = 51;
@@ -223,7 +231,7 @@
             // servicoVeiculoId_label
             // 
             servicoVeiculoId_label.AutoSize = true;
-            servicoVeiculoId_label.Location = new Point(273, 273);
+            servicoVeiculoId_label.Location = new Point(110, 269);
             servicoVeiculoId_label.Name = "servicoVeiculoId_label";
             servicoVeiculoId_label.Size = new Size(25, 14);
             servicoVeiculoId_label.TabIndex = 50;
@@ -238,9 +246,9 @@
             cadastrarVeiculoButton.FlatStyle = FlatStyle.Flat;
             cadastrarVeiculoButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             cadastrarVeiculoButton.ForeColor = Color.White;
-            cadastrarVeiculoButton.Location = new Point(98, 352);
+            cadastrarVeiculoButton.Location = new Point(110, 461);
             cadastrarVeiculoButton.Name = "cadastrarVeiculoButton";
-            cadastrarVeiculoButton.Size = new Size(476, 49);
+            cadastrarVeiculoButton.Size = new Size(228, 49);
             cadastrarVeiculoButton.TabIndex = 49;
             cadastrarVeiculoButton.Text = "Cadastrar Veiculo";
             cadastrarVeiculoButton.UseVisualStyleBackColor = false;
@@ -249,7 +257,7 @@
             // servicoVeiculoPlaca_tb
             // 
             servicoVeiculoPlaca_tb.Enabled = false;
-            servicoVeiculoPlaca_tb.Location = new Point(353, 242);
+            servicoVeiculoPlaca_tb.Location = new Point(190, 407);
             servicoVeiculoPlaca_tb.Mask = "AAAAAAA";
             servicoVeiculoPlaca_tb.Name = "servicoVeiculoPlaca_tb";
             servicoVeiculoPlaca_tb.Size = new Size(148, 22);
@@ -258,25 +266,16 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(273, 245);
+            label5.Location = new Point(110, 410);
             label5.Name = "label5";
             label5.Size = new Size(45, 14);
             label5.TabIndex = 11;
             label5.Text = "Placa:";
             // 
-            // servicoVeiculoAno_datePicker
-            // 
-            servicoVeiculoAno_datePicker.Enabled = false;
-            servicoVeiculoAno_datePicker.Format = DateTimePickerFormat.Short;
-            servicoVeiculoAno_datePicker.Location = new Point(353, 214);
-            servicoVeiculoAno_datePicker.Name = "servicoVeiculoAno_datePicker";
-            servicoVeiculoAno_datePicker.Size = new Size(148, 22);
-            servicoVeiculoAno_datePicker.TabIndex = 10;
-            // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(273, 216);
+            label4.Location = new Point(110, 381);
             label4.Name = "label4";
             label4.Size = new Size(36, 14);
             label4.TabIndex = 8;
@@ -285,7 +284,7 @@
             // servicoVeiculoCor_tb
             // 
             servicoVeiculoCor_tb.Enabled = false;
-            servicoVeiculoCor_tb.Location = new Point(89, 269);
+            servicoVeiculoCor_tb.Location = new Point(190, 350);
             servicoVeiculoCor_tb.Name = "servicoVeiculoCor_tb";
             servicoVeiculoCor_tb.Size = new Size(148, 22);
             servicoVeiculoCor_tb.TabIndex = 7;
@@ -293,7 +292,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(7, 272);
+            label2.Location = new Point(108, 353);
             label2.Name = "label2";
             label2.Size = new Size(34, 14);
             label2.TabIndex = 6;
@@ -302,7 +301,7 @@
             // servicoVeiculoModelo_tb
             // 
             servicoVeiculoModelo_tb.Enabled = false;
-            servicoVeiculoModelo_tb.Location = new Point(89, 241);
+            servicoVeiculoModelo_tb.Location = new Point(190, 322);
             servicoVeiculoModelo_tb.Name = "servicoVeiculoModelo_tb";
             servicoVeiculoModelo_tb.Size = new Size(148, 22);
             servicoVeiculoModelo_tb.TabIndex = 5;
@@ -310,7 +309,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(6, 245);
+            label1.Location = new Point(107, 326);
             label1.Name = "label1";
             label1.Size = new Size(57, 14);
             label1.TabIndex = 4;
@@ -319,7 +318,7 @@
             // servicoVeiculoMarca_tb
             // 
             servicoVeiculoMarca_tb.Enabled = false;
-            servicoVeiculoMarca_tb.Location = new Point(89, 213);
+            servicoVeiculoMarca_tb.Location = new Point(190, 294);
             servicoVeiculoMarca_tb.Name = "servicoVeiculoMarca_tb";
             servicoVeiculoMarca_tb.Size = new Size(148, 22);
             servicoVeiculoMarca_tb.TabIndex = 3;
@@ -327,7 +326,7 @@
             // servicoVeiculoMarca_label
             // 
             servicoVeiculoMarca_label.AutoSize = true;
-            servicoVeiculoMarca_label.Location = new Point(7, 216);
+            servicoVeiculoMarca_label.Location = new Point(108, 297);
             servicoVeiculoMarca_label.Name = "servicoVeiculoMarca_label";
             servicoVeiculoMarca_label.Size = new Size(49, 14);
             servicoVeiculoMarca_label.TabIndex = 2;
@@ -336,7 +335,7 @@
             // servicoNovoVeiculo_check
             // 
             servicoNovoVeiculo_check.AutoSize = true;
-            servicoNovoVeiculo_check.Location = new Point(7, 184);
+            servicoNovoVeiculo_check.Location = new Point(6, 233);
             servicoNovoVeiculo_check.Name = "servicoNovoVeiculo_check";
             servicoNovoVeiculo_check.Size = new Size(172, 18);
             servicoNovoVeiculo_check.TabIndex = 1;
@@ -351,9 +350,9 @@
             groupBox1.Controls.Add(servicoPreco_tb);
             groupBox1.Controls.Add(groupBox2);
             groupBox1.Controls.Add(servicoCliente_gb);
-            groupBox1.Location = new Point(692, 12);
+            groupBox1.Location = new Point(499, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(488, 407);
+            groupBox1.Size = new Size(488, 516);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Servico";
@@ -365,7 +364,7 @@
             criarServicoButton.FlatStyle = FlatStyle.Flat;
             criarServicoButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             criarServicoButton.ForeColor = Color.White;
-            criarServicoButton.Location = new Point(6, 352);
+            criarServicoButton.Location = new Point(6, 460);
             criarServicoButton.Name = "criarServicoButton";
             criarServicoButton.Size = new Size(476, 49);
             criarServicoButton.TabIndex = 52;
@@ -376,15 +375,15 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(12, 297);
+            label9.Location = new Point(12, 305);
             label9.Name = "label9";
-            label9.Size = new Size(28, 14);
+            label9.Size = new Size(96, 14);
             label9.TabIndex = 84;
-            label9.Text = "R$:";
+            label9.Text = "Servico Preco:";
             // 
             // servicoPreco_tb
             // 
-            servicoPreco_tb.Location = new Point(115, 294);
+            servicoPreco_tb.Location = new Point(115, 302);
             servicoPreco_tb.Name = "servicoPreco_tb";
             servicoPreco_tb.Size = new Size(259, 22);
             servicoPreco_tb.TabIndex = 1;
@@ -412,12 +411,12 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 14F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1192, 431);
+            ClientSize = new Size(998, 541);
             Controls.Add(groupBox1);
             Controls.Add(servicoVeiculo_gb);
             Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            MaximumSize = new Size(1208, 470);
-            MinimumSize = new Size(1208, 470);
+            MaximumSize = new Size(1014, 580);
+            MinimumSize = new Size(1014, 580);
             Name = "CriarServicoForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Servicos";
@@ -448,7 +447,6 @@
         private Label servicoVeiculoMarca_label;
         private Label label1;
         private TextBox servicoVeiculoModelo_tb;
-        private DateTimePicker servicoVeiculoAno_datePicker;
         private Label label4;
         private TextBox servicoVeiculoCor_tb;
         private Label label2;
@@ -465,6 +463,7 @@
         private Button criarServicoButton;
         private Label label9;
         private TextBox servicoPreco_tb;
+        private MaskedTextBox servicoVeiculoAno_tb;
         private DataGridView servicoVeiculo_dgv;
     }
 }

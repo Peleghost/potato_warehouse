@@ -14,6 +14,96 @@ namespace Potato.Infrastructure.Persistence.Repositories
             _connection = connection;
         }
 
+        public IEnumerable<Veiculo> GetAll()
+        {
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string sql = "SELECT primeiroNome || ' ' || sobrenome as 'Cliente'" +
+                    
+                    ", Veiculo.id, marca, modelo, cor, ano, placa, clienteId, servicoId " +
+                    
+                    "FROM Veiculo " +
+
+                    "INNER JOIN Cliente on Cliente.id = clienteId";
+
+                var veiculos = _connection.Query<Veiculo>(sql, commandType: CommandType.Text);
+
+                return veiculos;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public int CriarVeiculo(Veiculo veiculo)
+        {
+
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string sql = $"INSERT INTO Veiculo(marca, modelo, cor, ano, placa, clienteId) " +
+
+                    $"VALUES('{veiculo.Marca}', '{veiculo.Modelo}', '{veiculo.Cor}', '{veiculo.Ano}', '{veiculo.Placa}', {veiculo.ClienteId});" +
+
+                    $"SELECT last_insert_rowid();";
+
+                int veiculoId;
+
+                var cmd = _connection.CreateCommand();
+                {
+                    cmd.CommandText = sql;
+                    cmd.CommandType = CommandType.Text;
+                    veiculoId = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+
+                _connection.Close();
+
+                return veiculoId;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public void EditarVeiculo(Veiculo veiculo)
+        {
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string sql = $"UPDATE Veiculo SET " +
+                    
+                    $"marca = '{veiculo.Marca}', modelo = '{veiculo.Modelo}', cor = '{veiculo.Cor}'" +
+                    
+                    $", ano = '{veiculo.Ano}', placa = '{veiculo.Placa}' " +
+                    
+                    $"WHERE Veiculo.id = {veiculo.Id}";
+
+                    _connection.Execute(sql, commandType: CommandType.Text);
+
+                    _connection.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public int VerificarPlaca(string placa)
         {
             try
@@ -80,44 +170,29 @@ namespace Potato.Infrastructure.Persistence.Repositories
             }
         }
 
+        //public void UpdateVeiculoClienteId(int clienteId, int veiculoId)
+        //{
+        //    try
+        //    {
+        //        if (_connection.State == ConnectionState.Closed)
+        //        {
+        //            _connection.Open();
+        //        }
 
-        public int CriarVeiculo(Veiculo veiculo)
-        {
+        //        string sql = $"UPDATE Veiculo SET clienteId = {clienteId} " +
+        //            $"WHERE Veiculo.Id = {veiculoId}";
 
-            try
-            {
-                if (_connection.State == ConnectionState.Closed)
-                {
-                    _connection.Open();
-                }
+        //        _connection.Execute(sql, commandType: CommandType.Text);
 
-                string sql = $"INSERT INTO Veiculo(marca, modelo, cor, ano, placa, clienteId) " +
+        //        _connection.Close();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
 
-                    $"VALUES('{veiculo.Marca}', '{veiculo.Modelo}', '{veiculo.Cor}', '{veiculo.Ano}', '{veiculo.Placa}', {veiculo.ClienteId});" +
-
-                    $"SELECT last_insert_rowid();";
-
-                int veiculoId;
-
-                var cmd = _connection.CreateCommand();
-                {
-                    cmd.CommandText = sql;
-                    cmd.CommandType = CommandType.Text;
-                    veiculoId = Convert.ToInt32(cmd.ExecuteScalar());
-                }
-
-                _connection.Close();
-
-                return veiculoId;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-        }
-
-        public void UpdateVeiculoClienteId(int clienteId, int veiculoId)
+        public void DeleteVeiculo(int veiculoId)
         {
             try
             {
@@ -126,8 +201,13 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     _connection.Open();
                 }
 
-                string sql = $"UPDATE Veiculo SET clienteId = {clienteId} " +
-                    $"WHERE Veiculo.Id = {veiculoId}";
+                string sql = "UPDATE Veiculo SET clienteId = NULL " +
+
+                    $"WHERE Veiculo.id = {veiculoId}; " +
+                    
+                    $"UPDATE Servico SET veiculoId = NULL WHERE Servico.veiculoId = {veiculoId};" +
+
+                    $"DELETE FROM Veiculo WHERE Veiculo.id = {veiculoId};";
 
                 _connection.Execute(sql, commandType: CommandType.Text);
 

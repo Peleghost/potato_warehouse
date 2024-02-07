@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Potato.Domain.Models
 {
-    public class ServicoPecaModel : Peca
+    public class ServicoModel : Servico
     {
-        
+        public string? Cliente_Nome { get; set; }
+        public string? Veiculo_Nome { get; set; }
+        public string? Veiculo_Placa { get; set; }
     }
 }

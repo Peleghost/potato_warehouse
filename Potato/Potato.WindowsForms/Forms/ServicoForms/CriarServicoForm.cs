@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -55,7 +56,7 @@ namespace Potato.WindowsForms.Forms.ServicoForms
             servicoVeiculoMarca_tb.Text = veiculo.Marca;
             servicoVeiculoModelo_tb.Text = veiculo.Modelo;
             servicoVeiculoCor_tb.Text = veiculo.Cor;
-            servicoVeiculoAno_datePicker.Text = veiculo.Ano;
+            servicoVeiculoAno_tb.Text = veiculo.Ano;
             servicoVeiculoPlaca_tb.Text = veiculo.Placa;
             //servicoVeiculoId_tb.Text = veiculo.Id.ToString();
         }
@@ -65,7 +66,7 @@ namespace Potato.WindowsForms.Forms.ServicoForms
             servicoVeiculoMarca_tb.Enabled = true;
             servicoVeiculoModelo_tb.Enabled = true;
             servicoVeiculoCor_tb.Enabled = true;
-            servicoVeiculoAno_datePicker.Enabled = true;
+            servicoVeiculoAno_tb.Enabled = true;
             servicoVeiculoPlaca_tb.Enabled = true;
             cadastrarVeiculoButton.Enabled = true;
         }
@@ -75,11 +76,13 @@ namespace Potato.WindowsForms.Forms.ServicoForms
             servicoVeiculoMarca_tb.Clear();
             servicoVeiculoModelo_tb.Clear();
             servicoVeiculoCor_tb.Clear();
+            servicoVeiculoAno_tb.Clear();
             servicoVeiculoPlaca_tb.Clear();
 
             servicoVeiculoMarca_tb.Enabled = false;
             servicoVeiculoModelo_tb.Enabled = false;
             servicoVeiculoCor_tb.Enabled = false;
+            servicoVeiculoAno_tb.Enabled = false;
             servicoVeiculoPlaca_tb.Enabled = false;
             cadastrarVeiculoButton.Enabled = false;
         }
@@ -105,26 +108,35 @@ namespace Potato.WindowsForms.Forms.ServicoForms
                 {
                     var clienteId = Convert.ToInt32(servicoClienteId_tb.Text);
 
+                    string placa = servicoVeiculoPlaca_tb.Text;
+
+                    var regex = new Regex("[A-Z][0-9]");
+
+                    if (!regex.IsMatch(placa))
+                    {
+                        throw new Exception("Campo Placa nao preenchido corretamente");
+                    }
+
+                    var veiculoExiste = _veiculoRepository.VerificarPlaca(placa);
+
+                    if (veiculoExiste > 0)
+                    {
+                        throw new Exception($"Error: Veciulo de Placa: {placa} ja existe.");
+                    }
+
                     var veiculo = new Veiculo()
                     {
                         Marca = servicoVeiculoMarca_tb.Text,
                         Modelo = servicoVeiculoModelo_tb.Text,
                         Cor = servicoVeiculoCor_tb.Text,
-                        Ano = servicoVeiculoAno_datePicker.Text,
-                        Placa = servicoVeiculoPlaca_tb.Text,
+                        Ano = servicoVeiculoAno_tb.Text,
+                        Placa = placa,
                         ClienteId = clienteId,
                     };
 
-                    var veiculoExiste = _veiculoRepository.VerificarPlaca(veiculo.Placa);
+                    _veiculoRepository.CriarVeiculo(veiculo);
 
-                    if (veiculoExiste > 0)
-                    {
-                        throw new Exception($"Error: Veciulo de Placa: {veiculo.Placa} ja existe.");
-                    }
-
-                    var veiculoId = _veiculoRepository.CriarVeiculo(veiculo);
-
-                    _veiculoRepository.UpdateVeiculoClienteId(clienteId, veiculoId);
+                    //_veiculoRepository.UpdateVeiculoClienteId(clienteId, veiculoId);
 
                     MessageBox.Show("Successo", "Confirmar", MessageBoxButtons.OK);
                     LoadClienteVeiculos();
@@ -146,6 +158,7 @@ namespace Potato.WindowsForms.Forms.ServicoForms
         private void servicoVeiculo_dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             servicoVeiculo_dgv.Columns["Id"].Visible = false;
+            servicoVeiculo_dgv.Columns["Cliente"].Visible = false;
             servicoVeiculo_dgv.Columns["ClienteId"].Visible = false;
             servicoVeiculo_dgv.Columns["ServicoId"].Visible = false;
         }

@@ -4,9 +4,6 @@ namespace Potato.Domain.Entities
 {
     public class Servico : EntidadeBase
     {
-        public string? Cliente_Nome { get; set; }
-        public string? Veiculo_Nome { get; set; }
-        public string? Veiculo_Placa { get; set; }
         public Cliente? Cliente { get; private set; }
         public List<Peca>? Pecas { get; set; }
         public Veiculo? Veiculo { get; private set; }
@@ -20,22 +17,18 @@ namespace Potato.Domain.Entities
         }
 
 
-        public Servico(Cliente cliente, /*List<Peca> pecas,*/ Veiculo veiculo, string descricao, double preco, int ativo)
+        public Servico(Cliente cliente, Veiculo veiculo, string descricao, double preco, int ativo)
         {
             this.Cliente = cliente;
-            //this.Pecas = pecas;
             this.Veiculo = veiculo;
             this.Descricao = descricao;
             this.Preco = preco;
             this.Ativo = ativo;
         }
-        public static Result<Servico> Criar(Cliente cliente, /*List<Peca> pecas,*/ Veiculo veiculo, string descricao, double preco, int ativo)
+        public static Result<Servico> Criar(Cliente cliente, Veiculo veiculo, string descricao, double preco, int ativo)
         {
             if (cliente == null)
                 return new Result<Servico>(isSuccess: false, null);
-
-            //if (pecas == null)
-            //    return new Result<Servico>(isSuccess: false, null);
 
             if (veiculo == null)
                 return new Result<Servico>(isSuccess: false, null);

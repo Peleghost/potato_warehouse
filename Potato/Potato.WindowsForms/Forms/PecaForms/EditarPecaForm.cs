@@ -19,13 +19,13 @@ namespace Potato.WindowsForms.PecaForms
         public void ShowDialog(ref DataGridViewRow pecaEditar)
         {
             var peca = (Peca)pecaEditar.DataBoundItem;
-            EditPecaTbControls(peca);
+            PopulateEditPecaTb(peca);
 
             this.ShowDialog();
         }
 
-        // Edit TextBox Controls
-        public void EditPecaTbControls(Peca peca)
+        // Populate Edit TextBoxes 
+        public void PopulateEditPecaTb(Peca peca)
         {
             editPecaId_tb.Text = peca.Id.ToString();
             editPecaNome_tb.Text = peca.Nome;

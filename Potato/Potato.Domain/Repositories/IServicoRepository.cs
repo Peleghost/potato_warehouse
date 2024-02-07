@@ -12,6 +12,7 @@ namespace Potato.Domain.Repositories
         IEnumerable<Servico> GetAll();
         public int CriarServico(Servico servico);
         public void InsertServicoPeca(int pecaId, int servicoId, int quantidade);
+        public void UpdateServicoPeca(int pecaId, int qtd);
         public List<Peca> GetServicoPecas(int servicoId);
         public IEnumerable<Servico> GetByClienteOuVeiculo(string criterio, string busca);
         public IEnumerable<Servico> GetByDate(string dateStart, string dateEnd);

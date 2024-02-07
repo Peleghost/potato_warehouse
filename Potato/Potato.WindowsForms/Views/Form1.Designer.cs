@@ -33,33 +33,35 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            getPecasButton = new Button();
+            listarPecas_btn = new Button();
             mainTabControl = new TabControl();
             pecaTabPage = new TabPage();
             labelTotalRecords = new Label();
-            deleteButton = new Button();
-            editButton = new Button();
-            venderButton = new Button();
+            deletePeca_btn = new Button();
+            editPeca_btn = new Button();
+            venderPeca_btn = new Button();
             gb_pecasControl = new GroupBox();
             gb_pecas = new GroupBox();
             allPecas_dgv = new DataGridView();
-            novaPecaButton = new Button();
-            searchPecaButton = new Button();
+            novaPeca_btn = new Button();
+            searchPeca_btn = new Button();
             searchTextBox = new TextBox();
             searchPeca_combo = new ComboBox();
             clienteTabPage = new TabPage();
-            deleteClienteButton = new Button();
-            editClienteButton = new Button();
-            clienteServicoButton = new Button();
+            deleteCliente_btn = new Button();
+            editCliente_btn = new Button();
+            clienteServico_btn = new Button();
             totalClientesLabel = new Label();
-            listarClienteButton = new Button();
-            searchClienteButton = new Button();
-            novoClienteButton = new Button();
+            listarCliente_btn = new Button();
+            searchCliente_btn = new Button();
+            novoCliente_btn = new Button();
             searchCliente_tb = new TextBox();
             cliente_gb = new GroupBox();
             allClientes_dgv = new DataGridView();
@@ -70,22 +72,42 @@
             dateEnd_picker = new DateTimePicker();
             searchServico_combo = new ComboBox();
             servico2_gb = new GroupBox();
-            adicionarPecasButton = new Button();
+            groupBox1 = new GroupBox();
+            label8 = new Label();
+            label7 = new Label();
+            servicoValor_tb = new TextBox();
+            label6 = new Label();
+            servicoPecaValor_tb = new TextBox();
+            label5 = new Label();
+            servicoValorTotal_tb = new TextBox();
+            label4 = new Label();
+            adicionarPecas_btn = new Button();
             servicoPeca_gb = new GroupBox();
+            servicoPecas_dgv = new DataGridView();
             label1 = new Label();
             servicoDescricao_tb = new RichTextBox();
-            listarServicoButton = new Button();
-            searchServicoButton = new Button();
+            listarServico_btn = new Button();
+            searchServico_btn = new Button();
             searchServico_tb = new TextBox();
-            deleteServicoButton = new Button();
-            editarServicoButton = new Button();
-            finalServicoButton = new Button();
+            deleteServico_btn = new Button();
+            editarServico_btn = new Button();
+            finalServico_btn = new Button();
             servicoSemCadastroButton = new Button();
             servico_gb = new GroupBox();
             allServicos_dgv = new DataGridView();
-            tabPage3 = new TabPage();
+            veiculoTabPage = new TabPage();
+            searchVeiculo_combo = new ComboBox();
+            deleteVeiculo_btn = new Button();
+            editVeiculo_btn = new Button();
+            button3 = new Button();
+            criarVeiculoButton = new Button();
+            groupBox3 = new GroupBox();
+            listarVeiculo_btn = new Button();
+            searchVeiculo_btn = new Button();
+            searchVeiculo_tb = new TextBox();
+            groupBox2 = new GroupBox();
+            allVeiculos_dgv = new DataGridView();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            servicoPecas_dgv = new DataGridView();
             mainTabControl.SuspendLayout();
             pecaTabPage.SuspendLayout();
             gb_pecas.SuspendLayout();
@@ -95,34 +117,38 @@
             ((System.ComponentModel.ISupportInitialize)allClientes_dgv).BeginInit();
             servicoTabPage.SuspendLayout();
             servico2_gb.SuspendLayout();
+            groupBox1.SuspendLayout();
             servicoPeca_gb.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)servicoPecas_dgv).BeginInit();
             servico_gb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)allServicos_dgv).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)servicoPecas_dgv).BeginInit();
+            veiculoTabPage.SuspendLayout();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)allVeiculos_dgv).BeginInit();
             SuspendLayout();
             // 
-            // getPecasButton
+            // listarPecas_btn
             // 
-            getPecasButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            getPecasButton.BackColor = Color.DimGray;
-            getPecasButton.FlatStyle = FlatStyle.Flat;
-            getPecasButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            getPecasButton.ForeColor = Color.White;
-            getPecasButton.Location = new Point(1113, 6);
-            getPecasButton.MaximumSize = new Size(144, 43);
-            getPecasButton.Name = "getPecasButton";
-            getPecasButton.Size = new Size(144, 29);
-            getPecasButton.TabIndex = 0;
-            getPecasButton.Text = "Listar Todas Pecas";
-            getPecasButton.UseVisualStyleBackColor = false;
-            getPecasButton.Click += getPecasButton_Click;
+            listarPecas_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            listarPecas_btn.BackColor = Color.DimGray;
+            listarPecas_btn.FlatStyle = FlatStyle.Flat;
+            listarPecas_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            listarPecas_btn.ForeColor = Color.White;
+            listarPecas_btn.Location = new Point(1113, 6);
+            listarPecas_btn.MaximumSize = new Size(144, 43);
+            listarPecas_btn.Name = "listarPecas_btn";
+            listarPecas_btn.Size = new Size(144, 29);
+            listarPecas_btn.TabIndex = 0;
+            listarPecas_btn.Text = "Listar Todas Pecas";
+            listarPecas_btn.UseVisualStyleBackColor = false;
+            listarPecas_btn.Click += listarPecas_btn_Click;
             // 
             // mainTabControl
             // 
             mainTabControl.Controls.Add(pecaTabPage);
             mainTabControl.Controls.Add(clienteTabPage);
             mainTabControl.Controls.Add(servicoTabPage);
-            mainTabControl.Controls.Add(tabPage3);
+            mainTabControl.Controls.Add(veiculoTabPage);
             mainTabControl.Dock = DockStyle.Fill;
             mainTabControl.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             mainTabControl.HotTrack = true;
@@ -136,14 +162,14 @@
             // pecaTabPage
             // 
             pecaTabPage.Controls.Add(labelTotalRecords);
-            pecaTabPage.Controls.Add(deleteButton);
-            pecaTabPage.Controls.Add(editButton);
-            pecaTabPage.Controls.Add(getPecasButton);
-            pecaTabPage.Controls.Add(venderButton);
+            pecaTabPage.Controls.Add(deletePeca_btn);
+            pecaTabPage.Controls.Add(editPeca_btn);
+            pecaTabPage.Controls.Add(listarPecas_btn);
+            pecaTabPage.Controls.Add(venderPeca_btn);
             pecaTabPage.Controls.Add(gb_pecasControl);
             pecaTabPage.Controls.Add(gb_pecas);
-            pecaTabPage.Controls.Add(novaPecaButton);
-            pecaTabPage.Controls.Add(searchPecaButton);
+            pecaTabPage.Controls.Add(novaPeca_btn);
+            pecaTabPage.Controls.Add(searchPeca_btn);
             pecaTabPage.Controls.Add(searchTextBox);
             pecaTabPage.Controls.Add(searchPeca_combo);
             pecaTabPage.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -165,51 +191,51 @@
             labelTotalRecords.TabIndex = 2;
             labelTotalRecords.Text = "Total Records:";
             // 
-            // deleteButton
+            // deletePeca_btn
             // 
-            deleteButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            deleteButton.BackColor = Color.IndianRed;
-            deleteButton.Enabled = false;
-            deleteButton.FlatStyle = FlatStyle.Flat;
-            deleteButton.ForeColor = Color.White;
-            deleteButton.Location = new Point(949, 679);
-            deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(305, 49);
-            deleteButton.TabIndex = 62;
-            deleteButton.Text = "DELETAR";
-            deleteButton.UseVisualStyleBackColor = false;
-            deleteButton.Click += deleteButton_Click;
+            deletePeca_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            deletePeca_btn.BackColor = Color.IndianRed;
+            deletePeca_btn.Enabled = false;
+            deletePeca_btn.FlatStyle = FlatStyle.Flat;
+            deletePeca_btn.ForeColor = Color.White;
+            deletePeca_btn.Location = new Point(949, 679);
+            deletePeca_btn.Name = "deletePeca_btn";
+            deletePeca_btn.Size = new Size(305, 49);
+            deletePeca_btn.TabIndex = 62;
+            deletePeca_btn.Text = "DELETAR";
+            deletePeca_btn.UseVisualStyleBackColor = false;
+            deletePeca_btn.Click += deletePeca_btn_Click;
             // 
-            // editButton
+            // editPeca_btn
             // 
-            editButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            editButton.BackColor = Color.SandyBrown;
-            editButton.Enabled = false;
-            editButton.FlatStyle = FlatStyle.Flat;
-            editButton.ForeColor = Color.White;
-            editButton.Location = new Point(638, 679);
-            editButton.Name = "editButton";
-            editButton.Size = new Size(305, 49);
-            editButton.TabIndex = 66;
-            editButton.Text = "Editar Peca";
-            editButton.UseVisualStyleBackColor = false;
-            editButton.Click += editButton_Click;
+            editPeca_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            editPeca_btn.BackColor = Color.SandyBrown;
+            editPeca_btn.Enabled = false;
+            editPeca_btn.FlatStyle = FlatStyle.Flat;
+            editPeca_btn.ForeColor = Color.White;
+            editPeca_btn.Location = new Point(638, 679);
+            editPeca_btn.Name = "editPeca_btn";
+            editPeca_btn.Size = new Size(305, 49);
+            editPeca_btn.TabIndex = 66;
+            editPeca_btn.Text = "Editar Peca";
+            editPeca_btn.UseVisualStyleBackColor = false;
+            editPeca_btn.Click += editPeca_btn_Click;
             // 
-            // venderButton
+            // venderPeca_btn
             // 
-            venderButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            venderButton.BackColor = Color.LightSeaGreen;
-            venderButton.Enabled = false;
-            venderButton.FlatStyle = FlatStyle.Flat;
-            venderButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            venderButton.ForeColor = Color.White;
-            venderButton.Location = new Point(317, 679);
-            venderButton.Name = "venderButton";
-            venderButton.Size = new Size(305, 49);
-            venderButton.TabIndex = 65;
-            venderButton.Text = "Vender";
-            venderButton.UseVisualStyleBackColor = false;
-            venderButton.Click += venderButton_Click;
+            venderPeca_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            venderPeca_btn.BackColor = Color.LightSeaGreen;
+            venderPeca_btn.Enabled = false;
+            venderPeca_btn.FlatStyle = FlatStyle.Flat;
+            venderPeca_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            venderPeca_btn.ForeColor = Color.White;
+            venderPeca_btn.Location = new Point(317, 679);
+            venderPeca_btn.Name = "venderPeca_btn";
+            venderPeca_btn.Size = new Size(305, 49);
+            venderPeca_btn.TabIndex = 65;
+            venderPeca_btn.Text = "Vender";
+            venderPeca_btn.UseVisualStyleBackColor = false;
+            venderPeca_btn.Click += venderPeca_btn_Click;
             // 
             // gb_pecasControl
             // 
@@ -267,35 +293,35 @@
             allPecas_dgv.DataBindingComplete += allPecasDgv_DataBindingComplete;
             allPecas_dgv.RowHeaderMouseDoubleClick += allPecasDGV_RowHeaderMouseDoubleClick;
             // 
-            // novaPecaButton
+            // novaPeca_btn
             // 
-            novaPecaButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            novaPecaButton.BackColor = Color.SeaGreen;
-            novaPecaButton.FlatStyle = FlatStyle.Flat;
-            novaPecaButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            novaPecaButton.ForeColor = Color.White;
-            novaPecaButton.Location = new Point(6, 679);
-            novaPecaButton.Name = "novaPecaButton";
-            novaPecaButton.Size = new Size(305, 49);
-            novaPecaButton.TabIndex = 48;
-            novaPecaButton.Text = "Nova Peca";
-            novaPecaButton.UseVisualStyleBackColor = false;
-            novaPecaButton.Click += novaPecaButton_Click;
+            novaPeca_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            novaPeca_btn.BackColor = Color.SeaGreen;
+            novaPeca_btn.FlatStyle = FlatStyle.Flat;
+            novaPeca_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            novaPeca_btn.ForeColor = Color.White;
+            novaPeca_btn.Location = new Point(6, 679);
+            novaPeca_btn.Name = "novaPeca_btn";
+            novaPeca_btn.Size = new Size(305, 49);
+            novaPeca_btn.TabIndex = 48;
+            novaPeca_btn.Text = "Nova Peca";
+            novaPeca_btn.UseVisualStyleBackColor = false;
+            novaPeca_btn.Click += novaPeca_btn_Click;
             // 
-            // searchPecaButton
+            // searchPeca_btn
             // 
-            searchPecaButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            searchPecaButton.BackColor = Color.DimGray;
-            searchPecaButton.FlatStyle = FlatStyle.Flat;
-            searchPecaButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            searchPecaButton.ForeColor = Color.White;
-            searchPecaButton.Location = new Point(963, 7);
-            searchPecaButton.Name = "searchPecaButton";
-            searchPecaButton.Size = new Size(144, 27);
-            searchPecaButton.TabIndex = 3;
-            searchPecaButton.Text = "Buscar";
-            searchPecaButton.UseVisualStyleBackColor = false;
-            searchPecaButton.Click += searchPecaButton_Click;
+            searchPeca_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            searchPeca_btn.BackColor = Color.DimGray;
+            searchPeca_btn.FlatStyle = FlatStyle.Flat;
+            searchPeca_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            searchPeca_btn.ForeColor = Color.White;
+            searchPeca_btn.Location = new Point(963, 7);
+            searchPeca_btn.Name = "searchPeca_btn";
+            searchPeca_btn.Size = new Size(144, 27);
+            searchPeca_btn.TabIndex = 3;
+            searchPeca_btn.Text = "Buscar";
+            searchPeca_btn.UseVisualStyleBackColor = false;
+            searchPeca_btn.Click += searchPeca_btn_Click;
             // 
             // searchTextBox
             // 
@@ -320,13 +346,13 @@
             // 
             // clienteTabPage
             // 
-            clienteTabPage.Controls.Add(deleteClienteButton);
-            clienteTabPage.Controls.Add(editClienteButton);
-            clienteTabPage.Controls.Add(clienteServicoButton);
+            clienteTabPage.Controls.Add(deleteCliente_btn);
+            clienteTabPage.Controls.Add(editCliente_btn);
+            clienteTabPage.Controls.Add(clienteServico_btn);
             clienteTabPage.Controls.Add(totalClientesLabel);
-            clienteTabPage.Controls.Add(listarClienteButton);
-            clienteTabPage.Controls.Add(searchClienteButton);
-            clienteTabPage.Controls.Add(novoClienteButton);
+            clienteTabPage.Controls.Add(listarCliente_btn);
+            clienteTabPage.Controls.Add(searchCliente_btn);
+            clienteTabPage.Controls.Add(novoCliente_btn);
             clienteTabPage.Controls.Add(searchCliente_tb);
             clienteTabPage.Controls.Add(cliente_gb);
             clienteTabPage.Location = new Point(4, 23);
@@ -337,51 +363,51 @@
             clienteTabPage.Text = "Clientes";
             clienteTabPage.UseVisualStyleBackColor = true;
             // 
-            // deleteClienteButton
+            // deleteCliente_btn
             // 
-            deleteClienteButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            deleteClienteButton.BackColor = Color.IndianRed;
-            deleteClienteButton.Enabled = false;
-            deleteClienteButton.FlatStyle = FlatStyle.Flat;
-            deleteClienteButton.ForeColor = Color.White;
-            deleteClienteButton.Location = new Point(949, 679);
-            deleteClienteButton.Name = "deleteClienteButton";
-            deleteClienteButton.Size = new Size(305, 49);
-            deleteClienteButton.TabIndex = 67;
-            deleteClienteButton.Text = "DELETAR";
-            deleteClienteButton.UseVisualStyleBackColor = false;
-            deleteClienteButton.Click += deleteClienteButton_Click;
+            deleteCliente_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            deleteCliente_btn.BackColor = Color.IndianRed;
+            deleteCliente_btn.Enabled = false;
+            deleteCliente_btn.FlatStyle = FlatStyle.Flat;
+            deleteCliente_btn.ForeColor = Color.White;
+            deleteCliente_btn.Location = new Point(949, 679);
+            deleteCliente_btn.Name = "deleteCliente_btn";
+            deleteCliente_btn.Size = new Size(305, 49);
+            deleteCliente_btn.TabIndex = 67;
+            deleteCliente_btn.Text = "DELETAR";
+            deleteCliente_btn.UseVisualStyleBackColor = false;
+            deleteCliente_btn.Click += deleteCliente_btn_Click;
             // 
-            // editClienteButton
+            // editCliente_btn
             // 
-            editClienteButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            editClienteButton.BackColor = Color.SandyBrown;
-            editClienteButton.Enabled = false;
-            editClienteButton.FlatStyle = FlatStyle.Flat;
-            editClienteButton.ForeColor = Color.White;
-            editClienteButton.Location = new Point(638, 679);
-            editClienteButton.Name = "editClienteButton";
-            editClienteButton.Size = new Size(305, 49);
-            editClienteButton.TabIndex = 68;
-            editClienteButton.Text = "Editar";
-            editClienteButton.UseVisualStyleBackColor = false;
-            editClienteButton.Click += editClienteButton_Click;
+            editCliente_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            editCliente_btn.BackColor = Color.SandyBrown;
+            editCliente_btn.Enabled = false;
+            editCliente_btn.FlatStyle = FlatStyle.Flat;
+            editCliente_btn.ForeColor = Color.White;
+            editCliente_btn.Location = new Point(638, 679);
+            editCliente_btn.Name = "editCliente_btn";
+            editCliente_btn.Size = new Size(305, 49);
+            editCliente_btn.TabIndex = 68;
+            editCliente_btn.Text = "Editar";
+            editCliente_btn.UseVisualStyleBackColor = false;
+            editCliente_btn.Click += editCliente_btn_Click;
             // 
-            // clienteServicoButton
+            // clienteServico_btn
             // 
-            clienteServicoButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            clienteServicoButton.BackColor = Color.LightSeaGreen;
-            clienteServicoButton.Enabled = false;
-            clienteServicoButton.FlatStyle = FlatStyle.Flat;
-            clienteServicoButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            clienteServicoButton.ForeColor = Color.White;
-            clienteServicoButton.Location = new Point(317, 679);
-            clienteServicoButton.Name = "clienteServicoButton";
-            clienteServicoButton.Size = new Size(305, 49);
-            clienteServicoButton.TabIndex = 69;
-            clienteServicoButton.Text = "Criar Servico";
-            clienteServicoButton.UseVisualStyleBackColor = false;
-            clienteServicoButton.Click += clienteServicoButton_Click;
+            clienteServico_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            clienteServico_btn.BackColor = Color.LightSeaGreen;
+            clienteServico_btn.Enabled = false;
+            clienteServico_btn.FlatStyle = FlatStyle.Flat;
+            clienteServico_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            clienteServico_btn.ForeColor = Color.White;
+            clienteServico_btn.Location = new Point(317, 679);
+            clienteServico_btn.Name = "clienteServico_btn";
+            clienteServico_btn.Size = new Size(305, 49);
+            clienteServico_btn.TabIndex = 69;
+            clienteServico_btn.Text = "Criar Servico";
+            clienteServico_btn.UseVisualStyleBackColor = false;
+            clienteServico_btn.Click += clienteServico_btn_Click;
             // 
             // totalClientesLabel
             // 
@@ -393,51 +419,51 @@
             totalClientesLabel.TabIndex = 5;
             totalClientesLabel.Text = "Total Records:";
             // 
-            // listarClienteButton
+            // listarCliente_btn
             // 
-            listarClienteButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            listarClienteButton.BackColor = Color.DimGray;
-            listarClienteButton.FlatStyle = FlatStyle.Flat;
-            listarClienteButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            listarClienteButton.ForeColor = Color.White;
-            listarClienteButton.Location = new Point(1113, 6);
-            listarClienteButton.MaximumSize = new Size(144, 43);
-            listarClienteButton.Name = "listarClienteButton";
-            listarClienteButton.Size = new Size(144, 29);
-            listarClienteButton.TabIndex = 4;
-            listarClienteButton.Text = "Listar Clientes";
-            listarClienteButton.UseVisualStyleBackColor = false;
-            listarClienteButton.Click += listarClienteButton_Click;
+            listarCliente_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            listarCliente_btn.BackColor = Color.DimGray;
+            listarCliente_btn.FlatStyle = FlatStyle.Flat;
+            listarCliente_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            listarCliente_btn.ForeColor = Color.White;
+            listarCliente_btn.Location = new Point(1113, 6);
+            listarCliente_btn.MaximumSize = new Size(144, 43);
+            listarCliente_btn.Name = "listarCliente_btn";
+            listarCliente_btn.Size = new Size(144, 29);
+            listarCliente_btn.TabIndex = 4;
+            listarCliente_btn.Text = "Listar Clientes";
+            listarCliente_btn.UseVisualStyleBackColor = false;
+            listarCliente_btn.Click += listarCliente_btn_Click;
             // 
-            // searchClienteButton
+            // searchCliente_btn
             // 
-            searchClienteButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            searchClienteButton.BackColor = Color.DimGray;
-            searchClienteButton.FlatStyle = FlatStyle.Flat;
-            searchClienteButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            searchClienteButton.ForeColor = Color.White;
-            searchClienteButton.Location = new Point(963, 7);
-            searchClienteButton.Name = "searchClienteButton";
-            searchClienteButton.Size = new Size(144, 27);
-            searchClienteButton.TabIndex = 7;
-            searchClienteButton.Text = "Buscar";
-            searchClienteButton.UseVisualStyleBackColor = false;
-            searchClienteButton.Click += buscarClienteButton_Click;
+            searchCliente_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            searchCliente_btn.BackColor = Color.DimGray;
+            searchCliente_btn.FlatStyle = FlatStyle.Flat;
+            searchCliente_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            searchCliente_btn.ForeColor = Color.White;
+            searchCliente_btn.Location = new Point(963, 7);
+            searchCliente_btn.Name = "searchCliente_btn";
+            searchCliente_btn.Size = new Size(144, 27);
+            searchCliente_btn.TabIndex = 7;
+            searchCliente_btn.Text = "Buscar";
+            searchCliente_btn.UseVisualStyleBackColor = false;
+            searchCliente_btn.Click += buscarCliente_btn_Click;
             // 
-            // novoClienteButton
+            // novoCliente_btn
             // 
-            novoClienteButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            novoClienteButton.BackColor = Color.SeaGreen;
-            novoClienteButton.FlatStyle = FlatStyle.Flat;
-            novoClienteButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            novoClienteButton.ForeColor = Color.White;
-            novoClienteButton.Location = new Point(6, 679);
-            novoClienteButton.Name = "novoClienteButton";
-            novoClienteButton.Size = new Size(305, 49);
-            novoClienteButton.TabIndex = 49;
-            novoClienteButton.Text = "Novo Cliente";
-            novoClienteButton.UseVisualStyleBackColor = false;
-            novoClienteButton.Click += novoClienteButton_Click;
+            novoCliente_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            novoCliente_btn.BackColor = Color.SeaGreen;
+            novoCliente_btn.FlatStyle = FlatStyle.Flat;
+            novoCliente_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            novoCliente_btn.ForeColor = Color.White;
+            novoCliente_btn.Location = new Point(6, 679);
+            novoCliente_btn.Name = "novoCliente_btn";
+            novoCliente_btn.Size = new Size(305, 49);
+            novoCliente_btn.TabIndex = 49;
+            novoCliente_btn.Text = "Novo Cliente";
+            novoCliente_btn.UseVisualStyleBackColor = false;
+            novoCliente_btn.Click += novoCliente_btn_Click;
             // 
             // searchCliente_tb
             // 
@@ -494,12 +520,12 @@
             servicoTabPage.Controls.Add(dateEnd_picker);
             servicoTabPage.Controls.Add(searchServico_combo);
             servicoTabPage.Controls.Add(servico2_gb);
-            servicoTabPage.Controls.Add(listarServicoButton);
-            servicoTabPage.Controls.Add(searchServicoButton);
+            servicoTabPage.Controls.Add(listarServico_btn);
+            servicoTabPage.Controls.Add(searchServico_btn);
             servicoTabPage.Controls.Add(searchServico_tb);
-            servicoTabPage.Controls.Add(deleteServicoButton);
-            servicoTabPage.Controls.Add(editarServicoButton);
-            servicoTabPage.Controls.Add(finalServicoButton);
+            servicoTabPage.Controls.Add(deleteServico_btn);
+            servicoTabPage.Controls.Add(editarServico_btn);
+            servicoTabPage.Controls.Add(finalServico_btn);
             servicoTabPage.Controls.Add(servicoSemCadastroButton);
             servicoTabPage.Controls.Add(servico_gb);
             servicoTabPage.Location = new Point(4, 23);
@@ -561,42 +587,159 @@
             // 
             servico2_gb.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             servico2_gb.AutoSize = true;
-            servico2_gb.Controls.Add(adicionarPecasButton);
+            servico2_gb.Controls.Add(groupBox1);
+            servico2_gb.Controls.Add(adicionarPecas_btn);
             servico2_gb.Controls.Add(servicoPeca_gb);
             servico2_gb.Controls.Add(label1);
             servico2_gb.Controls.Add(servicoDescricao_tb);
             servico2_gb.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            servico2_gb.Location = new Point(837, 41);
+            servico2_gb.Location = new Point(826, 41);
+            servico2_gb.MaximumSize = new Size(431, 632);
+            servico2_gb.MinimumSize = new Size(431, 632);
             servico2_gb.Name = "servico2_gb";
-            servico2_gb.Size = new Size(420, 632);
+            servico2_gb.Size = new Size(431, 632);
             servico2_gb.TabIndex = 77;
             servico2_gb.TabStop = false;
             servico2_gb.Text = "Detalhes";
             // 
-            // adicionarPecasButton
+            // groupBox1
             // 
-            adicionarPecasButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            adicionarPecasButton.BackColor = Color.SandyBrown;
-            adicionarPecasButton.Enabled = false;
-            adicionarPecasButton.FlatStyle = FlatStyle.Flat;
-            adicionarPecasButton.ForeColor = Color.White;
-            adicionarPecasButton.Location = new Point(8, 359);
-            adicionarPecasButton.Name = "adicionarPecasButton";
-            adicionarPecasButton.Size = new Size(403, 49);
-            adicionarPecasButton.TabIndex = 3;
-            adicionarPecasButton.Text = "Adicionar Pecas";
-            adicionarPecasButton.UseVisualStyleBackColor = false;
-            adicionarPecasButton.Click += adicionarPecasButton_Click;
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(servicoValor_tb);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(servicoPecaValor_tb);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(servicoValorTotal_tb);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Location = new Point(6, 444);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(419, 185);
+            groupBox1.TabIndex = 10;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "$$$";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(22, 109);
+            label8.Name = "label8";
+            label8.Size = new Size(17, 14);
+            label8.TabIndex = 11;
+            label8.Text = "||";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(22, 52);
+            label7.Name = "label7";
+            label7.Size = new Size(16, 14);
+            label7.TabIndex = 10;
+            label7.Text = "+";
+            // 
+            // servicoValor_tb
+            // 
+            servicoValor_tb.Location = new Point(69, 21);
+            servicoValor_tb.Name = "servicoValor_tb";
+            servicoValor_tb.ReadOnly = true;
+            servicoValor_tb.Size = new Size(344, 22);
+            servicoValor_tb.TabIndex = 4;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(8, 80);
+            label6.Name = "label6";
+            label6.Size = new Size(49, 14);
+            label6.TabIndex = 9;
+            label6.Text = "Pecas:";
+            // 
+            // servicoPecaValor_tb
+            // 
+            servicoPecaValor_tb.Location = new Point(69, 77);
+            servicoPecaValor_tb.Name = "servicoPecaValor_tb";
+            servicoPecaValor_tb.ReadOnly = true;
+            servicoPecaValor_tb.Size = new Size(344, 22);
+            servicoPecaValor_tb.TabIndex = 5;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(11, 136);
+            label5.Name = "label5";
+            label5.Size = new Size(42, 14);
+            label5.TabIndex = 8;
+            label5.Text = "Total:";
+            // 
+            // servicoValorTotal_tb
+            // 
+            servicoValorTotal_tb.BackColor = SystemColors.Control;
+            servicoValorTotal_tb.Location = new Point(69, 133);
+            servicoValorTotal_tb.Name = "servicoValorTotal_tb";
+            servicoValorTotal_tb.ReadOnly = true;
+            servicoValorTotal_tb.Size = new Size(344, 22);
+            servicoValorTotal_tb.TabIndex = 6;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(6, 24);
+            label4.Name = "label4";
+            label4.Size = new Size(57, 14);
+            label4.TabIndex = 7;
+            label4.Text = "Servico:";
+            // 
+            // adicionarPecas_btn
+            // 
+            adicionarPecas_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            adicionarPecas_btn.BackColor = Color.SandyBrown;
+            adicionarPecas_btn.Enabled = false;
+            adicionarPecas_btn.FlatStyle = FlatStyle.Flat;
+            adicionarPecas_btn.ForeColor = Color.White;
+            adicionarPecas_btn.Location = new Point(8, 356);
+            adicionarPecas_btn.Name = "adicionarPecas_btn";
+            adicionarPecas_btn.Size = new Size(417, 49);
+            adicionarPecas_btn.TabIndex = 3;
+            adicionarPecas_btn.Text = "Adicionar Pecas";
+            adicionarPecas_btn.UseVisualStyleBackColor = false;
+            adicionarPecas_btn.Click += adicionarPecas_btn_Click;
             // 
             // servicoPeca_gb
             // 
             servicoPeca_gb.Controls.Add(servicoPecas_dgv);
             servicoPeca_gb.Location = new Point(5, 172);
             servicoPeca_gb.Name = "servicoPeca_gb";
-            servicoPeca_gb.Size = new Size(409, 181);
+            servicoPeca_gb.Size = new Size(423, 181);
             servicoPeca_gb.TabIndex = 2;
             servicoPeca_gb.TabStop = false;
             servicoPeca_gb.Text = "Pecas em Servico";
+            // 
+            // servicoPecas_dgv
+            // 
+            servicoPecas_dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            servicoPecas_dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            servicoPecas_dgv.BorderStyle = BorderStyle.Fixed3D;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle6.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.Padding = new Padding(2);
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            servicoPecas_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            servicoPecas_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            servicoPecas_dgv.Dock = DockStyle.Fill;
+            servicoPecas_dgv.EnableHeadersVisualStyles = false;
+            servicoPecas_dgv.Location = new Point(3, 18);
+            servicoPecas_dgv.Name = "servicoPecas_dgv";
+            servicoPecas_dgv.ReadOnly = true;
+            dataGridViewCellStyle7.Padding = new Padding(3);
+            servicoPecas_dgv.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            servicoPecas_dgv.RowTemplate.Height = 25;
+            servicoPecas_dgv.Size = new Size(417, 160);
+            servicoPecas_dgv.TabIndex = 2;
+            servicoPecas_dgv.DataBindingComplete += servicoPecas_dgv_DataBindingComplete;
             // 
             // label1
             // 
@@ -611,40 +754,40 @@
             // 
             servicoDescricao_tb.Location = new Point(5, 48);
             servicoDescricao_tb.Name = "servicoDescricao_tb";
-            servicoDescricao_tb.Size = new Size(409, 118);
+            servicoDescricao_tb.Size = new Size(423, 118);
             servicoDescricao_tb.TabIndex = 0;
             servicoDescricao_tb.Text = "";
             // 
-            // listarServicoButton
+            // listarServico_btn
             // 
-            listarServicoButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            listarServicoButton.BackColor = Color.DimGray;
-            listarServicoButton.FlatStyle = FlatStyle.Flat;
-            listarServicoButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            listarServicoButton.ForeColor = Color.White;
-            listarServicoButton.Location = new Point(1113, 6);
-            listarServicoButton.MaximumSize = new Size(144, 43);
-            listarServicoButton.Name = "listarServicoButton";
-            listarServicoButton.Size = new Size(144, 29);
-            listarServicoButton.TabIndex = 74;
-            listarServicoButton.Text = "Listar Servicos";
-            listarServicoButton.UseVisualStyleBackColor = false;
-            listarServicoButton.Click += listarServicoButton_Click;
+            listarServico_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            listarServico_btn.BackColor = Color.DimGray;
+            listarServico_btn.FlatStyle = FlatStyle.Flat;
+            listarServico_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            listarServico_btn.ForeColor = Color.White;
+            listarServico_btn.Location = new Point(1113, 6);
+            listarServico_btn.MaximumSize = new Size(144, 43);
+            listarServico_btn.Name = "listarServico_btn";
+            listarServico_btn.Size = new Size(144, 29);
+            listarServico_btn.TabIndex = 74;
+            listarServico_btn.Text = "Listar Servicos";
+            listarServico_btn.UseVisualStyleBackColor = false;
+            listarServico_btn.Click += listarServico_btn_Click;
             // 
-            // searchServicoButton
+            // searchServico_btn
             // 
-            searchServicoButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            searchServicoButton.BackColor = Color.DimGray;
-            searchServicoButton.FlatStyle = FlatStyle.Flat;
-            searchServicoButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            searchServicoButton.ForeColor = Color.White;
-            searchServicoButton.Location = new Point(963, 7);
-            searchServicoButton.Name = "searchServicoButton";
-            searchServicoButton.Size = new Size(144, 27);
-            searchServicoButton.TabIndex = 76;
-            searchServicoButton.Text = "Buscar";
-            searchServicoButton.UseVisualStyleBackColor = false;
-            searchServicoButton.Click += searchServicoButton_Click;
+            searchServico_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            searchServico_btn.BackColor = Color.DimGray;
+            searchServico_btn.FlatStyle = FlatStyle.Flat;
+            searchServico_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            searchServico_btn.ForeColor = Color.White;
+            searchServico_btn.Location = new Point(963, 7);
+            searchServico_btn.Name = "searchServico_btn";
+            searchServico_btn.Size = new Size(144, 27);
+            searchServico_btn.TabIndex = 76;
+            searchServico_btn.Text = "Buscar";
+            searchServico_btn.UseVisualStyleBackColor = false;
+            searchServico_btn.Click += searchServico_btn_Click;
             // 
             // searchServico_tb
             // 
@@ -654,56 +797,57 @@
             searchServico_tb.Size = new Size(270, 22);
             searchServico_tb.TabIndex = 75;
             // 
-            // deleteServicoButton
+            // deleteServico_btn
             // 
-            deleteServicoButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            deleteServicoButton.BackColor = Color.IndianRed;
-            deleteServicoButton.Enabled = false;
-            deleteServicoButton.FlatStyle = FlatStyle.Flat;
-            deleteServicoButton.ForeColor = Color.White;
-            deleteServicoButton.Location = new Point(949, 679);
-            deleteServicoButton.Name = "deleteServicoButton";
-            deleteServicoButton.Size = new Size(305, 49);
-            deleteServicoButton.TabIndex = 71;
-            deleteServicoButton.Text = "DELETAR";
-            deleteServicoButton.UseVisualStyleBackColor = false;
-            deleteServicoButton.Click += deleteServicoButton_Click;
+            deleteServico_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            deleteServico_btn.BackColor = Color.IndianRed;
+            deleteServico_btn.Enabled = false;
+            deleteServico_btn.FlatStyle = FlatStyle.Flat;
+            deleteServico_btn.ForeColor = Color.White;
+            deleteServico_btn.Location = new Point(949, 679);
+            deleteServico_btn.Name = "deleteServico_btn";
+            deleteServico_btn.Size = new Size(305, 49);
+            deleteServico_btn.TabIndex = 71;
+            deleteServico_btn.Text = "DELETAR";
+            deleteServico_btn.UseVisualStyleBackColor = false;
+            deleteServico_btn.Click += deleteServico_btn_Click;
             // 
-            // editarServicoButton
+            // editarServico_btn
             // 
-            editarServicoButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            editarServicoButton.BackColor = Color.SandyBrown;
-            editarServicoButton.Enabled = false;
-            editarServicoButton.FlatStyle = FlatStyle.Flat;
-            editarServicoButton.ForeColor = Color.White;
-            editarServicoButton.Location = new Point(638, 679);
-            editarServicoButton.Name = "editarServicoButton";
-            editarServicoButton.Size = new Size(305, 49);
-            editarServicoButton.TabIndex = 72;
-            editarServicoButton.Text = "Editar";
-            editarServicoButton.UseVisualStyleBackColor = false;
-            editarServicoButton.Click += editarServicoButton_Click;
+            editarServico_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            editarServico_btn.BackColor = Color.SandyBrown;
+            editarServico_btn.Enabled = false;
+            editarServico_btn.FlatStyle = FlatStyle.Flat;
+            editarServico_btn.ForeColor = Color.White;
+            editarServico_btn.Location = new Point(638, 679);
+            editarServico_btn.Name = "editarServico_btn";
+            editarServico_btn.Size = new Size(305, 49);
+            editarServico_btn.TabIndex = 72;
+            editarServico_btn.Text = "Editar";
+            editarServico_btn.UseVisualStyleBackColor = false;
+            editarServico_btn.Click += editarServico_btn_Click;
             // 
-            // finalServicoButton
+            // finalServico_btn
             // 
-            finalServicoButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            finalServicoButton.BackColor = Color.LightSeaGreen;
-            finalServicoButton.Enabled = false;
-            finalServicoButton.FlatStyle = FlatStyle.Flat;
-            finalServicoButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            finalServicoButton.ForeColor = Color.White;
-            finalServicoButton.Location = new Point(317, 679);
-            finalServicoButton.Name = "finalServicoButton";
-            finalServicoButton.Size = new Size(305, 49);
-            finalServicoButton.TabIndex = 73;
-            finalServicoButton.Text = "Finalizar Servico";
-            finalServicoButton.UseVisualStyleBackColor = false;
-            finalServicoButton.Click += finalServicoButton_Click;
+            finalServico_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            finalServico_btn.BackColor = Color.LightSeaGreen;
+            finalServico_btn.Enabled = false;
+            finalServico_btn.FlatStyle = FlatStyle.Flat;
+            finalServico_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            finalServico_btn.ForeColor = Color.White;
+            finalServico_btn.Location = new Point(317, 679);
+            finalServico_btn.Name = "finalServico_btn";
+            finalServico_btn.Size = new Size(305, 49);
+            finalServico_btn.TabIndex = 73;
+            finalServico_btn.Text = "Finalizar Servico";
+            finalServico_btn.UseVisualStyleBackColor = false;
+            finalServico_btn.Click += finalServico_btn_Click;
             // 
             // servicoSemCadastroButton
             // 
             servicoSemCadastroButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             servicoSemCadastroButton.BackColor = Color.SeaGreen;
+            servicoSemCadastroButton.Enabled = false;
             servicoSemCadastroButton.FlatStyle = FlatStyle.Flat;
             servicoSemCadastroButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             servicoSemCadastroButton.ForeColor = Color.White;
@@ -711,7 +855,7 @@
             servicoSemCadastroButton.Name = "servicoSemCadastroButton";
             servicoSemCadastroButton.Size = new Size(305, 49);
             servicoSemCadastroButton.TabIndex = 70;
-            servicoSemCadastroButton.Text = "Servico Sem Cadastro";
+            servicoSemCadastroButton.Text = "------------";
             servicoSemCadastroButton.UseVisualStyleBackColor = false;
             // 
             // servico_gb
@@ -719,7 +863,7 @@
             servico_gb.Controls.Add(allServicos_dgv);
             servico_gb.Location = new Point(3, 41);
             servico_gb.Name = "servico_gb";
-            servico_gb.Size = new Size(833, 632);
+            servico_gb.Size = new Size(820, 632);
             servico_gb.TabIndex = 0;
             servico_gb.TabStop = false;
             servico_gb.Text = "Servicos";
@@ -747,47 +891,192 @@
             dataGridViewCellStyle9.Padding = new Padding(3);
             allServicos_dgv.RowsDefaultCellStyle = dataGridViewCellStyle9;
             allServicos_dgv.RowTemplate.Height = 25;
-            allServicos_dgv.Size = new Size(827, 611);
+            allServicos_dgv.Size = new Size(814, 611);
             allServicos_dgv.TabIndex = 1;
             allServicos_dgv.DataBindingComplete += allServicos_dgv_DataBindingComplete;
             allServicos_dgv.RowHeaderMouseDoubleClick += allServicos_dgv_RowHeaderMouseDoubleClick;
             // 
-            // tabPage3
+            // veiculoTabPage
             // 
-            tabPage3.Location = new Point(4, 23);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1260, 734);
-            tabPage3.TabIndex = 3;
-            tabPage3.Text = "tabPage3";
-            tabPage3.UseVisualStyleBackColor = true;
+            veiculoTabPage.Controls.Add(searchVeiculo_combo);
+            veiculoTabPage.Controls.Add(deleteVeiculo_btn);
+            veiculoTabPage.Controls.Add(editVeiculo_btn);
+            veiculoTabPage.Controls.Add(button3);
+            veiculoTabPage.Controls.Add(criarVeiculoButton);
+            veiculoTabPage.Controls.Add(groupBox3);
+            veiculoTabPage.Controls.Add(listarVeiculo_btn);
+            veiculoTabPage.Controls.Add(searchVeiculo_btn);
+            veiculoTabPage.Controls.Add(searchVeiculo_tb);
+            veiculoTabPage.Controls.Add(groupBox2);
+            veiculoTabPage.Location = new Point(4, 23);
+            veiculoTabPage.Name = "veiculoTabPage";
+            veiculoTabPage.Padding = new Padding(3);
+            veiculoTabPage.Size = new Size(1260, 734);
+            veiculoTabPage.TabIndex = 3;
+            veiculoTabPage.Text = "Veiculos";
+            veiculoTabPage.UseVisualStyleBackColor = true;
             // 
-            // servicoPecas_dgv
+            // searchVeiculo_combo
             // 
-            servicoPecas_dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            servicoPecas_dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            servicoPecas_dgv.BorderStyle = BorderStyle.Fixed3D;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle6.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.Padding = new Padding(2);
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            servicoPecas_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            servicoPecas_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            servicoPecas_dgv.Dock = DockStyle.Fill;
-            servicoPecas_dgv.EnableHeadersVisualStyles = false;
-            servicoPecas_dgv.Location = new Point(3, 18);
-            servicoPecas_dgv.Name = "servicoPecas_dgv";
-            servicoPecas_dgv.ReadOnly = true;
-            dataGridViewCellStyle7.Padding = new Padding(3);
-            servicoPecas_dgv.RowsDefaultCellStyle = dataGridViewCellStyle7;
-            servicoPecas_dgv.RowTemplate.Height = 25;
-            servicoPecas_dgv.Size = new Size(403, 160);
-            servicoPecas_dgv.TabIndex = 2;
-            servicoPecas_dgv.DataBindingComplete += servicoPecas_dgv_DataBindingComplete;
+            searchVeiculo_combo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            searchVeiculo_combo.AutoCompleteMode = AutoCompleteMode.Append;
+            searchVeiculo_combo.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            searchVeiculo_combo.FormattingEnabled = true;
+            searchVeiculo_combo.Items.AddRange(new object[] { "Cliente", "Marca", "Modelo", "Placa" });
+            searchVeiculo_combo.Location = new Point(560, 9);
+            searchVeiculo_combo.Name = "searchVeiculo_combo";
+            searchVeiculo_combo.Size = new Size(121, 22);
+            searchVeiculo_combo.TabIndex = 85;
+            searchVeiculo_combo.Text = "Buscar Por...";
+            // 
+            // deleteVeiculo_btn
+            // 
+            deleteVeiculo_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            deleteVeiculo_btn.BackColor = Color.IndianRed;
+            deleteVeiculo_btn.Enabled = false;
+            deleteVeiculo_btn.FlatStyle = FlatStyle.Flat;
+            deleteVeiculo_btn.ForeColor = Color.White;
+            deleteVeiculo_btn.Location = new Point(949, 679);
+            deleteVeiculo_btn.Name = "deleteVeiculo_btn";
+            deleteVeiculo_btn.Size = new Size(305, 49);
+            deleteVeiculo_btn.TabIndex = 82;
+            deleteVeiculo_btn.Text = "DELETAR";
+            deleteVeiculo_btn.UseVisualStyleBackColor = false;
+            deleteVeiculo_btn.Click += deleteVeiculo_btn_Click;
+            // 
+            // editVeiculo_btn
+            // 
+            editVeiculo_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            editVeiculo_btn.BackColor = Color.SandyBrown;
+            editVeiculo_btn.Enabled = false;
+            editVeiculo_btn.FlatStyle = FlatStyle.Flat;
+            editVeiculo_btn.ForeColor = Color.White;
+            editVeiculo_btn.Location = new Point(638, 679);
+            editVeiculo_btn.Name = "editVeiculo_btn";
+            editVeiculo_btn.Size = new Size(305, 49);
+            editVeiculo_btn.TabIndex = 83;
+            editVeiculo_btn.Text = "Editar";
+            editVeiculo_btn.UseVisualStyleBackColor = false;
+            editVeiculo_btn.Click += editVeiculo_btn_Click;
+            // 
+            // button3
+            // 
+            button3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button3.BackColor = Color.LightSeaGreen;
+            button3.Enabled = false;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button3.ForeColor = Color.White;
+            button3.Location = new Point(317, 679);
+            button3.Name = "button3";
+            button3.Size = new Size(305, 49);
+            button3.TabIndex = 84;
+            button3.Text = "------------";
+            button3.UseVisualStyleBackColor = false;
+            // 
+            // criarVeiculoButton
+            // 
+            criarVeiculoButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            criarVeiculoButton.BackColor = Color.SeaGreen;
+            criarVeiculoButton.FlatStyle = FlatStyle.Flat;
+            criarVeiculoButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            criarVeiculoButton.ForeColor = Color.White;
+            criarVeiculoButton.Location = new Point(6, 679);
+            criarVeiculoButton.Name = "criarVeiculoButton";
+            criarVeiculoButton.Size = new Size(305, 49);
+            criarVeiculoButton.TabIndex = 81;
+            criarVeiculoButton.Text = "Cadastrar Veiculo";
+            criarVeiculoButton.UseVisualStyleBackColor = false;
+            criarVeiculoButton.Click += criarVeiculoButton_Click;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            groupBox3.AutoSize = true;
+            groupBox3.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox3.Location = new Point(826, 41);
+            groupBox3.MaximumSize = new Size(431, 632);
+            groupBox3.MinimumSize = new Size(431, 632);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(431, 632);
+            groupBox3.TabIndex = 80;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Detalhes";
+            // 
+            // listarVeiculo_btn
+            // 
+            listarVeiculo_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            listarVeiculo_btn.BackColor = Color.DimGray;
+            listarVeiculo_btn.FlatStyle = FlatStyle.Flat;
+            listarVeiculo_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            listarVeiculo_btn.ForeColor = Color.White;
+            listarVeiculo_btn.Location = new Point(1113, 6);
+            listarVeiculo_btn.MaximumSize = new Size(144, 43);
+            listarVeiculo_btn.Name = "listarVeiculo_btn";
+            listarVeiculo_btn.Size = new Size(144, 29);
+            listarVeiculo_btn.TabIndex = 77;
+            listarVeiculo_btn.Text = "Listar Servicos";
+            listarVeiculo_btn.UseVisualStyleBackColor = false;
+            // 
+            // searchVeiculo_btn
+            // 
+            searchVeiculo_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            searchVeiculo_btn.BackColor = Color.DimGray;
+            searchVeiculo_btn.FlatStyle = FlatStyle.Flat;
+            searchVeiculo_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            searchVeiculo_btn.ForeColor = Color.White;
+            searchVeiculo_btn.Location = new Point(963, 7);
+            searchVeiculo_btn.Name = "searchVeiculo_btn";
+            searchVeiculo_btn.Size = new Size(144, 27);
+            searchVeiculo_btn.TabIndex = 79;
+            searchVeiculo_btn.Text = "Buscar";
+            searchVeiculo_btn.UseVisualStyleBackColor = false;
+            // 
+            // searchVeiculo_tb
+            // 
+            searchVeiculo_tb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            searchVeiculo_tb.Location = new Point(687, 9);
+            searchVeiculo_tb.Name = "searchVeiculo_tb";
+            searchVeiculo_tb.Size = new Size(270, 22);
+            searchVeiculo_tb.TabIndex = 78;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(allVeiculos_dgv);
+            groupBox2.Location = new Point(3, 41);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(820, 632);
+            groupBox2.TabIndex = 1;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Veiculos";
+            // 
+            // allVeiculos_dgv
+            // 
+            allVeiculos_dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            allVeiculos_dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            allVeiculos_dgv.BorderStyle = BorderStyle.Fixed3D;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle10.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle10.Padding = new Padding(2);
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            allVeiculos_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            allVeiculos_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            allVeiculos_dgv.Dock = DockStyle.Fill;
+            allVeiculos_dgv.EnableHeadersVisualStyles = false;
+            allVeiculos_dgv.Location = new Point(3, 18);
+            allVeiculos_dgv.Name = "allVeiculos_dgv";
+            allVeiculos_dgv.ReadOnly = true;
+            dataGridViewCellStyle11.Padding = new Padding(3);
+            allVeiculos_dgv.RowsDefaultCellStyle = dataGridViewCellStyle11;
+            allVeiculos_dgv.RowTemplate.Height = 25;
+            allVeiculos_dgv.Size = new Size(814, 611);
+            allVeiculos_dgv.TabIndex = 1;
+            allVeiculos_dgv.DataBindingComplete += allVeiculos_dgv_DataBindingComplete;
+            allVeiculos_dgv.RowHeaderMouseDoubleClick += allVeiculos_dgv_RowHeaderMouseDoubleClick;
             // 
             // Form1
             // 
@@ -815,62 +1104,88 @@
             servicoTabPage.PerformLayout();
             servico2_gb.ResumeLayout(false);
             servico2_gb.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             servicoPeca_gb.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)servicoPecas_dgv).EndInit();
             servico_gb.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)allServicos_dgv).EndInit();
-            ((System.ComponentModel.ISupportInitialize)servicoPecas_dgv).EndInit();
+            veiculoTabPage.ResumeLayout(false);
+            veiculoTabPage.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)allVeiculos_dgv).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button getPecasButton;
+        private Button listarPecas_btn;
         private TabControl mainTabControl;
         private TabPage pecaTabPage;
         private TabPage clienteTabPage;
         private TextBox searchTextBox;
-        private Button searchPecaButton;
+        private Button searchPeca_btn;
         private ComboBox searchPeca_combo;
         private GroupBox gb_pecasControl;
-        private Button deleteButton;
-        private Button novaPecaButton;
+        private Button deletePeca_btn;
+        private Button novaPeca_btn;
         private DataGridView allPecas_dgv;
         private GroupBox gb_pecas;
         private Label labelTotalRecords;
         private TabPage servicoTabPage;
-        private TabPage tabPage3;
+        private TabPage veiculoTabPage;
         private GroupBox cliente_gb;
         private DataGridView allClientes_dgv;
-        private Button venderButton;
-        private Button editButton;
+        private Button venderPeca_btn;
+        private Button editPeca_btn;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Button novoClienteButton;
+        private Button novoCliente_btn;
         private Label totalClientesLabel;
-        private Button listarClienteButton;
-        private Button searchClienteButton;
+        private Button listarCliente_btn;
+        private Button searchCliente_btn;
         private TextBox searchCliente_tb;
-        private Button editClienteButton;
-        private Button deleteClienteButton;
-        private Button clienteServicoButton;
+        private Button editCliente_btn;
+        private Button deleteCliente_btn;
+        private Button clienteServico_btn;
         private GroupBox servico_gb;
         private DataGridView allServicos_dgv;
-        private Button listarServicoButton;
-        private Button searchServicoButton;
+        private Button listarServico_btn;
+        private Button searchServico_btn;
         private TextBox searchServico_tb;
-        private Button deleteServicoButton;
-        private Button editarServicoButton;
-        private Button finalServicoButton;
+        private Button deleteServico_btn;
+        private Button editarServico_btn;
+        private Button finalServico_btn;
         private Button servicoSemCadastroButton;
         private GroupBox servico2_gb;
         private Label label1;
         private RichTextBox servicoDescricao_tb;
         private ComboBox searchServico_combo;
         private GroupBox servicoPeca_gb;
-        private Button adicionarPecasButton;
+        private Button adicionarPecas_btn;
         private DateTimePicker dateEnd_picker;
         private Label label3;
         private Label label2;
         private DateTimePicker dateStart_picker;
         private DataGridView servicoPecas_dgv;
+        private Label label6;
+        private Label label5;
+        private Label label4;
+        private TextBox servicoValorTotal_tb;
+        private TextBox servicoPecaValor_tb;
+        private TextBox servicoValor_tb;
+        private GroupBox groupBox1;
+        private Label label8;
+        private Label label7;
+        private Button listarVeiculo_btn;
+        private Button searchVeiculo_btn;
+        private TextBox searchVeiculo_tb;
+        private GroupBox groupBox2;
+        private DataGridView allVeiculos_dgv;
+        private GroupBox groupBox3;
+        private Button deleteVeiculo_btn;
+        private Button editVeiculo_btn;
+        private Button button3;
+        private Button criarVeiculoButton;
+        private ComboBox searchVeiculo_combo;
     }
 }

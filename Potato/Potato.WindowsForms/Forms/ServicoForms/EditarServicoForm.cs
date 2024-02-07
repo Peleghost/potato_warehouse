@@ -1,28 +1,38 @@
 ﻿using Potato.Domain.Entities;
+using Potato.Domain.Models;
 using Potato.Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Potato.WindowsForms.Forms.ServicoForms
 {
     public partial class EditarServicoForm : Form
     {
         private readonly IServicoRepository _servicoRepository;
+        private readonly IPecaRepository _pecaRepository;
 
-        public EditarServicoForm(IServicoRepository servicoRepository)
+        public EditarServicoForm(IServicoRepository servicoRepository, IPecaRepository pecaRepository)
         {
             _servicoRepository = servicoRepository;
+            _pecaRepository = pecaRepository;
             InitializeComponent();
         }
 
-        private void EditServicoTbControls(Servico servico)
+        private int quantidadePeca;
+
+        private void EditarServicoForm_Load(object sender, EventArgs e)
+        {
+            quantidadePeca = Convert.ToInt32(editServicoPecaQtd_numeric.Value);
+        }
+
+        public void PopulateEditServicoPecaTb(Peca peca)
+        {
+            editServicoPecaId_tb.Text = peca.Id.ToString();
+            editServicoPecaNome_tb.Text = peca.Nome;
+            editServicoPecaCategoria_tb.Text = peca.Categoria;
+            editServicoPecaPreco_tb.Text = peca.Preco.ToString();
+            editServicoPecaQtd_numeric.Value = peca.Quantidade;
+        }
+
+        private void PopulateEditServicoTb(ServicoModel servico)
         {
             editServicoId_tb.Text = servico.Id.ToString();
             editServicoClienteNome_tb.Text = servico.Cliente_Nome;
@@ -32,15 +42,18 @@ namespace Potato.WindowsForms.Forms.ServicoForms
             editServicoDescricao_tb.Text = servico.Descricao;
         }
 
-        public void ShowDialog(ref Servico servicoEditar)
+        public void ShowDialog(ref ServicoModel servicoEditar)
         {
-            //var servico = (Servico)servicoEditar.DataBoundItem;
-            EditServicoTbControls(servicoEditar);
-            
+            PopulateEditServicoTb(servicoEditar);
+
+            var pecas = _servicoRepository.GetServicoPecas(servicoEditar.Id);
+
+            editServicoPecas_dgv.DataSource = pecas;
+
             this.ShowDialog();
         }
 
-        private void editClienteButton_Click(object sender, EventArgs e)
+        private void editServicoButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -51,7 +64,31 @@ namespace Potato.WindowsForms.Forms.ServicoForms
                 var message = MessageBox.Show($"Editar Servico?", "Confirmar", MessageBoxButtons.OKCancel);
 
                 if (message == DialogResult.OK)
-                {
+                {                    
+                    int newQuantidade = Convert.ToInt32(editServicoPecaQtd_numeric.Value);
+                    int pecaId = Convert.ToInt32(editServicoPecaId_tb.Text);
+
+                    if (newQuantidade > quantidadePeca)
+                    {
+                        int qtdVender = newQuantidade - quantidadePeca;
+                        var qtdEstoque = _pecaRepository.GetPecaById(pecaId).FirstOrDefault()!.Quantidade;
+
+                        if (qtdVender > qtdEstoque)
+                        {
+                            throw new Exception("Quantidade a vender maior que disponivel em estoque");
+                        }
+
+                        _pecaRepository.VenderPeca(pecaId, qtdVender);
+                        _servicoRepository.UpdateServicoPeca(pecaId, newQuantidade);
+                    }
+                    else if (newQuantidade < quantidadePeca)
+                    {
+                        int qtdRepor = quantidadePeca - newQuantidade;
+
+                        _pecaRepository.ReporPeca(pecaId, qtdRepor);
+                        _servicoRepository.UpdateServicoPeca(pecaId, newQuantidade);
+                    }
+                    
                     _servicoRepository.EditarServico(servicoId, descricao, preco);
 
                     this.DialogResult = DialogResult.OK;
@@ -62,5 +99,16 @@ namespace Potato.WindowsForms.Forms.ServicoForms
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void editarServicoPecas_dgv_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var peca = (Peca)editServicoPecas_dgv.CurrentRow.DataBoundItem;
+
+            quantidadePeca = peca.Quantidade;
+
+            PopulateEditServicoPecaTb(peca);
+        }
+
+        
     }
 }

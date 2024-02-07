@@ -36,7 +36,7 @@ namespace Potato.WindowsForms.PecaForms
                 PecaEstoque pecaEstoque = new PecaEstoque()
                 {
                     PecaId = pecaId,
-                    ArmazenId = 101,
+                    ArmazenId = 1,
                     Quantidade = Convert.ToInt32(pecaEstoqueNumeric.Value),
                 };
 

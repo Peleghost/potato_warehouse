@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Potato.Domain.Entities;
+using Potato.Domain.Models;
 using Potato.Domain.Repositories;
 using System.Data;
 using System.Globalization;
@@ -42,7 +43,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
                     $"ORDER BY ativo DESC";
                 
-                var servicos = _connection.Query<Servico>(query, commandType: CommandType.Text);
+                var servicos = _connection.Query<ServicoModel>(query, commandType: CommandType.Text);
                 
                 _connection.Close();
 
@@ -50,7 +51,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
             }
             catch (Exception)
             {
-                return Enumerable.Empty<Servico>();
+                return Enumerable.Empty<ServicoModel>();
             }
         }
 
@@ -127,7 +128,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
                 List<Peca> pecas = new();
 
-                string sql = "SELECT nome, categoria, preco, quantidade FROM Servico_Peca " +
+                string sql = "SELECT pecaId as Id, nome, categoria, preco, quantidade FROM Servico_Peca " +
                     
                     "INNER JOIN Peca on Peca.id = pecaId " +
                     
@@ -136,6 +137,29 @@ namespace Potato.Infrastructure.Persistence.Repositories
                 pecas = _connection.Query<Peca>(sql, commandType: CommandType.Text).ToList();
 
                 return pecas;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void UpdateServicoPeca(int pecaId, int qtd)
+        {
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string sql = $"UPDATE Servico_Peca SET quantidade = {qtd} " +
+                    
+                    $"WHERE pecaId = {pecaId}";
+
+                _connection.Execute(sql, commandType: CommandType.Text);
+
+                _connection.Close();
             }
             catch (Exception)
             {

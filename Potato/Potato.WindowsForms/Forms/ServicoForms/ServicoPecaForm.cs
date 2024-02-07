@@ -1,4 +1,5 @@
 ﻿using Potato.Domain.Entities;
+using Potato.Domain.Models;
 using Potato.Domain.Repositories;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -22,7 +23,7 @@ namespace Potato.WindowsForms.Forms.ServicoForms
         // Global List Pecas
         private BindingList<Peca> pecas = new();
 
-        private void PopulateServicoPecaFormTb(Servico servico)
+        private void PopulateServicoPecaFormTb(ServicoModel servico)
         {
             servicoPecaCliente_tb.Text = servico.Cliente_Nome;
             servicoPecaVeiculo_tb.Text = servico.Veiculo_Nome;
@@ -64,7 +65,7 @@ namespace Potato.WindowsForms.Forms.ServicoForms
             PecaQuantidadeZero();
         }
 
-        public void ShowDialog(ref Servico servico)
+        public void ShowDialog(ref ServicoModel servico)
         {
             PopulateServicoPecaFormTb(servico);
             servicoPeca_dgv.DataSource = _pecaRepository.GetPecas();

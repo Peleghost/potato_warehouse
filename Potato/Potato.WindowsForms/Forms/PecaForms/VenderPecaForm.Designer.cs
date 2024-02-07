@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            venderPecaId_tb = new TextBox();
             venderPecaQtdEstoque_numeric = new NumericUpDown();
             venderPecaButton = new Button();
             quantidadeLabel = new Label();
@@ -39,7 +40,6 @@
             venderPecaPreco_tb = new TextBox();
             venderPecaCategoria_tb = new TextBox();
             venderPecaNome_tb = new TextBox();
-            venderPecaId_tb = new TextBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)venderPecaQtdEstoque_numeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)venderPecaQuantidade_numeric).BeginInit();
@@ -66,6 +66,15 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Vender Peca";
             // 
+            // venderPecaId_tb
+            // 
+            venderPecaId_tb.Enabled = false;
+            venderPecaId_tb.Location = new Point(117, 170);
+            venderPecaId_tb.Name = "venderPecaId_tb";
+            venderPecaId_tb.Size = new Size(121, 22);
+            venderPecaId_tb.TabIndex = 90;
+            venderPecaId_tb.Visible = false;
+            // 
             // venderPecaQtdEstoque_numeric
             // 
             venderPecaQtdEstoque_numeric.Enabled = false;
@@ -73,6 +82,7 @@
             venderPecaQtdEstoque_numeric.Name = "venderPecaQtdEstoque_numeric";
             venderPecaQtdEstoque_numeric.Size = new Size(120, 22);
             venderPecaQtdEstoque_numeric.TabIndex = 89;
+            venderPecaQtdEstoque_numeric.Visible = false;
             // 
             // venderPecaButton
             // 
@@ -155,14 +165,6 @@
             venderPecaNome_tb.ReadOnly = true;
             venderPecaNome_tb.Size = new Size(210, 22);
             venderPecaNome_tb.TabIndex = 0;
-            // 
-            // venderPecaId_tb
-            // 
-            venderPecaId_tb.Enabled = false;
-            venderPecaId_tb.Location = new Point(117, 170);
-            venderPecaId_tb.Name = "venderPecaId_tb";
-            venderPecaId_tb.Size = new Size(121, 22);
-            venderPecaId_tb.TabIndex = 90;
             // 
             // VenderPecaForm
             // 
