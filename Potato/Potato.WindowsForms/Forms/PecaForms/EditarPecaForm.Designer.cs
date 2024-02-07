@@ -70,7 +70,7 @@
             editPecaId_tb.Location = new Point(102, 12);
             editPecaId_tb.Name = "editPecaId_tb";
             editPecaId_tb.Size = new Size(405, 22);
-            editPecaId_tb.TabIndex = 88;
+            editPecaId_tb.TabIndex = 0;
             editPecaId_tb.UseSystemPasswordChar = true;
             editPecaId_tb.Visible = false;
             // 
@@ -83,7 +83,7 @@
             editPecaButton.Location = new Point(12, 380);
             editPecaButton.Name = "editPecaButton";
             editPecaButton.Size = new Size(495, 56);
-            editPecaButton.TabIndex = 86;
+            editPecaButton.TabIndex = 5;
             editPecaButton.Text = "Editar";
             editPecaButton.UseVisualStyleBackColor = false;
             editPecaButton.Click += editPecaButton_Click;
@@ -95,7 +95,7 @@
             editPecaPreco_tb.Mask = "0000.00";
             editPecaPreco_tb.Name = "editPecaPreco_tb";
             editPecaPreco_tb.Size = new Size(405, 22);
-            editPecaPreco_tb.TabIndex = 85;
+            editPecaPreco_tb.TabIndex = 2;
             // 
             // editQuantidadeLabel
             // 
@@ -113,7 +113,7 @@
             editPecaQtdNumeric.Location = new Point(102, 135);
             editPecaQtdNumeric.Name = "editPecaQtdNumeric";
             editPecaQtdNumeric.Size = new Size(405, 22);
-            editPecaQtdNumeric.TabIndex = 83;
+            editPecaQtdNumeric.TabIndex = 4;
             // 
             // editPecaCategoria_tb
             // 
@@ -121,7 +121,7 @@
             editPecaCategoria_tb.Location = new Point(102, 106);
             editPecaCategoria_tb.Name = "editPecaCategoria_tb";
             editPecaCategoria_tb.Size = new Size(405, 22);
-            editPecaCategoria_tb.TabIndex = 82;
+            editPecaCategoria_tb.TabIndex = 3;
             // 
             // editPecaNome_tb
             // 
@@ -129,7 +129,7 @@
             editPecaNome_tb.Location = new Point(102, 49);
             editPecaNome_tb.Name = "editPecaNome_tb";
             editPecaNome_tb.Size = new Size(405, 22);
-            editPecaNome_tb.TabIndex = 81;
+            editPecaNome_tb.TabIndex = 1;
             // 
             // editNomeLabel
             // 

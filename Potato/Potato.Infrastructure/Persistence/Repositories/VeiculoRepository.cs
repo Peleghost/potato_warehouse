@@ -25,7 +25,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
                 string sql = "SELECT primeiroNome || ' ' || sobrenome as 'Cliente'" +
                     
-                    ", Veiculo.id, marca, modelo, cor, ano, placa, clienteId, servicoId " +
+                    ", Veiculo.id, marca, modelo, cor, ano, placa, clienteId, Veiculo.servicoId " +
                     
                     "FROM Veiculo " +
 
@@ -170,28 +170,6 @@ namespace Potato.Infrastructure.Persistence.Repositories
             }
         }
 
-        //public void UpdateVeiculoClienteId(int clienteId, int veiculoId)
-        //{
-        //    try
-        //    {
-        //        if (_connection.State == ConnectionState.Closed)
-        //        {
-        //            _connection.Open();
-        //        }
-
-        //        string sql = $"UPDATE Veiculo SET clienteId = {clienteId} " +
-        //            $"WHERE Veiculo.Id = {veiculoId}";
-
-        //        _connection.Execute(sql, commandType: CommandType.Text);
-
-        //        _connection.Close();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
-
         public void DeleteVeiculo(int veiculoId)
         {
             try
@@ -261,9 +239,6 @@ namespace Potato.Infrastructure.Persistence.Repositories
             {
                 throw;
             }
-
-
-
 
         }
 

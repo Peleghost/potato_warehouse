@@ -338,7 +338,7 @@
             servicoNovoVeiculo_check.Location = new Point(6, 233);
             servicoNovoVeiculo_check.Name = "servicoNovoVeiculo_check";
             servicoNovoVeiculo_check.Size = new Size(172, 18);
-            servicoNovoVeiculo_check.TabIndex = 1;
+            servicoNovoVeiculo_check.TabIndex = 0;
             servicoNovoVeiculo_check.Text = "Cadastrar Novo Veiculo";
             servicoNovoVeiculo_check.UseVisualStyleBackColor = true;
             servicoNovoVeiculo_check.CheckedChanged += servicoNovoVeiculo_check_CheckedChanged;
@@ -367,7 +367,7 @@
             criarServicoButton.Location = new Point(6, 460);
             criarServicoButton.Name = "criarServicoButton";
             criarServicoButton.Size = new Size(476, 49);
-            criarServicoButton.TabIndex = 52;
+            criarServicoButton.TabIndex = 1;
             criarServicoButton.Text = "Criar Servico";
             criarServicoButton.UseVisualStyleBackColor = false;
             criarServicoButton.Click += criarServicoButton_Click;
@@ -386,7 +386,7 @@
             servicoPreco_tb.Location = new Point(115, 302);
             servicoPreco_tb.Name = "servicoPreco_tb";
             servicoPreco_tb.Size = new Size(259, 22);
-            servicoPreco_tb.TabIndex = 1;
+            servicoPreco_tb.TabIndex = 0;
             // 
             // groupBox2
             // 

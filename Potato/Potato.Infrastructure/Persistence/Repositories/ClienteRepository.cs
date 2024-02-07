@@ -185,50 +185,5 @@ namespace Potato.Infrastructure.Persistence.Repositories
                 throw;
             }
         }
-
-        //public void UpdateClienteVeiculo(int clienteId, int veiculoId)
-        //{
-        //    try
-        //    {
-        //        if (_connection.State == ConnectionState.Closed)
-        //        {
-        //            _connection.Open();
-        //        }
-
-        //        string sql = $"UPDATE Cliente SET veiculoId = {veiculoId}" +
-        //            $"WHERE Cliente.Id = {clienteId}";
-
-        //        _connection.Execute(sql, commandType: CommandType.Text);
-
-        //        _connection.Close();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
-
-        //public void UpdateClienteServico(int clienteId, int servicoId)
-        //{
-        //    try
-        //    {
-        //        if (_connection.State == ConnectionState.Closed)
-        //        {
-        //            _connection.Open();
-        //        }
-
-        //        string sql = $"UPDATE Cliente SET servicoId = {servicoId} " +
-        //            $"WHERE Cliente.id = {clienteId}";
-
-        //        _connection.Execute(sql, commandType: CommandType.Text);
-
-        //        _connection.Close();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
-
     }
 }

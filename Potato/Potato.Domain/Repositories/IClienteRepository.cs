@@ -11,7 +11,5 @@ namespace Potato.Domain.Repositories
         public Cliente GetClienteById(int id);
         public void EditarCliente(Cliente cliente);
         public void DeleteCliente(Cliente cliente);
-        //public void UpdateClienteVeiculo(int clienteId, int veiculoId);
-        //public void UpdateClienteServico(int clienteId, int servicoId);
     }
 }

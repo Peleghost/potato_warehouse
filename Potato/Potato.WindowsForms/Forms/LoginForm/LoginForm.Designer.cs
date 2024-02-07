@@ -195,7 +195,7 @@
             passwordTextBox.Location = new Point(61, 12);
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.Size = new Size(375, 27);
-            passwordTextBox.TabIndex = 3;
+            passwordTextBox.TabIndex = 0;
             passwordTextBox.UseSystemPasswordChar = true;
             // 
             // pictureBox2
@@ -223,7 +223,7 @@
             usernameTextBox.Location = new Point(61, 12);
             usernameTextBox.Name = "usernameTextBox";
             usernameTextBox.Size = new Size(375, 27);
-            usernameTextBox.TabIndex = 3;
+            usernameTextBox.TabIndex = 0;
             // 
             // pictureBox1
             // 

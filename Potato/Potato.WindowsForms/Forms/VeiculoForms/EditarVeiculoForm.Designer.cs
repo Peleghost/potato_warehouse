@@ -84,7 +84,7 @@
             ConfirmarEditVeiculo_btn.Location = new Point(41, 294);
             ConfirmarEditVeiculo_btn.Name = "ConfirmarEditVeiculo_btn";
             ConfirmarEditVeiculo_btn.Size = new Size(315, 53);
-            ConfirmarEditVeiculo_btn.TabIndex = 84;
+            ConfirmarEditVeiculo_btn.TabIndex = 5;
             ConfirmarEditVeiculo_btn.Text = "Editar";
             ConfirmarEditVeiculo_btn.UseVisualStyleBackColor = false;
             ConfirmarEditVeiculo_btn.Click += ConfirmarEditVeiculo_btn_Click;
@@ -95,7 +95,7 @@
             editarVeiculoAno_tb.Mask = "0000";
             editarVeiculoAno_tb.Name = "editarVeiculoAno_tb";
             editarVeiculoAno_tb.Size = new Size(245, 22);
-            editarVeiculoAno_tb.TabIndex = 63;
+            editarVeiculoAno_tb.TabIndex = 3;
             // 
             // editarVeiculoPlaca_tb
             // 
@@ -103,7 +103,7 @@
             editarVeiculoPlaca_tb.Mask = "AAAAAAA";
             editarVeiculoPlaca_tb.Name = "editarVeiculoPlaca_tb";
             editarVeiculoPlaca_tb.Size = new Size(245, 22);
-            editarVeiculoPlaca_tb.TabIndex = 62;
+            editarVeiculoPlaca_tb.TabIndex = 4;
             // 
             // label5
             // 
@@ -128,7 +128,7 @@
             editarVeiculoCor_tb.Location = new Point(111, 96);
             editarVeiculoCor_tb.Name = "editarVeiculoCor_tb";
             editarVeiculoCor_tb.Size = new Size(245, 22);
-            editarVeiculoCor_tb.TabIndex = 59;
+            editarVeiculoCor_tb.TabIndex = 2;
             // 
             // label2
             // 
@@ -144,7 +144,7 @@
             editarVeiculoModelo_tb.Location = new Point(111, 71);
             editarVeiculoModelo_tb.Name = "editarVeiculoModelo_tb";
             editarVeiculoModelo_tb.Size = new Size(245, 22);
-            editarVeiculoModelo_tb.TabIndex = 57;
+            editarVeiculoModelo_tb.TabIndex = 1;
             // 
             // label1
             // 
@@ -160,7 +160,7 @@
             editarVeiculoMarca_tb.Location = new Point(111, 47);
             editarVeiculoMarca_tb.Name = "editarVeiculoMarca_tb";
             editarVeiculoMarca_tb.Size = new Size(245, 22);
-            editarVeiculoMarca_tb.TabIndex = 55;
+            editarVeiculoMarca_tb.TabIndex = 0;
             // 
             // servicoVeiculoMarca_label
             // 

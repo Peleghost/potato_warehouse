@@ -89,7 +89,7 @@
             editClienteButton.Location = new Point(12, 369);
             editClienteButton.Name = "editClienteButton";
             editClienteButton.Size = new Size(495, 67);
-            editClienteButton.TabIndex = 76;
+            editClienteButton.TabIndex = 6;
             editClienteButton.Text = "Editar";
             editClienteButton.UseVisualStyleBackColor = false;
             editClienteButton.Click += editClienteButton_Click;
@@ -100,7 +100,7 @@
             editClienteTelefone_tb.Mask = "(00) 00000-0000";
             editClienteTelefone_tb.Name = "editClienteTelefone_tb";
             editClienteTelefone_tb.Size = new Size(405, 22);
-            editClienteTelefone_tb.TabIndex = 75;
+            editClienteTelefone_tb.TabIndex = 5;
             // 
             // editClienteCpf_tb
             // 
@@ -108,7 +108,7 @@
             editClienteCpf_tb.Mask = "000.000.000-00";
             editClienteCpf_tb.Name = "editClienteCpf_tb";
             editClienteCpf_tb.Size = new Size(405, 22);
-            editClienteCpf_tb.TabIndex = 74;
+            editClienteCpf_tb.TabIndex = 2;
             // 
             // label3
             // 
@@ -133,7 +133,7 @@
             editClienteEmail_tb.Location = new Point(102, 161);
             editClienteEmail_tb.Name = "editClienteEmail_tb";
             editClienteEmail_tb.Size = new Size(405, 22);
-            editClienteEmail_tb.TabIndex = 71;
+            editClienteEmail_tb.TabIndex = 4;
             // 
             // label5
             // 
@@ -149,7 +149,7 @@
             editClienteEndereco_tb.Location = new Point(102, 133);
             editClienteEndereco_tb.Name = "editClienteEndereco_tb";
             editClienteEndereco_tb.Size = new Size(405, 22);
-            editClienteEndereco_tb.TabIndex = 69;
+            editClienteEndereco_tb.TabIndex = 3;
             // 
             // label6
             // 
@@ -174,7 +174,7 @@
             editClienteSobrenome_tb.Location = new Point(102, 77);
             editClienteSobrenome_tb.Name = "editClienteSobrenome_tb";
             editClienteSobrenome_tb.Size = new Size(405, 22);
-            editClienteSobrenome_tb.TabIndex = 66;
+            editClienteSobrenome_tb.TabIndex = 1;
             // 
             // label8
             // 
@@ -190,7 +190,7 @@
             editClienteNome_tb.Location = new Point(102, 49);
             editClienteNome_tb.Name = "editClienteNome_tb";
             editClienteNome_tb.Size = new Size(405, 22);
-            editClienteNome_tb.TabIndex = 64;
+            editClienteNome_tb.TabIndex = 0;
             // 
             // EditarClienteForm
             // 

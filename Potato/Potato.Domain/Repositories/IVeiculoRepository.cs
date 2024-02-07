@@ -15,7 +15,6 @@ namespace Potato.Domain.Repositories
         public int VerificarPlaca(string placa);
         public bool VerificarVeiculoEmServico(int veiculoId);
         public IEnumerable<Veiculo> GetVeiculoByClienteId(int clienteId);
-        //public void UpdateVeiculoClienteId(int clienteId, int veiculoId);
         public void DeleteVeiculo(int veiculoId);
         public void UpdateVeiculoServicoId(int servicoId, int veiculoId);
         public void NullVeiculoServicoId(int servicoId);

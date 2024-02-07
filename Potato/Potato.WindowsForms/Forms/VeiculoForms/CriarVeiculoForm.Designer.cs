@@ -97,7 +97,7 @@
             criarVeiculoAno_tb.Mask = "0000";
             criarVeiculoAno_tb.Name = "criarVeiculoAno_tb";
             criarVeiculoAno_tb.Size = new Size(153, 22);
-            criarVeiculoAno_tb.TabIndex = 63;
+            criarVeiculoAno_tb.TabIndex = 3;
             // 
             // criarVeiculoPlaca_tb
             // 
@@ -105,7 +105,7 @@
             criarVeiculoPlaca_tb.Mask = "AAAAAAA";
             criarVeiculoPlaca_tb.Name = "criarVeiculoPlaca_tb";
             criarVeiculoPlaca_tb.Size = new Size(153, 22);
-            criarVeiculoPlaca_tb.TabIndex = 62;
+            criarVeiculoPlaca_tb.TabIndex = 4;
             // 
             // label5
             // 
@@ -130,7 +130,7 @@
             criarVeiculoCor_tb.Location = new Point(69, 104);
             criarVeiculoCor_tb.Name = "criarVeiculoCor_tb";
             criarVeiculoCor_tb.Size = new Size(153, 22);
-            criarVeiculoCor_tb.TabIndex = 59;
+            criarVeiculoCor_tb.TabIndex = 2;
             // 
             // label2
             // 
@@ -146,7 +146,7 @@
             criarVeiculoModelo_tb.Location = new Point(69, 77);
             criarVeiculoModelo_tb.Name = "criarVeiculoModelo_tb";
             criarVeiculoModelo_tb.Size = new Size(153, 22);
-            criarVeiculoModelo_tb.TabIndex = 57;
+            criarVeiculoModelo_tb.TabIndex = 1;
             // 
             // label1
             // 
@@ -162,7 +162,7 @@
             criarVeiculoMarca_tb.Location = new Point(69, 51);
             criarVeiculoMarca_tb.Name = "criarVeiculoMarca_tb";
             criarVeiculoMarca_tb.Size = new Size(153, 22);
-            criarVeiculoMarca_tb.TabIndex = 55;
+            criarVeiculoMarca_tb.TabIndex = 0;
             // 
             // servicoVeiculoMarca_label
             // 

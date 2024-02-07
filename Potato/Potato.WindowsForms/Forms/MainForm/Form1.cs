@@ -121,7 +121,45 @@ namespace Potato.WindowsForms
         //
         //----------------------------------------------------------------------------------------------------------
         //
-        // LoadDatas
+        private void PecaQuantidadeZero()
+        {
+            var rows = allPecas_dgv.Rows;
+
+            for (int i = 0; i < rows.Count; i++)
+            {
+                var peca = (Peca)rows[i].DataBoundItem;
+
+                if (peca.Quantidade == 0)
+                {
+                    rows[i].DefaultCellStyle = new DataGridViewCellStyle()
+                    {
+                        BackColor = Color.DarkGray
+                    };
+                }
+            }
+        }
+        //
+        //
+        private void ServicoFinalizado()
+        {
+            var rows = allServicos_dgv.Rows;
+
+            for (int i = 0; i < rows.Count; i++)
+            {
+                var servico = (Servico)rows[i].DataBoundItem;
+
+                if (servico.Ativo == 0)
+                {
+                    rows[i].DefaultCellStyle = new DataGridViewCellStyle()
+                    {
+                        BackColor = Color.LightGreen
+                    };
+                }
+            }
+        }
+        //
+
+        // ---------- LoadDatas ----------
         //
         // To populate and refresh allPecasDGV
         private void LoadPecasData()
@@ -162,45 +200,6 @@ namespace Potato.WindowsForms
             var veiculos = _veiculoRepository.GetAll();
 
             allVeiculos_dgv.DataSource = veiculos;
-        }
-        //
-
-        //---------------------------------------------------------------------
-        private void PecaQuantidadeZero()
-        {
-            var rows = allPecas_dgv.Rows;
-
-            for (int i = 0; i < rows.Count; i++)
-            {
-                var peca = (Peca)rows[i].DataBoundItem;
-
-                if (peca.Quantidade == 0)
-                {
-                    rows[i].DefaultCellStyle = new DataGridViewCellStyle()
-                    {
-                        BackColor = Color.DarkGray
-                    };
-                }
-            }
-        }
-        //
-
-        private void ServicoFinalizado()
-        {
-            var rows = allServicos_dgv.Rows;
-
-            for (int i = 0; i < rows.Count; i++)
-            {
-                var servico = (Servico)rows[i].DataBoundItem;
-
-                if (servico.Ativo == 0)
-                {
-                    rows[i].DefaultCellStyle = new DataGridViewCellStyle()
-                    {
-                        BackColor = Color.LightGreen
-                    };
-                }
-            }
         }
         //
 

@@ -77,7 +77,7 @@
             cadastrarClienteButton.Location = new Point(12, 369);
             cadastrarClienteButton.Name = "cadastrarClienteButton";
             cadastrarClienteButton.Size = new Size(495, 67);
-            cadastrarClienteButton.TabIndex = 64;
+            cadastrarClienteButton.TabIndex = 6;
             cadastrarClienteButton.Text = "Cadastrar";
             cadastrarClienteButton.UseVisualStyleBackColor = false;
             cadastrarClienteButton.Click += cadastrarClienteButton_Click;
@@ -88,7 +88,7 @@
             clienteTelefone_masktb.Mask = "(00) 00000-0000";
             clienteTelefone_masktb.Name = "clienteTelefone_masktb";
             clienteTelefone_masktb.Size = new Size(405, 22);
-            clienteTelefone_masktb.TabIndex = 63;
+            clienteTelefone_masktb.TabIndex = 5;
             // 
             // clienteCpf_masktb
             // 
@@ -96,7 +96,7 @@
             clienteCpf_masktb.Mask = "000.000.000-00";
             clienteCpf_masktb.Name = "clienteCpf_masktb";
             clienteCpf_masktb.Size = new Size(405, 22);
-            clienteCpf_masktb.TabIndex = 62;
+            clienteCpf_masktb.TabIndex = 2;
             // 
             // clienteTelefone_label
             // 
@@ -121,7 +121,7 @@
             clienteEmail_tb.Location = new Point(102, 161);
             clienteEmail_tb.Name = "clienteEmail_tb";
             clienteEmail_tb.Size = new Size(405, 22);
-            clienteEmail_tb.TabIndex = 59;
+            clienteEmail_tb.TabIndex = 4;
             // 
             // clienteEndereco_label
             // 
@@ -137,7 +137,7 @@
             clienteEndereco_tb.Location = new Point(102, 133);
             clienteEndereco_tb.Name = "clienteEndereco_tb";
             clienteEndereco_tb.Size = new Size(405, 22);
-            clienteEndereco_tb.TabIndex = 57;
+            clienteEndereco_tb.TabIndex = 3;
             // 
             // cpf_label
             // 
@@ -162,7 +162,7 @@
             clienteSobrenome_tb.Location = new Point(102, 77);
             clienteSobrenome_tb.Name = "clienteSobrenome_tb";
             clienteSobrenome_tb.Size = new Size(405, 22);
-            clienteSobrenome_tb.TabIndex = 54;
+            clienteSobrenome_tb.TabIndex = 1;
             // 
             // clienteNome_label
             // 
@@ -178,7 +178,7 @@
             clienteNome_tb.Location = new Point(102, 49);
             clienteNome_tb.Name = "clienteNome_tb";
             clienteNome_tb.Size = new Size(405, 22);
-            clienteNome_tb.TabIndex = 52;
+            clienteNome_tb.TabIndex = 0;
             // 
             // CriarClienteForm
             // 

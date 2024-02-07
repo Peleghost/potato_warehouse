@@ -94,7 +94,7 @@
             venderPecaButton.Location = new Point(6, 209);
             venderPecaButton.Name = "venderPecaButton";
             venderPecaButton.Size = new Size(322, 49);
-            venderPecaButton.TabIndex = 88;
+            venderPecaButton.TabIndex = 1;
             venderPecaButton.Text = "Vender";
             venderPecaButton.UseVisualStyleBackColor = false;
             venderPecaButton.Click += venderPecaButton_Click;
@@ -140,7 +140,7 @@
             venderPecaQuantidade_numeric.Location = new Point(118, 114);
             venderPecaQuantidade_numeric.Name = "venderPecaQuantidade_numeric";
             venderPecaQuantidade_numeric.Size = new Size(210, 22);
-            venderPecaQuantidade_numeric.TabIndex = 3;
+            venderPecaQuantidade_numeric.TabIndex = 0;
             // 
             // venderPecaPreco_tb
             // 

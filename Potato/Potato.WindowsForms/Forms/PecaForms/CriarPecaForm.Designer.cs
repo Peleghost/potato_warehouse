@@ -68,7 +68,7 @@
             pecaPreco_tb.Mask = "0000.00";
             pecaPreco_tb.Name = "pecaPreco_tb";
             pecaPreco_tb.Size = new Size(408, 22);
-            pecaPreco_tb.TabIndex = 86;
+            pecaPreco_tb.TabIndex = 1;
             // 
             // criarPecaButton
             // 
@@ -79,7 +79,7 @@
             criarPecaButton.Location = new Point(12, 380);
             criarPecaButton.Name = "criarPecaButton";
             criarPecaButton.Size = new Size(495, 56);
-            criarPecaButton.TabIndex = 85;
+            criarPecaButton.TabIndex = 4;
             criarPecaButton.Text = "Criar";
             criarPecaButton.UseVisualStyleBackColor = false;
             criarPecaButton.Click += CriarButton_Click;
@@ -98,21 +98,21 @@
             pecaEstoqueNumeric.Location = new Point(99, 132);
             pecaEstoqueNumeric.Name = "pecaEstoqueNumeric";
             pecaEstoqueNumeric.Size = new Size(408, 22);
-            pecaEstoqueNumeric.TabIndex = 82;
+            pecaEstoqueNumeric.TabIndex = 3;
             // 
             // pecaCategoria_tb
             // 
             pecaCategoria_tb.Location = new Point(99, 105);
             pecaCategoria_tb.Name = "pecaCategoria_tb";
             pecaCategoria_tb.Size = new Size(408, 22);
-            pecaCategoria_tb.TabIndex = 81;
+            pecaCategoria_tb.TabIndex = 2;
             // 
             // pecaNome_tb
             // 
             pecaNome_tb.Location = new Point(99, 49);
             pecaNome_tb.Name = "pecaNome_tb";
             pecaNome_tb.Size = new Size(408, 22);
-            pecaNome_tb.TabIndex = 80;
+            pecaNome_tb.TabIndex = 0;
             // 
             // nomeLabel
             // 

@@ -42,8 +42,8 @@ namespace Potato.WindowsForms
             var loginForm = serviceProvider.GetRequiredService<LoginForm>();
             var form1 = serviceProvider.GetRequiredService<Form1>();
 
-            
             var dialogResult = loginForm.ShowDialog();
+
             if (dialogResult == DialogResult.OK)
             {
                 Application.Run(form1);
@@ -53,7 +53,6 @@ namespace Potato.WindowsForms
             {
                 Application.Exit();
             }
-
         }
     }
 }

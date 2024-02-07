@@ -232,16 +232,6 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     _connection.Close();
                 }
 
-                //if (_connection.State == ConnectionState.Closed)
-                //{
-                //    _connection.Open();
-                //}
-
-                //string sql = $"DELETE FROM Peca WHERE id='{peca.Id}'";
-
-                //_connection.Execute(sql, commandType: CommandType.Text);
-                //_connection.Close();
-
             }
             catch (Exception)
             {

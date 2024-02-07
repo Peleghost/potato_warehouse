@@ -142,14 +142,14 @@
             editServicoPreco_tb.Location = new Point(116, 127);
             editServicoPreco_tb.Name = "editServicoPreco_tb";
             editServicoPreco_tb.Size = new Size(314, 22);
-            editServicoPreco_tb.TabIndex = 3;
+            editServicoPreco_tb.TabIndex = 0;
             // 
             // editServicoDescricao_tb
             // 
             editServicoDescricao_tb.Location = new Point(116, 154);
             editServicoDescricao_tb.Name = "editServicoDescricao_tb";
             editServicoDescricao_tb.Size = new Size(314, 80);
-            editServicoDescricao_tb.TabIndex = 4;
+            editServicoDescricao_tb.TabIndex = 1;
             editServicoDescricao_tb.Text = "";
             // 
             // label4
@@ -273,7 +273,7 @@
             editServicoPecaQtd_numeric.Location = new Point(107, 305);
             editServicoPecaQtd_numeric.Name = "editServicoPecaQtd_numeric";
             editServicoPecaQtd_numeric.Size = new Size(320, 22);
-            editServicoPecaQtd_numeric.TabIndex = 5;
+            editServicoPecaQtd_numeric.TabIndex = 0;
             // 
             // editarServicoPecaQtd_label
             // 
@@ -320,7 +320,7 @@
             editServicoButton.Location = new Point(294, 362);
             editServicoButton.Name = "editServicoButton";
             editServicoButton.Size = new Size(406, 63);
-            editServicoButton.TabIndex = 77;
+            editServicoButton.TabIndex = 0;
             editServicoButton.Text = "Editar";
             editServicoButton.UseVisualStyleBackColor = false;
             editServicoButton.Click += editServicoButton_Click;
