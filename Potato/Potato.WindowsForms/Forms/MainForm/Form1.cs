@@ -3,10 +3,8 @@ using Potato.Domain.Repositories;
 using Potato.WindowsForms.PecaForms;
 using Potato.WindowsForms.Forms.ClienteForms;
 using Potato.WindowsForms.Forms.ServicoForms;
-using System.Collections;
 using Potato.WindowsForms.Forms.PecaForms;
 using Potato.WindowsForms.Forms.VeiculoForms;
-using System.Runtime.CompilerServices;
 using Potato.Domain.Models;
 
 namespace Potato.WindowsForms
@@ -48,7 +46,7 @@ namespace Potato.WindowsForms
             CriarArmazemSeNaoExiste();
         }
 
-        #region ----- Control Methods / LoadData -----\
+        #region ----- Control Methods / LoadData -----
 
         private void CriarArmazemSeNaoExiste()
         {
@@ -334,18 +332,6 @@ namespace Potato.WindowsForms
                     LoadPecasData();
                     DisablePecaControls();
                 }
-
-                //var message = MessageBox.Show($"Vender Peca?\n Nome: {peca.Nome}, Categoria: {peca.Categoria}, Quantidade: {peca.Quantidade}",
-                //    "Confirmar", MessageBoxButtons.OKCancel);
-
-                //if (message == DialogResult.OK)
-                //{
-                //    _pecaRepository.VenderPeca(peca);
-
-                //    DisablePecaControls();
-                //    LoadPecasData();
-                //}
-
             }
             catch (Exception ex)
             {
@@ -419,15 +405,6 @@ namespace Potato.WindowsForms
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
-
-            //try
-            //{
-            //    var peca = _pecaRepository.GetPecaById(selectedPeca.Id);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Error: {ex}");
-            //}
         }
 
         private void searchPeca_btn_Click(object sender, EventArgs e)
@@ -593,6 +570,13 @@ namespace Potato.WindowsForms
 
             try
             {
+                bool clienteEmServico = _clienteRepository.VerificarClienteEmServico(cliente.Id);
+
+                if (clienteEmServico)
+                {
+                    throw new Exception("Cliente tem Veiculo em Servico");
+                }
+
                 var message = MessageBox.Show($"Deletar Cliente?\n Nome: {cliente.Nome}, Sobrenome: {cliente.Sobrenome}",
                     "Confirmar", MessageBoxButtons.OKCancel);
 
@@ -820,9 +804,12 @@ namespace Potato.WindowsForms
                     editServicoForm.ShowDialog(ref servicoEditar);
                 }
 
-                SuccessMsg();
-                DisableServicoControls();
-                LoadServicoData();
+                if (editServicoForm.DialogResult  == DialogResult.OK)
+                {
+                    SuccessMsg();
+                    DisableServicoControls();
+                    LoadServicoData();
+                }
             }
             catch (Exception ex)
             {
@@ -928,6 +915,11 @@ namespace Potato.WindowsForms
             try
             {
                 var veiculo = (Veiculo)allVeiculos_dgv.CurrentRow.DataBoundItem;
+
+                if (veiculo.ServicoId > 0) 
+                {
+                    throw new Exception("Error: Veiculo em Servico!");
+                }
 
                 var editVeiculoForm = new EditarVeiculoForm(_veiculoRepository);
 

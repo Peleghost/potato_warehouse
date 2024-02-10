@@ -6,6 +6,7 @@ namespace Potato.Domain.Repositories
     {
         public int CriarCliente(Cliente cliente);
         public string ValidateEmailAddress(string emailAddress);
+        public bool VerificarClienteEmServico(int clienteId);
         IEnumerable<Cliente> GetClientes();
         IEnumerable<Cliente> GetClienteByNome(string nome);
         public Cliente GetClienteById(int id);

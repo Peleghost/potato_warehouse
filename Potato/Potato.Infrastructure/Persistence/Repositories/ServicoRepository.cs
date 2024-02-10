@@ -299,7 +299,15 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     _connection.Open();
                 }
 
-                string sql = $"DELETE FROM Servico WHERE Servico.id = {servicoId}";
+                string sql = $"UPDATE Servico SET veiculoId = NULL, clienteId = NULL " +
+                    
+                    $"WHERE Servico.id = {servicoId}; " +
+                    
+                    $"UPDATE Servico_Peca SET servicoId = NULL " +
+                    
+                    $"WHERE servicoId = {servicoId};" +
+                    
+                    $"DELETE FROM Servico WHERE Servico.id = {servicoId};";
 
                 _connection.Execute(sql, commandType: CommandType.Text);
 

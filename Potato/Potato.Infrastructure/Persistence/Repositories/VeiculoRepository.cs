@@ -148,7 +148,6 @@ namespace Potato.Infrastructure.Persistence.Repositories
             }
         }
 
-
         public IEnumerable<Veiculo> GetVeiculoByClienteId(int clienteId)
         {
             try

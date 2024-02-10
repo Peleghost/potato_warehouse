@@ -68,6 +68,29 @@ namespace Potato.Infrastructure.Persistence.Repositories
             }
         }
 
+        public bool VerificarClienteEmServico(int clienteId)
+        {
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string sql = $"SELECT ativo FROM Servico " +
+
+                    $"WHERE clienteId = {clienteId}";
+
+                var result = _connection.Query<int>(sql, commandType: CommandType.Text).Contains(1);
+
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public IEnumerable<Cliente> GetClientes()
         {
             try

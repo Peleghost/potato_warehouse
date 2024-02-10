@@ -61,12 +61,19 @@ namespace Potato.WindowsForms.Forms.ServicoForms
                 string descricao = editServicoDescricao_tb.Text;
                 double preco = Convert.ToDouble(editServicoPreco_tb.Text);
 
+                if (editServicoPecaQtd_numeric.Value == 0)
+                {
+                    throw new Exception("Selecione peca apenas para confirmar!");
+                }
+
                 var message = MessageBox.Show($"Editar Servico?", "Confirmar", MessageBoxButtons.OKCancel);
 
                 if (message == DialogResult.OK)
                 {                    
                     int newQuantidade = Convert.ToInt32(editServicoPecaQtd_numeric.Value);
                     int pecaId = Convert.ToInt32(editServicoPecaId_tb.Text);
+
+                    
 
                     if (newQuantidade > quantidadePeca)
                     {
