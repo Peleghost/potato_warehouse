@@ -8,6 +8,7 @@ namespace Potato.Domain.Entities
         public List<Peca>? Pecas { get; set; }
         public Veiculo? Veiculo { get; private set; }
         public string? Descricao { get; private set; }
+        public string Mecanico { get; private set; }
         public double? Preco { get; private set; }
         public int Ativo { get; private set; }
 
@@ -17,15 +18,16 @@ namespace Potato.Domain.Entities
         }
 
 
-        public Servico(Cliente cliente, Veiculo veiculo, string descricao, double preco, int ativo)
+        public Servico(Cliente cliente, Veiculo veiculo, string descricao, string mecanico, double preco, int ativo)
         {
             this.Cliente = cliente;
             this.Veiculo = veiculo;
             this.Descricao = descricao;
+            this.Mecanico = mecanico;
             this.Preco = preco;
             this.Ativo = ativo;
         }
-        public static Result<Servico> Criar(Cliente cliente, Veiculo veiculo, string descricao, double preco, int ativo)
+        public static Result<Servico> Criar(Cliente cliente, Veiculo veiculo, string descricao, string mecanico, double preco, int ativo)
         {
             if (cliente == null)
                 return new Result<Servico>(isSuccess: false, null);
@@ -36,13 +38,16 @@ namespace Potato.Domain.Entities
             if (descricao == null)
                 return new Result<Servico>(isSuccess: false, null);
 
+            if (mecanico == null)
+                return new Result<Servico>(isSuccess: false, null);
+
             if (preco == 0)
                 return new Result<Servico>(isSuccess: false, null);
 
             if (ativo == 0)
                 return new Result<Servico>(isSuccess: false, null);
 
-            return new Result<Servico>(isSuccess: true, new Servico(cliente, veiculo, descricao, preco, ativo));
+            return new Result<Servico>(isSuccess: true, new Servico(cliente, veiculo, descricao, mecanico, preco, ativo));
         }
     }
 }

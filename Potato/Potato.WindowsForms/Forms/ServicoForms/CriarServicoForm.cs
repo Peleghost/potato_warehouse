@@ -1,15 +1,6 @@
 ﻿using Potato.Domain.Entities;
 using Potato.Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Potato.WindowsForms.Forms.ServicoForms
 {
@@ -33,7 +24,20 @@ namespace Potato.WindowsForms.Forms.ServicoForms
             this.ShowDialog();
         }
 
-        public void LoadClienteVeiculos()
+        private void CriarServicoForm_Load(object sender, EventArgs e)
+        {
+            LoadClienteVeiculos();
+        }
+
+        private void servicoVeiculo_dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            servicoVeiculo_dgv.Columns["Id"].Visible = false;
+            servicoVeiculo_dgv.Columns["Cliente"].Visible = false;
+            servicoVeiculo_dgv.Columns["ClienteId"].Visible = false;
+            servicoVeiculo_dgv.Columns["ServicoId"].Visible = false;
+        }
+
+        private void LoadClienteVeiculos()
         {
             var clienteId = Convert.ToInt32(servicoClienteId_tb.Text);
 
@@ -43,7 +47,7 @@ namespace Potato.WindowsForms.Forms.ServicoForms
         }
 
         // Controls
-        public void ServicoClienteTbControls(Cliente cliente)
+        private void ServicoClienteTbControls(Cliente cliente)
         {
             servicoClienteNome_tb.Text = cliente.Nome;
             servicoClienteSobrenome_tb.Text = cliente.Sobrenome;
@@ -104,7 +108,7 @@ namespace Potato.WindowsForms.Forms.ServicoForms
         {
             try
             {
-                if (servicoNovoVeiculo_check.Checked == true)
+                if (servicoNovoVeiculo_check.Checked)
                 {
                     var clienteId = Convert.ToInt32(servicoClienteId_tb.Text);
 
@@ -136,8 +140,6 @@ namespace Potato.WindowsForms.Forms.ServicoForms
 
                     _veiculoRepository.CriarVeiculo(veiculo);
 
-                    //_veiculoRepository.UpdateVeiculoClienteId(clienteId, veiculoId);
-
                     MessageBox.Show("Successo", "Confirmar", MessageBoxButtons.OK);
                     LoadClienteVeiculos();
 
@@ -148,19 +150,6 @@ namespace Potato.WindowsForms.Forms.ServicoForms
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void CriarServicoForm_Load(object sender, EventArgs e)
-        {
-            LoadClienteVeiculos();
-        }
-
-        private void servicoVeiculo_dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            servicoVeiculo_dgv.Columns["Id"].Visible = false;
-            servicoVeiculo_dgv.Columns["Cliente"].Visible = false;
-            servicoVeiculo_dgv.Columns["ClienteId"].Visible = false;
-            servicoVeiculo_dgv.Columns["ServicoId"].Visible = false;
         }
 
         private void servicoVeiculo_dgv_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -187,11 +176,18 @@ namespace Potato.WindowsForms.Forms.ServicoForms
                     throw new Exception("Veiculo em servico.");
                 }
 
+                if (servicoMecanico_combo.Text == "")
+                {
+                    throw new Exception("Error: Favor selecionar Mecanico Responsavel!");
+                }
+
                 string descricao = servicoDescricao_tb.Text;
+
+                string mecanico = servicoMecanico_combo.Text;
 
                 double preco = Convert.ToDouble(servicoPreco_tb.Text);
 
-                var temp = Servico.Criar(cliente, veiculo, descricao, preco, 1);
+                var temp = Servico.Criar(cliente, veiculo, descricao, mecanico, preco, 1);
 
                 if (temp.IsSuccess)
                 {

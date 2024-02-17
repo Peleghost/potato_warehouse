@@ -1,5 +1,6 @@
 ﻿using Potato.Domain.Entities;
 using Potato.Domain.Repositories;
+using System.ComponentModel;
 
 namespace Potato.WindowsForms.Forms.PecaForms
 {
@@ -13,18 +14,17 @@ namespace Potato.WindowsForms.Forms.PecaForms
             InitializeComponent();
         }
 
-        public void PopulateVenderPecaTb(Peca peca)
+        public void ShowDialog(ref BindingList<Peca> pecas)
         {
-            venderPecaNome_tb.Text = peca.Nome;
-            venderPecaPreco_tb.Text = peca.Preco.ToString();
-            venderPecaCategoria_tb.Text = peca.Categoria;
-            venderPecaQtdEstoque_numeric.Value = peca.Quantidade;
-            venderPecaId_tb.Text = peca.Id.ToString();
-        }
+            venderPeca_dgv.DataSource = pecas;
+            double preco = 0;
 
-        public void ShowDialog(ref Peca peca)
-        {
-            PopulateVenderPecaTb(peca);
+            foreach (Peca peca in pecas) 
+            { 
+                preco += peca.Preco * peca.Quantidade;
+            }
+
+            vendaTotal_tb.Text = $"{preco:C}";
 
             this.ShowDialog();
         }
@@ -33,29 +33,43 @@ namespace Potato.WindowsForms.Forms.PecaForms
         {
             try
             {
-                var pecaId = Convert.ToInt32(venderPecaId_tb.Text);
-                var quantidadeEstoque = venderPecaQtdEstoque_numeric.Value;
-                var quantidadeVender = Convert.ToInt32(venderPecaQuantidade_numeric.Value);
+                var message = MessageBox.Show("Confirmar Venda?", "Confirmar", MessageBoxButtons.OKCancel);
 
-                if (quantidadeVender > quantidadeEstoque)
+                if (message == DialogResult.OK)
                 {
-                    throw new Exception("Error: Quantidade a vender maior que disponivel em Estoque!");
-                }
-                else if (quantidadeVender == 0)
-                {
-                    throw new Exception("Error: Quantidade nao especificada!");
-                }
-                else
-                {
-                    _pecaRepository.VenderPeca(pecaId, quantidadeVender);
-                    this.DialogResult = DialogResult.OK;
-                }
+                    int pecaId, quantidade;
+                    var pecas = venderPeca_dgv.DataSource as BindingList<Peca>;
 
+                    foreach (var peca in pecas)
+                    {
+                        try
+                        {
+                            pecaId = peca.Id;
+                            quantidade = peca.Quantidade;
+
+                            _pecaRepository.VenderPeca(pecaId, quantidade);
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            throw;
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void venderPeca_dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            venderPeca_dgv.Columns["id"].Visible = false;
+            venderPeca_dgv.Columns["armazen"].Visible = false;
+        }
+
     }
+
 }

@@ -6,6 +6,9 @@ using Potato.WindowsForms.Forms.ServicoForms;
 using Potato.WindowsForms.Forms.PecaForms;
 using Potato.WindowsForms.Forms.VeiculoForms;
 using Potato.Domain.Models;
+using System.Runtime.CompilerServices;
+using System.ComponentModel;
+using System.Drawing;
 
 namespace Potato.WindowsForms
 {
@@ -21,6 +24,7 @@ namespace Potato.WindowsForms
         //
 
         // Global Variables
+        private BindingList<Peca>? PecasVender = new();
         private static int ArmazemId;
         private static bool ClienteTabEnter;
         //
@@ -116,6 +120,12 @@ namespace Potato.WindowsForms
             allVeiculos_dgv.Columns["clienteId"].Visible = false;
             allVeiculos_dgv.Columns["servicoId"].Visible = false;
         }
+
+        private void venderPeca_dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            venderPeca_dgv.Columns["id"].Visible = false;
+            venderPeca_dgv.Columns["armazen"].Visible = false;
+        }
         //
         //----------------------------------------------------------------------------------------------------------
         //
@@ -156,7 +166,23 @@ namespace Potato.WindowsForms
             }
         }
         //
+        private void ServicoPecasVazio()
+        {
+            var rows = servicoPecas_dgv.Rows;
 
+            for (int i = 0; i < rows.Count; i++)
+            {
+                var peca = (Peca)rows[i].DataBoundItem;
+
+                if (peca.Quantidade == 0)
+                {
+                    rows[i].DefaultCellStyle = new DataGridViewCellStyle()
+                    {
+                        BackColor = Color.DarkGray
+                    };
+                }
+            }
+        }
         // ---------- LoadDatas ----------
         //
         // To populate and refresh allPecasDGV
@@ -170,6 +196,14 @@ namespace Potato.WindowsForms
             PecaQuantidadeZero();
 
             labelTotalRecords.Text = $"Total Records: {allPecas_dgv.RowCount}";
+        }
+
+        private void PopulateVenderPecaTb(Peca peca)
+        {
+            venderPecaId_tb.Text = peca.Id.ToString();
+            venderPecaNome_tb.Text = peca.Nome;
+            venderPecaCategoria_tb.Text = peca.Categoria;
+            venderPecaPreco_tb.Text = peca.Preco.ToString();
         }
 
         // To populate and refresh allClientesDGV
@@ -215,6 +249,17 @@ namespace Potato.WindowsForms
             editPeca_btn.Enabled = false;
             deletePeca_btn.Enabled = false;
         }
+
+        private void ClearPecaControls()
+        {
+            PecasVender.Clear();
+            venderPecaTotal_tb.Clear();
+            venderPecaId_tb.Clear();
+            venderPecaNome_tb.Clear();
+            venderPecaCategoria_tb.Clear();
+            venderPecaPreco_tb.Clear();
+            venderPecaNumeric_tb.Value = 0;
+        }
         //
 
         // Cliente Controls
@@ -255,7 +300,7 @@ namespace Potato.WindowsForms
         private void EnableVeiculoControls()
         {
             editVeiculo_btn.Enabled = true;
-            deleteVeiculo_btn.Enabled = true;
+            //deleteVeiculo_btn.Enabled = true;
         }
 
         private void DisableVeiculoControls()
@@ -313,21 +358,21 @@ namespace Potato.WindowsForms
         {
             try
             {
-                var peca = (Peca)allPecas_dgv.CurrentRow.DataBoundItem;
-
-                if (peca.Quantidade == 0)
+                if (PecasVender.Count == 0)
                 {
-                    MessageBox.Show("Fora de Estoque\nQuantidade: 0\n\nReponha ou Delete Peca", "Confirmar", MessageBoxButtons.OK);
-                    return;
+                    throw new Exception("Carrinho vazio!");
                 }
 
                 var venderPecaForm = new VenderPecaForm(_pecaRepository);
 
-                venderPecaForm.ShowDialog(ref peca);
+                venderPecaForm.ShowDialog(ref PecasVender);
 
                 if (venderPecaForm.DialogResult == DialogResult.OK)
                 {
                     venderPecaForm.Close();
+
+                    ClearPecaControls();
+
                     SuccessMsg();
                     LoadPecasData();
                     DisablePecaControls();
@@ -364,6 +409,99 @@ namespace Potato.WindowsForms
             }
         }
 
+        private void addPeca_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var peca = (Peca)allPecas_dgv.CurrentRow.DataBoundItem;
+                int quantidade;
+
+                if (venderPecaNumeric_tb.Value > peca.Quantidade)
+                {
+                    throw new Exception("Error: Impossivel adicionar peca com quantidade maior que disponivel em estoque!");
+                }
+                else if (venderPecaNumeric_tb.Value == 0)
+                {
+                    throw new Exception("Error: Quantidade nao especificada!");
+                }
+                else
+                {
+                    peca.Quantidade = Convert.ToInt32(venderPecaNumeric_tb.Value);
+                }
+
+                if (PecasVender.Where(x => x.Id == peca.Id).Any())
+                {
+                    throw new Exception("Error: Peca ja adicionada!");
+                }
+
+                PecasVender.Add(peca);
+
+                venderPeca_dgv.DataSource = PecasVender;
+
+                double preco = 0;
+
+                foreach (var item in PecasVender)
+                {
+                    preco += item.Preco * item.Quantidade;
+                    venderPecaTotal_tb.Text = $"{preco:C}";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void removePeca_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var peca = (Peca)venderPeca_dgv.CurrentRow.DataBoundItem;
+
+                double preco = Convert.ToDouble(venderPecaTotal_tb.Text.Substring(1)) - (peca.Preco * peca.Quantidade);
+
+                venderPecaTotal_tb.Text = $"{preco:C}";
+
+                int index = PecasVender.IndexOf(peca);
+
+                PecasVender.RemoveAt(index);
+
+                venderPeca_dgv.DataSource = PecasVender;
+
+                removePeca_btn.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void venderPeca_dgv_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            removePeca_btn.Enabled = true;
+        }
+
+        private void allPecasDGV_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                var selectedPeca = (Peca)allPecas_dgv.CurrentRow.DataBoundItem;
+
+                if (selectedPeca.Quantidade == 0)
+                {
+                    allPecas_dgv.CurrentRow.Selected = false;
+                }
+
+                PopulateVenderPecaTb(selectedPeca);
+
+                EnablePecaControls();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
         private void deletePeca_btn_Click(object sender, EventArgs e)
         {
             var peca = (Peca)allPecas_dgv.CurrentRow.DataBoundItem;
@@ -381,25 +519,6 @@ namespace Potato.WindowsForms
 
                 DisablePecaControls();
                 LoadPecasData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
-        }
-
-        private void allPecasDGV_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            try
-            {
-                var selectedPeca = (Peca)allPecas_dgv.CurrentRow.DataBoundItem;
-
-                if (selectedPeca.Quantidade == 0)
-                {
-                    allPecas_dgv.CurrentRow.Selected = false;
-                }
-
-                EnablePecaControls();
             }
             catch (Exception ex)
             {
@@ -574,10 +693,10 @@ namespace Potato.WindowsForms
 
                 if (clienteEmServico)
                 {
-                    throw new Exception("Cliente tem Veiculo em Servico");
+                    throw new Exception("Cliente tem Veiculo em Servico!");
                 }
 
-                var message = MessageBox.Show($"Deletar Cliente?\n Nome: {cliente.Nome}, Sobrenome: {cliente.Sobrenome}",
+                var message = MessageBox.Show($"Deletar Cliente?\n\nNome: {cliente.Nome} {cliente.Sobrenome}",
                     "Confirmar", MessageBoxButtons.OKCancel);
 
                 if (message == DialogResult.OK)
@@ -706,6 +825,26 @@ namespace Potato.WindowsForms
 
                     break;
 
+                case "Mecanico":
+
+                    try
+                    {
+                        string mecanico = searchServico_tb.Text;
+
+                        var servicos = _servicoRepository.GetByMecanico(mecanico);
+
+                        allServicos_dgv.DataSource = servicos;
+
+                        ServicoFinalizado();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+
+                    break;
+
 
                 default:
                     MessageBox.Show($"Error: Nenhum iten Encontrado");
@@ -756,6 +895,8 @@ namespace Potato.WindowsForms
 
                 servicoPecas_dgv.DataSource = pecas;
 
+                ServicoPecasVazio();
+
                 servicoDescricao_tb.Text = servico.Descricao;
 
                 double pecaPreco = 0;
@@ -804,7 +945,7 @@ namespace Potato.WindowsForms
                     editServicoForm.ShowDialog(ref servicoEditar);
                 }
 
-                if (editServicoForm.DialogResult  == DialogResult.OK)
+                if (editServicoForm.DialogResult == DialogResult.OK)
                 {
                     SuccessMsg();
                     DisableServicoControls();
@@ -916,7 +1057,7 @@ namespace Potato.WindowsForms
             {
                 var veiculo = (Veiculo)allVeiculos_dgv.CurrentRow.DataBoundItem;
 
-                if (veiculo.ServicoId > 0) 
+                if (veiculo.ServicoId > 0)
                 {
                     throw new Exception("Error: Veiculo em Servico!");
                 }
@@ -955,7 +1096,7 @@ namespace Potato.WindowsForms
                 var message = MessageBox.Show($"Deletar Veiculo?\nVeiculo: {veiculo.Marca} {veiculo.Modelo}" +
                     $"\nPlaca: {veiculo.Placa}", "Confirmar", MessageBoxButtons.OKCancel);
 
-                if (message == DialogResult.OK) 
+                if (message == DialogResult.OK)
                 {
                     _veiculoRepository.DeleteVeiculo(veiculoId);
                     SuccessMsg();
@@ -971,8 +1112,6 @@ namespace Potato.WindowsForms
         }
 
         #endregion
-
-
 
 
     }

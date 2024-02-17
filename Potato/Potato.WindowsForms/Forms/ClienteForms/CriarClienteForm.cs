@@ -1,5 +1,7 @@
 ﻿using Potato.Domain.Entities;
 using Potato.Domain.Repositories;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace Potato.WindowsForms.Forms.ClienteForms
 {
@@ -16,21 +18,38 @@ namespace Potato.WindowsForms.Forms.ClienteForms
         {
             try
             {
-                var email = _clienteRepository.ValidateEmailAddress(clienteEmail_tb.Text);
+                var regex = new Regex("^[A-Z a-z]+$");
+                string nome, sobrenome;
+                var telefone = clienteTelefone_masktb.Text.Trim();
 
-                if (email.StartsWith("Error"))
+                if (clienteNome_tb.Text.Trim() == string.Empty || clienteSobrenome_tb.Text.Trim() == string.Empty)
                 {
-                    clienteEmail_tb.ForeColor = Color.Red;
-                    throw new Exception("Error: Formato de Email não aceito.\n Ex: email@exemplo.com");
+                    throw new Exception("Error: Favor preencher campos Nome e Sobrenome!");
+                }
+                else if (!regex.IsMatch(clienteNome_tb.Text.Trim()) || !regex.IsMatch(clienteSobrenome_tb.Text.Trim()))
+                {
+                    throw new Exception("Error: Favor preencher campos Nome e Sobrenome corretamente!");
+                }
+                else if (telefone.Length < 14)
+                {
+                    throw new Exception("Error: Favor preencher campo Telefone corretamente!");
+                }
+                else
+                {
+                    var tempNome = clienteNome_tb.Text.Trim();
+                    var tempSobrenome = clienteSobrenome_tb.Text.Trim();
+
+                    nome = char.ToUpper(tempNome[0]) + tempNome.Substring(1);
+                    sobrenome = char.ToUpper(tempSobrenome[0]) + tempSobrenome.Substring(1);
                 }
 
                 var cliente = new Cliente()
                 {
-                    Nome = clienteNome_tb.Text,
-                    Sobrenome = clienteSobrenome_tb.Text,
+                    Nome = nome,
+                    Sobrenome = sobrenome,
                     Cpf = clienteCpf_masktb.Text,
                     Endereco = clienteEndereco_tb.Text,
-                    Email = email,
+                    Email = clienteEmail_tb.Text,
                     Telefone = clienteTelefone_masktb.Text,
                     Ativo = 1,
                     DataCriacao = DateTime.UtcNow

@@ -9,6 +9,8 @@ namespace Potato.WindowsForms.Forms.ServicoForms
         private readonly IServicoRepository _servicoRepository;
         private readonly IPecaRepository _pecaRepository;
 
+        private int quantidadePeca;
+
         public EditarServicoForm(IServicoRepository servicoRepository, IPecaRepository pecaRepository)
         {
             _servicoRepository = servicoRepository;
@@ -16,14 +18,23 @@ namespace Potato.WindowsForms.Forms.ServicoForms
             InitializeComponent();
         }
 
-        private int quantidadePeca;
+        public void ShowDialog(ref ServicoModel servicoEditar)
+        {
+            PopulateEditServicoTb(servicoEditar);
+
+            var pecas = _servicoRepository.GetServicoPecas(servicoEditar.Id);
+
+            editServicoPecas_dgv.DataSource = pecas;
+
+            this.ShowDialog();
+        }
 
         private void EditarServicoForm_Load(object sender, EventArgs e)
         {
             quantidadePeca = Convert.ToInt32(editServicoPecaQtd_numeric.Value);
         }
 
-        public void PopulateEditServicoPecaTb(Peca peca)
+        private void PopulateEditServicoPecaTb(Peca peca)
         {
             editServicoPecaId_tb.Text = peca.Id.ToString();
             editServicoPecaNome_tb.Text = peca.Nome;
@@ -42,17 +53,6 @@ namespace Potato.WindowsForms.Forms.ServicoForms
             editServicoDescricao_tb.Text = servico.Descricao;
         }
 
-        public void ShowDialog(ref ServicoModel servicoEditar)
-        {
-            PopulateEditServicoTb(servicoEditar);
-
-            var pecas = _servicoRepository.GetServicoPecas(servicoEditar.Id);
-
-            editServicoPecas_dgv.DataSource = pecas;
-
-            this.ShowDialog();
-        }
-
         private void editServicoButton_Click(object sender, EventArgs e)
         {
             try
@@ -61,19 +61,12 @@ namespace Potato.WindowsForms.Forms.ServicoForms
                 string descricao = editServicoDescricao_tb.Text;
                 double preco = Convert.ToDouble(editServicoPreco_tb.Text);
 
-                if (editServicoPecaQtd_numeric.Value == 0)
-                {
-                    throw new Exception("Selecione peca apenas para confirmar!");
-                }
-
                 var message = MessageBox.Show($"Editar Servico?", "Confirmar", MessageBoxButtons.OKCancel);
 
                 if (message == DialogResult.OK)
                 {                    
                     int newQuantidade = Convert.ToInt32(editServicoPecaQtd_numeric.Value);
                     int pecaId = Convert.ToInt32(editServicoPecaId_tb.Text);
-
-                    
 
                     if (newQuantidade > quantidadePeca)
                     {

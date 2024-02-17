@@ -28,61 +28,79 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             groupBox1 = new GroupBox();
-            venderPecaId_tb = new TextBox();
-            venderPecaQtdEstoque_numeric = new NumericUpDown();
+            label1 = new Label();
+            vendaTotal_tb = new TextBox();
+            venderPeca_dgv = new DataGridView();
             venderPecaButton = new Button();
-            quantidadeLabel = new Label();
-            nomeLabel = new Label();
-            precoLabel = new Label();
-            categoriaLabel = new Label();
-            venderPecaQuantidade_numeric = new NumericUpDown();
-            venderPecaPreco_tb = new TextBox();
-            venderPecaCategoria_tb = new TextBox();
-            venderPecaNome_tb = new TextBox();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)venderPecaQtdEstoque_numeric).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)venderPecaQuantidade_numeric).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)venderPeca_dgv).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(venderPecaId_tb);
-            groupBox1.Controls.Add(venderPecaQtdEstoque_numeric);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(vendaTotal_tb);
+            groupBox1.Controls.Add(venderPeca_dgv);
             groupBox1.Controls.Add(venderPecaButton);
-            groupBox1.Controls.Add(quantidadeLabel);
-            groupBox1.Controls.Add(nomeLabel);
-            groupBox1.Controls.Add(precoLabel);
-            groupBox1.Controls.Add(categoriaLabel);
-            groupBox1.Controls.Add(venderPecaQuantidade_numeric);
-            groupBox1.Controls.Add(venderPecaPreco_tb);
-            groupBox1.Controls.Add(venderPecaCategoria_tb);
-            groupBox1.Controls.Add(venderPecaNome_tb);
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(340, 270);
+            groupBox1.Size = new Size(516, 338);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Vender Peca";
             // 
-            // venderPecaId_tb
+            // label1
             // 
-            venderPecaId_tb.Enabled = false;
-            venderPecaId_tb.Location = new Point(117, 170);
-            venderPecaId_tb.Name = "venderPecaId_tb";
-            venderPecaId_tb.Size = new Size(121, 22);
-            venderPecaId_tb.TabIndex = 90;
-            venderPecaId_tb.Visible = false;
+            label1.AutoSize = true;
+            label1.Location = new Point(144, 246);
+            label1.Name = "label1";
+            label1.Size = new Size(42, 14);
+            label1.TabIndex = 5;
+            label1.Text = "Total:";
             // 
-            // venderPecaQtdEstoque_numeric
+            // vendaTotal_tb
             // 
-            venderPecaQtdEstoque_numeric.Enabled = false;
-            venderPecaQtdEstoque_numeric.Location = new Point(118, 142);
-            venderPecaQtdEstoque_numeric.Name = "venderPecaQtdEstoque_numeric";
-            venderPecaQtdEstoque_numeric.Size = new Size(120, 22);
-            venderPecaQtdEstoque_numeric.TabIndex = 89;
-            venderPecaQtdEstoque_numeric.Visible = false;
+            vendaTotal_tb.BackColor = Color.PaleGreen;
+            vendaTotal_tb.Location = new Point(192, 243);
+            vendaTotal_tb.Name = "vendaTotal_tb";
+            vendaTotal_tb.ReadOnly = true;
+            vendaTotal_tb.Size = new Size(131, 22);
+            vendaTotal_tb.TabIndex = 4;
+            // 
+            // venderPeca_dgv
+            // 
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(238, 239, 249);
+            venderPeca_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            venderPeca_dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            venderPeca_dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            venderPeca_dgv.BorderStyle = BorderStyle.Fixed3D;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle2.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new Padding(2);
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            venderPeca_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            venderPeca_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            venderPeca_dgv.Dock = DockStyle.Top;
+            venderPeca_dgv.EnableHeadersVisualStyles = false;
+            venderPeca_dgv.Location = new Point(3, 18);
+            venderPeca_dgv.Name = "venderPeca_dgv";
+            venderPeca_dgv.ReadOnly = true;
+            dataGridViewCellStyle3.Padding = new Padding(3);
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            venderPeca_dgv.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            venderPeca_dgv.RowTemplate.Height = 25;
+            venderPeca_dgv.Size = new Size(510, 212);
+            venderPeca_dgv.TabIndex = 3;
+            venderPeca_dgv.DataBindingComplete += venderPeca_dgv_DataBindingComplete;
             // 
             // venderPecaButton
             // 
@@ -91,7 +109,7 @@
             venderPecaButton.FlatStyle = FlatStyle.Flat;
             venderPecaButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             venderPecaButton.ForeColor = Color.White;
-            venderPecaButton.Location = new Point(6, 209);
+            venderPecaButton.Location = new Point(97, 277);
             venderPecaButton.Name = "venderPecaButton";
             venderPecaButton.Size = new Size(322, 49);
             venderPecaButton.TabIndex = 1;
@@ -99,105 +117,30 @@
             venderPecaButton.UseVisualStyleBackColor = false;
             venderPecaButton.Click += venderPecaButton_Click;
             // 
-            // quantidadeLabel
-            // 
-            quantidadeLabel.AutoSize = true;
-            quantidadeLabel.Location = new Point(12, 116);
-            quantidadeLabel.Name = "quantidadeLabel";
-            quantidadeLabel.Size = new Size(86, 14);
-            quantidadeLabel.TabIndex = 87;
-            quantidadeLabel.Text = "Quantidade:";
-            // 
-            // nomeLabel
-            // 
-            nomeLabel.AutoSize = true;
-            nomeLabel.Location = new Point(12, 34);
-            nomeLabel.Name = "nomeLabel";
-            nomeLabel.Size = new Size(48, 14);
-            nomeLabel.TabIndex = 84;
-            nomeLabel.Text = "Nome:";
-            // 
-            // precoLabel
-            // 
-            precoLabel.AutoSize = true;
-            precoLabel.Location = new Point(12, 63);
-            precoLabel.Name = "precoLabel";
-            precoLabel.Size = new Size(47, 14);
-            precoLabel.TabIndex = 85;
-            precoLabel.Text = "Preco:";
-            // 
-            // categoriaLabel
-            // 
-            categoriaLabel.AutoSize = true;
-            categoriaLabel.Location = new Point(12, 90);
-            categoriaLabel.Name = "categoriaLabel";
-            categoriaLabel.Size = new Size(74, 14);
-            categoriaLabel.TabIndex = 86;
-            categoriaLabel.Text = "Categoria:";
-            // 
-            // venderPecaQuantidade_numeric
-            // 
-            venderPecaQuantidade_numeric.Location = new Point(118, 114);
-            venderPecaQuantidade_numeric.Name = "venderPecaQuantidade_numeric";
-            venderPecaQuantidade_numeric.Size = new Size(210, 22);
-            venderPecaQuantidade_numeric.TabIndex = 0;
-            // 
-            // venderPecaPreco_tb
-            // 
-            venderPecaPreco_tb.Location = new Point(118, 87);
-            venderPecaPreco_tb.Name = "venderPecaPreco_tb";
-            venderPecaPreco_tb.ReadOnly = true;
-            venderPecaPreco_tb.Size = new Size(210, 22);
-            venderPecaPreco_tb.TabIndex = 2;
-            // 
-            // venderPecaCategoria_tb
-            // 
-            venderPecaCategoria_tb.Location = new Point(118, 60);
-            venderPecaCategoria_tb.Name = "venderPecaCategoria_tb";
-            venderPecaCategoria_tb.ReadOnly = true;
-            venderPecaCategoria_tb.Size = new Size(210, 22);
-            venderPecaCategoria_tb.TabIndex = 1;
-            // 
-            // venderPecaNome_tb
-            // 
-            venderPecaNome_tb.Location = new Point(118, 31);
-            venderPecaNome_tb.Name = "venderPecaNome_tb";
-            venderPecaNome_tb.ReadOnly = true;
-            venderPecaNome_tb.Size = new Size(210, 22);
-            venderPecaNome_tb.TabIndex = 0;
-            // 
             // VenderPecaForm
             // 
             AutoScaleDimensions = new SizeF(8F, 14F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(340, 270);
+            ClientSize = new Size(516, 338);
             Controls.Add(groupBox1);
             Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            MaximumSize = new Size(356, 309);
-            MinimumSize = new Size(356, 309);
+            MaximumSize = new Size(532, 377);
+            MinimumSize = new Size(532, 377);
             Name = "VenderPecaForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pecas";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)venderPecaQtdEstoque_numeric).EndInit();
-            ((System.ComponentModel.ISupportInitialize)venderPecaQuantidade_numeric).EndInit();
+            ((System.ComponentModel.ISupportInitialize)venderPeca_dgv).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private GroupBox groupBox1;
-        private NumericUpDown venderPecaQuantidade_numeric;
-        private TextBox venderPecaPreco_tb;
-        private TextBox venderPecaCategoria_tb;
-        private TextBox venderPecaNome_tb;
-        private Label quantidadeLabel;
-        private Label nomeLabel;
-        private Label precoLabel;
-        private Label categoriaLabel;
         private Button venderPecaButton;
-        private NumericUpDown venderPecaQtdEstoque_numeric;
-        private TextBox venderPecaId_tb;
+        private DataGridView venderPeca_dgv;
+        private Label label1;
+        private TextBox vendaTotal_tb;
     }
 }

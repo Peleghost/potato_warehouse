@@ -84,24 +84,24 @@
             // 
             // clienteTelefone_masktb
             // 
-            clienteTelefone_masktb.Location = new Point(102, 189);
-            clienteTelefone_masktb.Mask = "(00) 00000-0000";
+            clienteTelefone_masktb.Location = new Point(102, 105);
+            clienteTelefone_masktb.Mask = "(00)00000-0000";
             clienteTelefone_masktb.Name = "clienteTelefone_masktb";
             clienteTelefone_masktb.Size = new Size(405, 22);
-            clienteTelefone_masktb.TabIndex = 5;
+            clienteTelefone_masktb.TabIndex = 2;
             // 
             // clienteCpf_masktb
             // 
-            clienteCpf_masktb.Location = new Point(102, 105);
+            clienteCpf_masktb.Location = new Point(102, 133);
             clienteCpf_masktb.Mask = "000.000.000-00";
             clienteCpf_masktb.Name = "clienteCpf_masktb";
             clienteCpf_masktb.Size = new Size(405, 22);
-            clienteCpf_masktb.TabIndex = 2;
+            clienteCpf_masktb.TabIndex = 3;
             // 
             // clienteTelefone_label
             // 
             clienteTelefone_label.AutoSize = true;
-            clienteTelefone_label.Location = new Point(12, 192);
+            clienteTelefone_label.Location = new Point(12, 108);
             clienteTelefone_label.Name = "clienteTelefone_label";
             clienteTelefone_label.Size = new Size(65, 14);
             clienteTelefone_label.TabIndex = 61;
@@ -110,7 +110,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 164);
+            label2.Location = new Point(12, 192);
             label2.Name = "label2";
             label2.Size = new Size(45, 14);
             label2.TabIndex = 60;
@@ -118,15 +118,15 @@
             // 
             // clienteEmail_tb
             // 
-            clienteEmail_tb.Location = new Point(102, 161);
+            clienteEmail_tb.Location = new Point(102, 189);
             clienteEmail_tb.Name = "clienteEmail_tb";
             clienteEmail_tb.Size = new Size(405, 22);
-            clienteEmail_tb.TabIndex = 4;
+            clienteEmail_tb.TabIndex = 5;
             // 
             // clienteEndereco_label
             // 
             clienteEndereco_label.AutoSize = true;
-            clienteEndereco_label.Location = new Point(12, 136);
+            clienteEndereco_label.Location = new Point(12, 164);
             clienteEndereco_label.Name = "clienteEndereco_label";
             clienteEndereco_label.Size = new Size(71, 14);
             clienteEndereco_label.TabIndex = 58;
@@ -134,15 +134,15 @@
             // 
             // clienteEndereco_tb
             // 
-            clienteEndereco_tb.Location = new Point(102, 133);
+            clienteEndereco_tb.Location = new Point(102, 161);
             clienteEndereco_tb.Name = "clienteEndereco_tb";
             clienteEndereco_tb.Size = new Size(405, 22);
-            clienteEndereco_tb.TabIndex = 3;
+            clienteEndereco_tb.TabIndex = 4;
             // 
             // cpf_label
             // 
             cpf_label.AutoSize = true;
-            cpf_label.Location = new Point(12, 108);
+            cpf_label.Location = new Point(12, 136);
             cpf_label.Name = "cpf_label";
             cpf_label.Size = new Size(36, 14);
             cpf_label.TabIndex = 56;

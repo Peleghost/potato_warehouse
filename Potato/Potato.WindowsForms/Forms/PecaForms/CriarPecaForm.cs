@@ -19,16 +19,26 @@ namespace Potato.WindowsForms.PecaForms
         {
             try
             {
-                if (pecaNome_tb.Text == String.Empty)
+                string nome, categoria;
+
+                if (pecaNome_tb.Text.Trim() == string.Empty || pecaCategoria_tb.Text.Trim() == string.Empty)
                 {
-                    throw new Exception(message: "Error: Campo Nome nao preenchido.");
+                    throw new Exception("Campos Nome ou Categoria nao preenchido.");
+                }
+                else
+                {
+                    string tempNome = pecaNome_tb.Text.Trim();
+                    string tempCategoria = pecaCategoria_tb.Text.Trim();
+
+                    nome = char.ToUpper(tempNome[0]) + tempNome.Substring(1);
+                    categoria = char.ToUpper(tempCategoria[0]) + tempCategoria.Substring(1);
                 }
 
                 Peca peca = new()
                 {
-                    Nome = pecaNome_tb.Text,
+                    Nome = nome,
                     Preco = double.Parse(pecaPreco_tb.Text),
-                    Categoria = pecaCategoria_tb.Text
+                    Categoria = categoria
                 };
 
                 var pecaId = _pecaRepository.CriarPeca(peca);
@@ -46,15 +56,8 @@ namespace Potato.WindowsForms.PecaForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}\n\nErro: Formato nao aceito ou campo nao preenchido.");
+                MessageBox.Show($"Error: {ex.Message}\n\nError: Formato nao aceito ou campo nao preenchido.");
             }
         }
-
-        //private void pecaPreco_tb_Click(object sender, EventArgs e)
-        //{
-        //    var pecaPrecoTb = this.pecaPreco_tb;
-        //    pecaPrecoTb.Select(6, 0);
-
-        //}
     }
 }

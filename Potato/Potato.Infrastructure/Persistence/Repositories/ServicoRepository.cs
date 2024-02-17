@@ -31,7 +31,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
                     ", Veiculo.placa as Veiculo_Placa, Servico.id as Id" +
 
-                    ", descricao, preco as Preco, Servico.dataCriacao as DataCriacao" +
+                    ", descricao, mecanico, preco as Preco, Servico.dataCriacao as DataCriacao" +
 
                     ", Servico.dataFinal as DataFinal, Servico.ativo as Ativo " +
                     
@@ -67,9 +67,9 @@ namespace Potato.Infrastructure.Persistence.Repositories
                 int clienteId = servico.Cliente!.Id;
                 int veiculoId = servico.Veiculo!.Id;
 
-                string sql = $"INSERT INTO Servico (clienteId, veiculoId, pecaId, descricao, datacriacao, preco, ativo) " +
+                string sql = $"INSERT INTO Servico (clienteId, veiculoId, pecaId, descricao, mecanico, datacriacao, preco, ativo) " +
 
-                    $"VALUES ({clienteId}, {veiculoId}, NULL, '{servico.Descricao}'" +
+                    $"VALUES ({clienteId}, {veiculoId}, NULL, '{servico.Descricao}', '{servico.Mecanico}'" +
                     
                     $", '{servico.DataCriacao}', {servico.Preco}, {servico.Ativo});" +
 
@@ -167,7 +167,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
             }
         }
 
-        public IEnumerable<Servico> GetByClienteOuVeiculo(string criterio, string busca) 
+        public IEnumerable<ServicoModel> GetByClienteOuVeiculo(string criterio, string busca) 
         {
             try
             {
@@ -182,7 +182,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     
                     ", Veiculo.placa as Veiculo_Placa, Servico.id as Id" +
 
-                    ", descricao, preco as Preco, Servico.dataCriacao as DataCriacao" +
+                    ", descricao, mecanico, preco as Preco, Servico.dataCriacao as DataCriacao" +
                     
                     ", Servico.dataFinal as DataFinal, Servico.ativo as Ativo " +
 
@@ -194,7 +194,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
                     $"WHERE {criterio} LIKE '%{busca}%'";
 
-                var servicos = _connection.Query<Servico>(sql, commandType: CommandType.Text);
+                var servicos = _connection.Query<ServicoModel>(sql, commandType: CommandType.Text);
 
                 return servicos;
 
@@ -206,7 +206,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
         }
 
-        public IEnumerable<Servico> GetByDate(string dateStart, string dateEnd)
+        public IEnumerable<ServicoModel> GetByDate(string dateStart, string dateEnd)
         {
             try
             {
@@ -221,7 +221,7 @@ namespace Potato.Infrastructure.Persistence.Repositories
                     
                     ", Veiculo.placa as Veiculo_Placa, Servico.id as Id" +
 
-                    ", descricao, preco as Preco, Servico.dataCriacao as DataCriacao" +
+                    ", descricao, mecanico, preco as Preco, Servico.dataCriacao as DataCriacao" +
                     
                     ", Servico.dataFinal as DataFinal, Servico.ativo as Ativo " +
 
@@ -233,7 +233,44 @@ namespace Potato.Infrastructure.Persistence.Repositories
 
                     $"WHERE Servico.dataCriacao BETWEEN '{dateStart}' AND '{dateEnd}';";
 
-                var servicos = _connection.Query<Servico>(sql, commandType: CommandType.Text);
+                var servicos = _connection.Query<ServicoModel>(sql, commandType: CommandType.Text);
+
+                return servicos;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<ServicoModel> GetByMecanico(string mecanico)
+        {
+            try
+            {
+                if (_connection.State == ConnectionState.Closed)
+                {
+                    _connection.Open();
+                }
+
+                string sql = "SELECT Cliente.primeiroNome || ' ' || Cliente.sobrenome as Cliente_Nome" +
+
+                    ", Veiculo.Marca || ' ' || Veiculo.Modelo as Veiculo_Nome" +
+
+                    ", Veiculo.placa as Veiculo_Placa, Servico.id as Id" +
+
+                    ", descricao, mecanico, preco as Preco, Servico.dataCriacao as DataCriacao" +
+
+                    ", Servico.dataFinal as DataFinal, Servico.ativo as Ativo " +
+
+                    "FROM Servico " +
+
+                    "INNER JOIN Cliente on Servico.clienteId = Cliente.id " +
+
+                    "INNER JOIN Veiculo on Servico.veiculoId = Veiculo.id " +
+
+                    $"WHERE Servico.mecanico LIKE '%{mecanico}%'";
+
+                var servicos = _connection.Query<ServicoModel>(sql, commandType: CommandType.Text);
 
                 return servicos;
             }
