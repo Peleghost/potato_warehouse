@@ -426,15 +426,24 @@ namespace Potato.WindowsForms
                 }
                 else
                 {
-                    peca.Quantidade = Convert.ToInt32(venderPecaNumeric_tb.Value);
+                    quantidade = Convert.ToInt32(venderPecaNumeric_tb.Value);
                 }
 
-                if (PecasVender.Where(x => x.Id == peca.Id).Any())
+                var newPeca = new Peca() 
+                {
+                    Id = peca.Id,
+                    Nome = peca.Nome,
+                    Categoria = peca.Categoria,
+                    Preco = peca.Preco,
+                    Quantidade = quantidade,
+                };
+
+                if (PecasVender.Where(x => x.Id == newPeca.Id).Any())
                 {
                     throw new Exception("Error: Peca ja adicionada!");
                 }
 
-                PecasVender.Add(peca);
+                PecasVender.Add(newPeca);
 
                 venderPeca_dgv.DataSource = PecasVender;
 
@@ -445,6 +454,8 @@ namespace Potato.WindowsForms
                     preco += item.Preco * item.Quantidade;
                     venderPecaTotal_tb.Text = $"{preco:C}";
                 }
+
+                venderPecaNumeric_tb.Value = 0;
             }
             catch (Exception ex)
             {

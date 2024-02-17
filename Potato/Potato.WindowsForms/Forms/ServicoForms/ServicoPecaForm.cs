@@ -177,15 +177,24 @@ namespace Potato.WindowsForms.Forms.ServicoForms
                 }
                 else
                 {
-                    peca.Quantidade = Convert.ToInt32(servicoPecaQuantidade_numeric.Value);
+                    quantidade = Convert.ToInt32(servicoPecaQuantidade_numeric.Value);
                 }
 
-                if (pecas.Where(x => x.Id == peca.Id).Any())
+                var newPeca = new Peca()
+                {
+                    Id = peca.Id,
+                    Nome = peca.Nome,
+                    Categoria = peca.Categoria,
+                    Preco = peca.Preco,
+                    Quantidade = quantidade,
+                };
+
+                if (pecas.Where(x => x.Id == newPeca.Id).Any())
                 {
                     throw new Exception("Error: Peca ja adicionada!");
                 }
 
-                pecas.Add(peca);
+                pecas.Add(newPeca);
 
                 servicoPecaAdicionar_dgv.DataSource = pecas;
             }
