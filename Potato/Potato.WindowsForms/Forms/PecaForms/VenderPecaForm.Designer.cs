@@ -49,7 +49,7 @@
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(516, 338);
+            groupBox1.Size = new Size(400, 338);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Vender Peca";
@@ -57,7 +57,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(144, 246);
+            label1.Location = new Point(12, 246);
             label1.Name = "label1";
             label1.Size = new Size(42, 14);
             label1.TabIndex = 5;
@@ -66,10 +66,10 @@
             // vendaTotal_tb
             // 
             vendaTotal_tb.BackColor = Color.PaleGreen;
-            vendaTotal_tb.Location = new Point(192, 243);
+            vendaTotal_tb.Location = new Point(60, 243);
             vendaTotal_tb.Name = "vendaTotal_tb";
             vendaTotal_tb.ReadOnly = true;
-            vendaTotal_tb.Size = new Size(131, 22);
+            vendaTotal_tb.Size = new Size(163, 22);
             vendaTotal_tb.TabIndex = 4;
             // 
             // venderPeca_dgv
@@ -98,7 +98,7 @@
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             venderPeca_dgv.RowsDefaultCellStyle = dataGridViewCellStyle3;
             venderPeca_dgv.RowTemplate.Height = 25;
-            venderPeca_dgv.Size = new Size(510, 212);
+            venderPeca_dgv.Size = new Size(394, 212);
             venderPeca_dgv.TabIndex = 3;
             venderPeca_dgv.DataBindingComplete += venderPeca_dgv_DataBindingComplete;
             // 
@@ -109,9 +109,9 @@
             venderPecaButton.FlatStyle = FlatStyle.Flat;
             venderPecaButton.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             venderPecaButton.ForeColor = Color.White;
-            venderPecaButton.Location = new Point(97, 277);
+            venderPecaButton.Location = new Point(12, 277);
             venderPecaButton.Name = "venderPecaButton";
-            venderPecaButton.Size = new Size(322, 49);
+            venderPecaButton.Size = new Size(376, 49);
             venderPecaButton.TabIndex = 1;
             venderPecaButton.Text = "Vender";
             venderPecaButton.UseVisualStyleBackColor = false;
@@ -121,11 +121,11 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 14F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(516, 338);
+            ClientSize = new Size(400, 338);
             Controls.Add(groupBox1);
             Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            MaximumSize = new Size(532, 377);
-            MinimumSize = new Size(532, 377);
+            MaximumSize = new Size(416, 377);
+            MinimumSize = new Size(416, 377);
             Name = "VenderPecaForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pecas";

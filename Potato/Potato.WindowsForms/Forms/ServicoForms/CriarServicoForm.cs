@@ -156,6 +156,9 @@ namespace Potato.WindowsForms.Forms.ServicoForms
         {
             var veiculo = (Veiculo)servicoVeiculo_dgv.CurrentRow.DataBoundItem;
 
+            servicoDescricao_tb.Text = $"********************\nCliente Id: {veiculo.ClienteId} \nVeiculo: {veiculo.Marca} {veiculo.Modelo}" +
+                $"\n********************\n";
+
             PopulateServicoVeiculoTb(veiculo);
         }
 

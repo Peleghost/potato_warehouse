@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Potato.Infrastructure", "Po
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Potato.Domain", "Potato.Domain\Potato.Domain.csproj", "{210A47EB-2B70-4B37-B60B-6391C12904A8}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PotatoMotorsSetup", "PotatoMotorsSetup\PotatoMotorsSetup.vdproj", "{B93E571E-9DF2-436E-BF08-E4FE1F925D94}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PotatoMotorsSetup", "PotatoMotorsSetup\PotatoMotorsSetup.vdproj", "{53B3CA64-7CD0-45FF-955A-5DD757E1F13A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,8 +29,8 @@ Global
 		{210A47EB-2B70-4B37-B60B-6391C12904A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{210A47EB-2B70-4B37-B60B-6391C12904A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{210A47EB-2B70-4B37-B60B-6391C12904A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B93E571E-9DF2-436E-BF08-E4FE1F925D94}.Debug|Any CPU.ActiveCfg = Debug
-		{B93E571E-9DF2-436E-BF08-E4FE1F925D94}.Release|Any CPU.ActiveCfg = Release
+		{53B3CA64-7CD0-45FF-955A-5DD757E1F13A}.Debug|Any CPU.ActiveCfg = Debug
+		{53B3CA64-7CD0-45FF-955A-5DD757E1F13A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

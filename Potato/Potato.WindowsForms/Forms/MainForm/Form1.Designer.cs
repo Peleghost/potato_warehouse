@@ -46,6 +46,8 @@
             listarPecas_btn = new Button();
             mainTabControl = new TabControl();
             pecaTabPage = new TabPage();
+            panel1 = new Panel();
+            label14 = new Label();
             labelTotalRecords = new Label();
             deletePeca_btn = new Button();
             editPeca_btn = new Button();
@@ -73,6 +75,8 @@
             searchTextBox = new TextBox();
             searchPeca_combo = new ComboBox();
             clienteTabPage = new TabPage();
+            panel2 = new Panel();
+            label15 = new Label();
             deleteCliente_btn = new Button();
             editCliente_btn = new Button();
             clienteServico_btn = new Button();
@@ -84,6 +88,7 @@
             cliente_gb = new GroupBox();
             allClientes_dgv = new DataGridView();
             servicoTabPage = new TabPage();
+            totalServicoLabel = new Label();
             label3 = new Label();
             label2 = new Label();
             dateStart_picker = new DateTimePicker();
@@ -114,6 +119,7 @@
             servico_gb = new GroupBox();
             allServicos_dgv = new DataGridView();
             veiculoTabPage = new TabPage();
+            totalVeiculosLabel = new Label();
             searchVeiculo_combo = new ComboBox();
             deleteVeiculo_btn = new Button();
             editVeiculo_btn = new Button();
@@ -126,8 +132,11 @@
             groupBox2 = new GroupBox();
             allVeiculos_dgv = new DataGridView();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            label16 = new Label();
+            panel3 = new Panel();
             mainTabControl.SuspendLayout();
             pecaTabPage.SuspendLayout();
+            panel1.SuspendLayout();
             gb_pecasControl.SuspendLayout();
             groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)venderPeca_dgv).BeginInit();
@@ -135,6 +144,7 @@
             gb_pecas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)allPecas_dgv).BeginInit();
             clienteTabPage.SuspendLayout();
+            panel2.SuspendLayout();
             cliente_gb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)allClientes_dgv).BeginInit();
             servicoTabPage.SuspendLayout();
@@ -147,6 +157,7 @@
             veiculoTabPage.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)allVeiculos_dgv).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // listarPecas_btn
@@ -156,10 +167,10 @@
             listarPecas_btn.FlatStyle = FlatStyle.Flat;
             listarPecas_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             listarPecas_btn.ForeColor = Color.White;
-            listarPecas_btn.Location = new Point(1143, 6);
+            listarPecas_btn.Location = new Point(820, 7);
             listarPecas_btn.MaximumSize = new Size(144, 43);
             listarPecas_btn.Name = "listarPecas_btn";
-            listarPecas_btn.Size = new Size(144, 29);
+            listarPecas_btn.Size = new Size(144, 32);
             listarPecas_btn.TabIndex = 0;
             listarPecas_btn.Text = "Listar Todas Pecas";
             listarPecas_btn.UseVisualStyleBackColor = false;
@@ -183,6 +194,7 @@
             // 
             // pecaTabPage
             // 
+            pecaTabPage.Controls.Add(panel1);
             pecaTabPage.Controls.Add(labelTotalRecords);
             pecaTabPage.Controls.Add(deletePeca_btn);
             pecaTabPage.Controls.Add(editPeca_btn);
@@ -203,11 +215,33 @@
             pecaTabPage.Text = "Pecas";
             pecaTabPage.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panel1.BackColor = Color.DimGray;
+            panel1.Controls.Add(label14);
+            panel1.Location = new Point(970, 7);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(416, 32);
+            panel1.TabIndex = 67;
+            // 
+            // label14
+            // 
+            label14.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label14.AutoSize = true;
+            label14.Font = new Font("Stencil", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            label14.ForeColor = Color.Transparent;
+            label14.Location = new Point(119, 4);
+            label14.Name = "label14";
+            label14.Size = new Size(171, 26);
+            label14.TabIndex = 0;
+            label14.Text = "Batata Motos";
+            // 
             // labelTotalRecords
             // 
             labelTotalRecords.AutoSize = true;
             labelTotalRecords.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            labelTotalRecords.Location = new Point(8, 15);
+            labelTotalRecords.Location = new Point(6, 13);
             labelTotalRecords.Name = "labelTotalRecords";
             labelTotalRecords.Size = new Size(96, 14);
             labelTotalRecords.TabIndex = 2;
@@ -298,6 +332,7 @@
             // 
             venderPecaTotal_tb.Location = new Point(109, 447);
             venderPecaTotal_tb.Name = "venderPecaTotal_tb";
+            venderPecaTotal_tb.ReadOnly = true;
             venderPecaTotal_tb.Size = new Size(219, 22);
             venderPecaTotal_tb.TabIndex = 70;
             // 
@@ -316,6 +351,7 @@
             // 
             removePeca_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             removePeca_btn.BackColor = Color.IndianRed;
+            removePeca_btn.Enabled = false;
             removePeca_btn.FlatStyle = FlatStyle.Flat;
             removePeca_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             removePeca_btn.ForeColor = Color.White;
@@ -517,9 +553,9 @@
             searchPeca_btn.FlatStyle = FlatStyle.Flat;
             searchPeca_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             searchPeca_btn.ForeColor = Color.White;
-            searchPeca_btn.Location = new Point(993, 7);
+            searchPeca_btn.Location = new Point(670, 7);
             searchPeca_btn.Name = "searchPeca_btn";
-            searchPeca_btn.Size = new Size(144, 27);
+            searchPeca_btn.Size = new Size(144, 32);
             searchPeca_btn.TabIndex = 3;
             searchPeca_btn.Text = "Buscar";
             searchPeca_btn.UseVisualStyleBackColor = false;
@@ -528,7 +564,7 @@
             // searchTextBox
             // 
             searchTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            searchTextBox.Location = new Point(717, 9);
+            searchTextBox.Location = new Point(394, 13);
             searchTextBox.Name = "searchTextBox";
             searchTextBox.Size = new Size(270, 22);
             searchTextBox.TabIndex = 2;
@@ -540,7 +576,7 @@
             searchPeca_combo.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             searchPeca_combo.FormattingEnabled = true;
             searchPeca_combo.Items.AddRange(new object[] { "ID", "Nome", "Categoria" });
-            searchPeca_combo.Location = new Point(590, 9);
+            searchPeca_combo.Location = new Point(267, 13);
             searchPeca_combo.Name = "searchPeca_combo";
             searchPeca_combo.Size = new Size(121, 22);
             searchPeca_combo.TabIndex = 4;
@@ -548,6 +584,7 @@
             // 
             // clienteTabPage
             // 
+            clienteTabPage.Controls.Add(panel2);
             clienteTabPage.Controls.Add(deleteCliente_btn);
             clienteTabPage.Controls.Add(editCliente_btn);
             clienteTabPage.Controls.Add(clienteServico_btn);
@@ -564,6 +601,28 @@
             clienteTabPage.TabIndex = 1;
             clienteTabPage.Text = "Clientes";
             clienteTabPage.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panel2.BackColor = Color.DimGray;
+            panel2.Controls.Add(label15);
+            panel2.Location = new Point(970, 7);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(416, 32);
+            panel2.TabIndex = 70;
+            // 
+            // label15
+            // 
+            label15.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label15.AutoSize = true;
+            label15.Font = new Font("Stencil", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            label15.ForeColor = Color.Transparent;
+            label15.Location = new Point(119, 4);
+            label15.Name = "label15";
+            label15.Size = new Size(171, 26);
+            label15.TabIndex = 0;
+            label15.Text = "Batata Motos";
             // 
             // deleteCliente_btn
             // 
@@ -615,7 +674,7 @@
             // 
             totalClientesLabel.AutoSize = true;
             totalClientesLabel.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            totalClientesLabel.Location = new Point(8, 15);
+            totalClientesLabel.Location = new Point(6, 13);
             totalClientesLabel.Name = "totalClientesLabel";
             totalClientesLabel.Size = new Size(96, 14);
             totalClientesLabel.TabIndex = 5;
@@ -628,10 +687,9 @@
             listarCliente_btn.FlatStyle = FlatStyle.Flat;
             listarCliente_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             listarCliente_btn.ForeColor = Color.White;
-            listarCliente_btn.Location = new Point(1242, 6);
-            listarCliente_btn.MaximumSize = new Size(144, 43);
+            listarCliente_btn.Location = new Point(820, 7);
             listarCliente_btn.Name = "listarCliente_btn";
-            listarCliente_btn.Size = new Size(144, 29);
+            listarCliente_btn.Size = new Size(144, 32);
             listarCliente_btn.TabIndex = 4;
             listarCliente_btn.Text = "Listar Clientes";
             listarCliente_btn.UseVisualStyleBackColor = false;
@@ -644,9 +702,9 @@
             searchCliente_btn.FlatStyle = FlatStyle.Flat;
             searchCliente_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             searchCliente_btn.ForeColor = Color.White;
-            searchCliente_btn.Location = new Point(1092, 7);
+            searchCliente_btn.Location = new Point(670, 7);
             searchCliente_btn.Name = "searchCliente_btn";
-            searchCliente_btn.Size = new Size(144, 27);
+            searchCliente_btn.Size = new Size(144, 32);
             searchCliente_btn.TabIndex = 7;
             searchCliente_btn.Text = "Buscar";
             searchCliente_btn.UseVisualStyleBackColor = false;
@@ -670,7 +728,7 @@
             // searchCliente_tb
             // 
             searchCliente_tb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            searchCliente_tb.Location = new Point(816, 9);
+            searchCliente_tb.Location = new Point(394, 13);
             searchCliente_tb.Name = "searchCliente_tb";
             searchCliente_tb.Size = new Size(270, 22);
             searchCliente_tb.TabIndex = 6;
@@ -716,6 +774,7 @@
             // 
             // servicoTabPage
             // 
+            servicoTabPage.Controls.Add(totalServicoLabel);
             servicoTabPage.Controls.Add(label3);
             servicoTabPage.Controls.Add(label2);
             servicoTabPage.Controls.Add(dateStart_picker);
@@ -738,10 +797,20 @@
             servicoTabPage.Text = "Servicos";
             servicoTabPage.UseVisualStyleBackColor = true;
             // 
+            // totalServicoLabel
+            // 
+            totalServicoLabel.AutoSize = true;
+            totalServicoLabel.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            totalServicoLabel.Location = new Point(6, 13);
+            totalServicoLabel.Name = "totalServicoLabel";
+            totalServicoLabel.Size = new Size(96, 14);
+            totalServicoLabel.TabIndex = 83;
+            totalServicoLabel.Text = "Total Records:";
+            // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(242, 12);
+            label3.Location = new Point(373, 12);
             label3.Name = "label3";
             label3.Size = new Size(29, 14);
             label3.TabIndex = 82;
@@ -750,7 +819,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(399, 13);
+            label2.Location = new Point(530, 13);
             label2.Name = "label2";
             label2.Size = new Size(33, 14);
             label2.TabIndex = 81;
@@ -759,7 +828,7 @@
             // dateStart_picker
             // 
             dateStart_picker.Format = DateTimePickerFormat.Short;
-            dateStart_picker.Location = new Point(277, 9);
+            dateStart_picker.Location = new Point(408, 9);
             dateStart_picker.Name = "dateStart_picker";
             dateStart_picker.Size = new Size(116, 22);
             dateStart_picker.TabIndex = 80;
@@ -767,7 +836,7 @@
             // dateEnd_picker
             // 
             dateEnd_picker.Format = DateTimePickerFormat.Short;
-            dateEnd_picker.Location = new Point(438, 9);
+            dateEnd_picker.Location = new Point(569, 9);
             dateEnd_picker.Name = "dateEnd_picker";
             dateEnd_picker.Size = new Size(116, 22);
             dateEnd_picker.TabIndex = 79;
@@ -779,7 +848,7 @@
             searchServico_combo.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             searchServico_combo.FormattingEnabled = true;
             searchServico_combo.Items.AddRange(new object[] { "Cliente_Nome", "Veiculo_Placa", "Mecanico", "Data" });
-            searchServico_combo.Location = new Point(694, 9);
+            searchServico_combo.Location = new Point(691, 9);
             searchServico_combo.Name = "searchServico_combo";
             searchServico_combo.Size = new Size(121, 22);
             searchServico_combo.TabIndex = 78;
@@ -966,7 +1035,7 @@
             listarServico_btn.FlatStyle = FlatStyle.Flat;
             listarServico_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             listarServico_btn.ForeColor = Color.White;
-            listarServico_btn.Location = new Point(1247, 6);
+            listarServico_btn.Location = new Point(1244, 6);
             listarServico_btn.MaximumSize = new Size(144, 43);
             listarServico_btn.Name = "listarServico_btn";
             listarServico_btn.Size = new Size(144, 29);
@@ -982,7 +1051,7 @@
             searchServico_btn.FlatStyle = FlatStyle.Flat;
             searchServico_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             searchServico_btn.ForeColor = Color.White;
-            searchServico_btn.Location = new Point(1097, 7);
+            searchServico_btn.Location = new Point(1094, 7);
             searchServico_btn.Name = "searchServico_btn";
             searchServico_btn.Size = new Size(144, 27);
             searchServico_btn.TabIndex = 76;
@@ -993,7 +1062,7 @@
             // searchServico_tb
             // 
             searchServico_tb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            searchServico_tb.Location = new Point(821, 9);
+            searchServico_tb.Location = new Point(818, 9);
             searchServico_tb.Name = "searchServico_tb";
             searchServico_tb.Size = new Size(270, 22);
             searchServico_tb.TabIndex = 75;
@@ -1100,6 +1169,8 @@
             // 
             // veiculoTabPage
             // 
+            veiculoTabPage.Controls.Add(panel3);
+            veiculoTabPage.Controls.Add(totalVeiculosLabel);
             veiculoTabPage.Controls.Add(searchVeiculo_combo);
             veiculoTabPage.Controls.Add(deleteVeiculo_btn);
             veiculoTabPage.Controls.Add(editVeiculo_btn);
@@ -1118,6 +1189,16 @@
             veiculoTabPage.Text = "Veiculos";
             veiculoTabPage.UseVisualStyleBackColor = true;
             // 
+            // totalVeiculosLabel
+            // 
+            totalVeiculosLabel.AutoSize = true;
+            totalVeiculosLabel.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            totalVeiculosLabel.Location = new Point(6, 13);
+            totalVeiculosLabel.Name = "totalVeiculosLabel";
+            totalVeiculosLabel.Size = new Size(96, 14);
+            totalVeiculosLabel.TabIndex = 86;
+            totalVeiculosLabel.Text = "Total Records:";
+            // 
             // searchVeiculo_combo
             // 
             searchVeiculo_combo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -1125,7 +1206,7 @@
             searchVeiculo_combo.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             searchVeiculo_combo.FormattingEnabled = true;
             searchVeiculo_combo.Items.AddRange(new object[] { "Cliente", "Marca", "Modelo", "Placa" });
-            searchVeiculo_combo.Location = new Point(590, 9);
+            searchVeiculo_combo.Location = new Point(257, 9);
             searchVeiculo_combo.Name = "searchVeiculo_combo";
             searchVeiculo_combo.Size = new Size(121, 22);
             searchVeiculo_combo.TabIndex = 85;
@@ -1211,7 +1292,7 @@
             listarVeiculo_btn.FlatStyle = FlatStyle.Flat;
             listarVeiculo_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             listarVeiculo_btn.ForeColor = Color.White;
-            listarVeiculo_btn.Location = new Point(1143, 6);
+            listarVeiculo_btn.Location = new Point(810, 6);
             listarVeiculo_btn.MaximumSize = new Size(144, 43);
             listarVeiculo_btn.Name = "listarVeiculo_btn";
             listarVeiculo_btn.Size = new Size(144, 29);
@@ -1226,7 +1307,7 @@
             searchVeiculo_btn.FlatStyle = FlatStyle.Flat;
             searchVeiculo_btn.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             searchVeiculo_btn.ForeColor = Color.White;
-            searchVeiculo_btn.Location = new Point(993, 7);
+            searchVeiculo_btn.Location = new Point(660, 7);
             searchVeiculo_btn.Name = "searchVeiculo_btn";
             searchVeiculo_btn.Size = new Size(144, 27);
             searchVeiculo_btn.TabIndex = 79;
@@ -1236,7 +1317,7 @@
             // searchVeiculo_tb
             // 
             searchVeiculo_tb.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            searchVeiculo_tb.Location = new Point(717, 9);
+            searchVeiculo_tb.Location = new Point(384, 9);
             searchVeiculo_tb.Name = "searchVeiculo_tb";
             searchVeiculo_tb.Size = new Size(270, 22);
             searchVeiculo_tb.TabIndex = 78;
@@ -1280,6 +1361,28 @@
             allVeiculos_dgv.DataBindingComplete += allVeiculos_dgv_DataBindingComplete;
             allVeiculos_dgv.RowHeaderMouseDoubleClick += allVeiculos_dgv_RowHeaderMouseDoubleClick;
             // 
+            // label16
+            // 
+            label16.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label16.AutoSize = true;
+            label16.Font = new Font("Stencil", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            label16.ForeColor = Color.Transparent;
+            label16.Location = new Point(133, 4);
+            label16.Name = "label16";
+            label16.Size = new Size(171, 26);
+            label16.TabIndex = 0;
+            label16.Text = "Batata Motos";
+            // 
+            // panel3
+            // 
+            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panel3.BackColor = Color.DimGray;
+            panel3.Controls.Add(label16);
+            panel3.Location = new Point(960, 7);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(426, 32);
+            panel3.TabIndex = 87;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1296,6 +1399,8 @@
             mainTabControl.ResumeLayout(false);
             pecaTabPage.ResumeLayout(false);
             pecaTabPage.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             gb_pecasControl.ResumeLayout(false);
             gb_pecasControl.PerformLayout();
             groupBox4.ResumeLayout(false);
@@ -1305,6 +1410,8 @@
             ((System.ComponentModel.ISupportInitialize)allPecas_dgv).EndInit();
             clienteTabPage.ResumeLayout(false);
             clienteTabPage.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             cliente_gb.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)allClientes_dgv).EndInit();
             servicoTabPage.ResumeLayout(false);
@@ -1321,6 +1428,8 @@
             veiculoTabPage.PerformLayout();
             groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)allVeiculos_dgv).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1409,5 +1518,13 @@
         private TextBox venderPecaId_tb;
         private Label label13;
         private TextBox venderPecaTotal_tb;
+        private Label totalServicoLabel;
+        private Label totalVeiculosLabel;
+        private Panel panel1;
+        private Label label14;
+        private Panel panel2;
+        private Label label15;
+        private Panel panel3;
+        private Label label16;
     }
 }

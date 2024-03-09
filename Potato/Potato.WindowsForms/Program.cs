@@ -1,18 +1,15 @@
 using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore.Sqlite.Infrastructure.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Potato.Domain.Repositories;
 using Potato.Infrastructure.Persistence.Repositories;
 using System.Data;
+using static System.Environment;
 
 namespace Potato.WindowsForms
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        ///
-        
         [STAThread]
         static void Main()
         {
@@ -20,7 +17,7 @@ namespace Potato.WindowsForms
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             
-            // Dependency Injection
+            //// Dependency Injection
             var services = new ServiceCollection();
             services.AddTransient<IArmazemRepository, ArmazemRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
@@ -29,11 +26,43 @@ namespace Potato.WindowsForms
             services.AddTransient<IClienteRepository, ClienteRepository>();
             services.AddTransient<IVeiculoRepository, VeiculoRepository>();
             services.AddTransient<IServicoRepository, ServicoRepository>();
-
-            // Inject IDbConnection, with implementation from SqliteConnection class.
-            string dbPath = "Data Source=" + Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "Data\\PotatoDB.db");
-            services.AddTransient<IDbConnection>((sp) => new SqliteConnection(dbPath));
             
+
+            // Create directory in Special Folder C:\ProgramData for database folder, and copy clean database from install directory \Data to Special Folder
+            try
+            {
+                string appFolder = GetFolderPath(SpecialFolder.CommonApplicationData);
+                appFolder = Path.Combine(appFolder, "BatataMotosDb");
+
+                if (!Directory.Exists(appFolder))
+                {
+                    Directory.CreateDirectory(appFolder);
+                }
+
+                string dbPath = Path.Combine(appFolder, "PotatoDB.db");
+
+                if (!File.Exists(dbPath))
+                {
+                    string dataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "Data\\PotatoDB.db");
+                    File.Copy(dataPath, dbPath, true);
+                }
+
+                // Inject IDbConnection, with implementation from SqliteConnection class.
+                services.AddTransient<IDbConnection>((sp) => new SqliteConnection($"Data Source={dbPath}"));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+            // ---------- Local Connection ----------
+            //
+            //string dbPath = "Data Source=" + Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "Data\\PotatoDB.db");
+            //services.AddTransient<IDbConnection>((sp) => new SqliteConnection(dbPath));
+            //
+            // -----------------------------------------------------------------------------------------------------------
+
             services.AddTransient<Form1>();
             services.AddTransient<LoginForm>();
             //

@@ -224,6 +224,8 @@ namespace Potato.WindowsForms
             allServicos_dgv.DataSource = servicos;
 
             ServicoFinalizado();
+
+            totalServicoLabel.Text = $"Total Records: {allServicos_dgv.RowCount}";
         }
 
         // To populate and refresh allVeiculos_dgv
@@ -232,6 +234,8 @@ namespace Potato.WindowsForms
             var veiculos = _veiculoRepository.GetAll();
 
             allVeiculos_dgv.DataSource = veiculos;
+
+            totalVeiculosLabel.Text = $"Total Records: {allVeiculos_dgv.RowCount}";
         }
         //
 
@@ -300,7 +304,7 @@ namespace Potato.WindowsForms
         private void EnableVeiculoControls()
         {
             editVeiculo_btn.Enabled = true;
-            //deleteVeiculo_btn.Enabled = true;
+            deleteVeiculo_btn.Enabled = true;
         }
 
         private void DisableVeiculoControls()

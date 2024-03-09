@@ -12,6 +12,7 @@ namespace Potato.WindowsForms.Forms.PecaForms
         {
             _pecaRepository = pecaRepository;
             InitializeComponent();
+            this.AutoSize = true;
         }
 
         public void ShowDialog(ref BindingList<Peca> pecas)
