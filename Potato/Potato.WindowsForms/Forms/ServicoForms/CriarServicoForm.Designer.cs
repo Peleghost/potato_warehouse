@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             servicoCliente_gb = new GroupBox();
             label6 = new Label();
             servicoClienteId_tb = new TextBox();
@@ -188,23 +188,23 @@
             servicoVeiculo_dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             servicoVeiculo_dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             servicoVeiculo_dgv.BorderStyle = BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle1.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            servicoVeiculo_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle3.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            servicoVeiculo_dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             servicoVeiculo_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             servicoVeiculo_dgv.Dock = DockStyle.Top;
             servicoVeiculo_dgv.EnableHeadersVisualStyles = false;
             servicoVeiculo_dgv.Location = new Point(3, 18);
             servicoVeiculo_dgv.Name = "servicoVeiculo_dgv";
             servicoVeiculo_dgv.ReadOnly = true;
-            dataGridViewCellStyle2.Padding = new Padding(3);
-            servicoVeiculo_dgv.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Padding = new Padding(3);
+            servicoVeiculo_dgv.RowsDefaultCellStyle = dataGridViewCellStyle4;
             servicoVeiculo_dgv.RowTemplate.Height = 25;
             servicoVeiculo_dgv.Size = new Size(475, 209);
             servicoVeiculo_dgv.TabIndex = 54;
@@ -363,6 +363,7 @@
             // 
             // servicoPreco_tb
             // 
+            servicoPreco_tb.Culture = new System.Globalization.CultureInfo("en-US");
             servicoPreco_tb.Location = new Point(126, 340);
             servicoPreco_tb.Mask = "0000.00";
             servicoPreco_tb.Name = "servicoPreco_tb";

@@ -64,9 +64,14 @@ namespace Potato.WindowsForms.Forms.ServicoForms
                 var message = MessageBox.Show($"Editar Servico?", "Confirmar", MessageBoxButtons.OKCancel);
 
                 if (message == DialogResult.OK)
-                {                    
-                    int newQuantidade = Convert.ToInt32(editServicoPecaQtd_numeric.Value);
-                    int pecaId = Convert.ToInt32(editServicoPecaId_tb.Text);
+                {
+                    int newQuantidade = 0;
+                    int pecaId = 0;
+                    if (editServicoPecaId_tb.Text != "")
+                    {
+                        newQuantidade = Convert.ToInt32(editServicoPecaQtd_numeric.Value);
+                        pecaId = Convert.ToInt32(editServicoPecaId_tb.Text);
+                    }
 
                     if (newQuantidade > quantidadePeca)
                     {

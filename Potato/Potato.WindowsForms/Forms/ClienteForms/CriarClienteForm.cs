@@ -52,7 +52,7 @@ namespace Potato.WindowsForms.Forms.ClienteForms
                     Email = clienteEmail_tb.Text,
                     Telefone = clienteTelefone_masktb.Text,
                     Ativo = 1,
-                    DataCriacao = DateTime.UtcNow
+                    DataCriacao = DateTime.UtcNow.ToString()
                 };
 
                 _clienteRepository.CriarCliente(cliente);

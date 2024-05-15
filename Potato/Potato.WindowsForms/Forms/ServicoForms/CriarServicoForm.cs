@@ -1,5 +1,6 @@
 ﻿using Potato.Domain.Entities;
 using Potato.Domain.Repositories;
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace Potato.WindowsForms.Forms.ServicoForms
@@ -114,6 +115,7 @@ namespace Potato.WindowsForms.Forms.ServicoForms
 
                     string placa = servicoVeiculoPlaca_tb.Text;
 
+                    // A pedido placa nao sera obrigatoria mas podera ser implementado novamente
                     var regex = new Regex("[A-Z][0-9]");
 
                     if (!regex.IsMatch(placa))
@@ -188,13 +190,13 @@ namespace Potato.WindowsForms.Forms.ServicoForms
 
                 string mecanico = servicoMecanico_combo.Text;
 
-                double preco = Convert.ToDouble(servicoPreco_tb.Text);
+                double preco = Double.Parse(servicoPreco_tb.Text, CultureInfo.InvariantCulture);
 
                 var temp = Servico.Criar(cliente, veiculo, descricao, mecanico, preco, 1);
 
                 if (temp.IsSuccess)
                 {
-                    temp.Value.DataCriacao = DateTime.UtcNow;
+                    temp.Value.DataCriacao = DateTime.UtcNow.ToString();
 
                     var servico = temp.Value;
 
