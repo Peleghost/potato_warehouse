@@ -6,9 +6,7 @@ using Potato.WindowsForms.Forms.ServicoForms;
 using Potato.WindowsForms.Forms.PecaForms;
 using Potato.WindowsForms.Forms.VeiculoForms;
 using Potato.Domain.Models;
-using System.Runtime.CompilerServices;
 using System.ComponentModel;
-using System.Drawing;
 
 namespace Potato.WindowsForms
 {
