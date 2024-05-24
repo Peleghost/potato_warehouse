@@ -3,7 +3,6 @@ using Potato.Domain.Entities;
 using Potato.Domain.Models;
 using Potato.Domain.Repositories;
 using System.Data;
-using System.Globalization;
 
 namespace Potato.Infrastructure.Persistence.Repositories
 {

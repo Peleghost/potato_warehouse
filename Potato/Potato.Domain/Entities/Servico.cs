@@ -1,4 +1,5 @@
 ﻿using Potato.Domain.Validation;
+using System.Globalization;
 
 namespace Potato.Domain.Entities
 {

@@ -6,9 +6,8 @@ using Potato.WindowsForms.Forms.ServicoForms;
 using Potato.WindowsForms.Forms.PecaForms;
 using Potato.WindowsForms.Forms.VeiculoForms;
 using Potato.Domain.Models;
-using System.Runtime.CompilerServices;
 using System.ComponentModel;
-using System.Drawing;
+using System.Globalization;
 
 namespace Potato.WindowsForms
 {
@@ -90,6 +89,8 @@ namespace Potato.WindowsForms
         private void allPecasDgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             allPecas_dgv.Columns["Id"].Visible = false;
+            allPecas_dgv.Columns["Preco"].DefaultCellStyle.Format = "c2";
+            allPecas_dgv.Columns["Preco"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
         }
 
         private void allClientes_dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -105,6 +106,8 @@ namespace Potato.WindowsForms
             allServicos_dgv.Columns["Cliente"].Visible = false;
             allServicos_dgv.Columns["Veiculo"].Visible = false;
             allServicos_dgv.Columns["Ativo"].Visible = false;
+            allServicos_dgv.Columns["Preco"].DefaultCellStyle.Format = "c2";
+            allServicos_dgv.Columns["Preco"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
             allServicos_dgv.Columns["Descricao"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
         }
 
@@ -112,6 +115,8 @@ namespace Potato.WindowsForms
         {
             servicoPecas_dgv.Columns["id"].Visible = false;
             servicoPecas_dgv.Columns["armazen"].Visible = false;
+            servicoPecas_dgv.Columns["Preco"].DefaultCellStyle.Format = "c2";
+            servicoPecas_dgv.Columns["Preco"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
         }
 
         private void allVeiculos_dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -269,7 +274,7 @@ namespace Potato.WindowsForms
         // Cliente Controls
         private void EnableClienteControls()
         {
-            clienteServico_btn.Enabled = true;
+            clienteServico_btn.Enabled = true;           
             editCliente_btn.Enabled = true;
             deleteCliente_btn.Enabled = true;
         }
@@ -304,7 +309,7 @@ namespace Potato.WindowsForms
         private void EnableVeiculoControls()
         {
             editVeiculo_btn.Enabled = true;
-            deleteVeiculo_btn.Enabled = true;
+            //deleteVeiculo_btn.Enabled = true;
         }
 
         private void DisableVeiculoControls()
@@ -882,7 +887,7 @@ namespace Potato.WindowsForms
 
                 if (message == DialogResult.OK)
                 {
-                    string dataFinal = DateTime.Now.ToShortDateString();
+                    string dataFinal = DateTime.UtcNow.ToShortDateString();
                     int ativo = 0;
 
                     _servicoRepository.FinalizarServico(servico.Id, dataFinal, ativo);

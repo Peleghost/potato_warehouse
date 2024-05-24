@@ -1,5 +1,4 @@
 using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore.Sqlite.Infrastructure.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Potato.Domain.Repositories;
 using Potato.Infrastructure.Persistence.Repositories;
@@ -13,6 +12,9 @@ namespace Potato.WindowsForms
         [STAThread]
         static void Main()
         {
+            // Set Application CurrentCulture to Invariant for formatting decimals correctly avoiding issues in DB inserts and queries
+            Application.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
